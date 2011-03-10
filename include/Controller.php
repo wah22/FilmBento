@@ -9,6 +9,8 @@ class Controller {
 
         if (isset($_REQUEST['function'])) {
             $this->$_REQUEST['function']();
+        } else {
+            $this->index();
         }
     }
 
