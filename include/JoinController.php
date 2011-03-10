@@ -8,8 +8,10 @@ class JoinController extends Controller {
         $data = array (
             'errors' => array()
         );
+    }
 
-        $this->view->load('join_view', $data);
+    function  index() {
+        $this->view->load('join_view');
     }
 
     function submit() {
@@ -47,7 +49,11 @@ class JoinController extends Controller {
         } else {
             $userModel = new UserModel();
             $userModel->create($_POST['email'], $_POST['handle'], $_POST['password']);
-        }  
+
+            LoginManager::getInstance()->logInUser($_POST['handle'], $_POST['password']);
+
+            header("Location:/");
+        }
     }
 
     function checkEmail($email) {
