@@ -31,9 +31,11 @@
         </form>
 
         <div id="errors">
-            <?php foreach ($data['errors'] as $error) : ?>
-                <?php echo $error; ?><br>
-            <?php endforeach; ?>
+            <?php if (isset($errors)) : ?>
+                <?php foreach ($data['errors'] as $error) : ?>
+                    <?php echo $error; ?><br>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </div>
     </div>
 
