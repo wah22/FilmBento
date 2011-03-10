@@ -1,9 +1,11 @@
-<a href="/">
+
     <div id="header">
-        <hgroup>
-            <h1>Site Name</h1>
-            <h2>Track what you watch</h2>
-        </hgroup>
+        <a href="/">
+            <hgroup>
+                <h1>Site Name</h1>
+                <h2>Track what you watch</h2>
+            </hgroup>
+        </a>
 
         <div id="user_panel">
             <?php if (! LoginManager::getInstance()->userLoggedIn()) : ?>
@@ -14,4 +16,5 @@
             <?php endif; ?>
         </div>
     </div>
-</a>
+
+<?php require_once 'navbar.php'; ?>
