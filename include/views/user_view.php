@@ -6,17 +6,16 @@
    <link rel="stylesheet" type="text/css" href="/css/main.css">
  </head>
  <body>
-     <div id="userProfile">
-        <?php include ("header.php"); ?>
-        <?php include('navbar.php'); ?>
+     <?php include ("header.php"); ?>
 
+     <div id="userProfile">
         <h1><a href='<?php echo $data['user']->getPath(); ?>'><?php echo $data['user']->getHandle(); ?></a></h1>
 
         <div class="list">
-            <h1><?php echo $data['user']->getHandle(); ?> has seen<br></h1>
+            <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
             <ul>
                 <?php foreach ( $data['user']->getSeens() as $seen ) : ?>
-                <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a><br></li>
+                <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>
