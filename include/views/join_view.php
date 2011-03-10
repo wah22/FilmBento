@@ -4,7 +4,6 @@
     <title></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
      <?php include ("header.php"); ?>
@@ -12,16 +11,16 @@
     <div id="join">
         <form method="post" action="">
 
-            <label for="email">your email address</a>
+            <label for="email">your email address</label>
             <input type="text" name="email">
 
-            <label for="password">choose a password</a>
+            <label for="password">choose a password</label>
             <input type="password" name="password">
 
-            <label for="password2">confirm your password</a>
+            <label for="password2">confirm your password</label>
             <input type="password" name="password2">
 
-            <label for="handle">choose your name</a>
+            <label for="handle">choose your name</label>
             <input type="text" name="handle">
             
             <input type ="submit" value ="Join">
