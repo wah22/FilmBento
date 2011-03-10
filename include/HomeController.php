@@ -3,12 +3,6 @@
 class HomeController extends Controller {
     function __construct() {
         parent::__construct();
-
-        if (LoginManager::getInstance()->userLoggedIn()) {;
-            $this->userHome();
-        } else {
-            $this->mainHome();
-        }
     }
 
     function mainHome() {
@@ -17,7 +11,13 @@ class HomeController extends Controller {
         $this->view->load('site_description_view', $data);
     }
 
-    function userHome() {
+    function index() {
+        if (!LoginManager::getInstance()->userLoggedIn()) {;
+            $this->mainHome();
+            return;
+        }
+
+
         $data = array();
         
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
@@ -37,10 +37,14 @@ class HomeController extends Controller {
     function seen () {
         $filmModel = new FilmModel();
 
-        $film = $filmModel->getFilm('title', $_POST['film']);
+        try {
+            $film = $filmModel->getFilm('title', $_POST['film']);
+        } catch (Exception $e) {
+                $this->couldNotFindFilm();
+        }
 
-        if ($film) {
-   
+        if (isset($film)) {
+
             $seen = new Seen(LoginManager::getInstance()->getLoggedInUser()->getID(), $film->getID());
 
             $user = LoginManager::getInstance()->getLoggedInUser();
@@ -51,6 +55,11 @@ class HomeController extends Controller {
 
             $userModel->save($user);
         }
+
+        $this->index();
     }
 
+    function couldNotFindFilm() {
+        $this->view->load('could_not_find_film_view');
+    }
 }
