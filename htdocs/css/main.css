@@ -31,6 +31,7 @@ nav A:hover {text-decoration: underline; color: #983D00;}
 }
 
 #header h1 {
+<<<<<<< HEAD
     font-size: 40px;
 }
 
@@ -40,6 +41,9 @@ nav A:hover {text-decoration: underline; color: #983D00;}
     left: 50px;
     font-size: 13px;
     font-style: italic;
+=======
+    font-size: 20px;
+>>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
 }
 
 nav {
@@ -114,7 +118,11 @@ nav ul {
 }
 
 #logIn label, #join label {
+<<<<<<< HEAD
     font-size: 20px;
+=======
+    font-size: 25px;
+>>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
 }
 
 #logIn #errors, #errors {
