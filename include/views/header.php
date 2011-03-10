@@ -1,11 +1,7 @@
     <div id="header">
         <a href="/">
             <hgroup>
-<<<<<<< HEAD
                 <h1>FilmBento</h1>
-=======
-                <h1>Site Name</h1>
->>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
                 <h2>Track what you watch</h2>
             </hgroup>
         </a>

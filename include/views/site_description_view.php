@@ -8,15 +8,9 @@
 <body>
     <?php include("header.php"); ?>
     <div id=premise style="position: relative; top:10px;">
-<<<<<<< HEAD
         <p>FilmBento is a simple tool that tracks the films you watch.</p>
         <p>Every time you see a film, you log it to your page here.</p>
         <p>Then you share your page with your buddies, or whatever.</p>
-=======
-        <p>FilmRunoff is a simple tool that tracks the films you watch.</p>
-        <p>Every time you see a film, you simply click "seen it" here and it gets logged on your page.</p>
-        <p>Then you share your page with your buddies.</p>
->>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
     </div>
     <div id ="front-image">
         <img src ="/images/tosh.jpg" alt = "Tosh">
