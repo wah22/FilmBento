@@ -12,8 +12,16 @@
     <h1><?php echo $data['list']->getName(); ?></h1><br>
     <input type ="hidden" name ="listID" value="<?php echo $data['list']->getID(); ?>">
 
+    <div id="editListNumbers">
+        <ol>
+            <?php for ($i = 0; $i < 10; $i++) : ?>
+            <li><?php echo $i + 1; ?></li>
+            <?php endfor; ?>
+        </ol>
+    </div>
+
     <div id="editList">
-        <ul>
+        <ol>
             <?php $seens = $data['list']->getSeens(); ?>
             <?php for ($i = 0; $i < 10; $i++) : ?>
                 <?php if (isset($seens[$i])) : ?>
@@ -32,7 +40,7 @@
 
                 <?php endif; ?>
              <?php endfor; ?>
-        </ul>
+        </ol>
 
         <div id="addFilm">
             <form method="GET" action="">
@@ -61,7 +69,7 @@
 <script>
 $(document).ready(function(){
 	$(function() {
-		$("#editList ul").sortable({ opacity: 0.6, cursor: 'move', update: function() {
+		$("#editList ol").sortable({ opacity: 0.6, cursor: 'move', update: function() {
 			var order = $(this).sortable("serialize");
 			$.post("/?controller=ListController&list=<?php echo $data['list']->getID(); ?>&function=sort", order, function(theResponse){
 				// $("#contentRight").html(theResponse);
