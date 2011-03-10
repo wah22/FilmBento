@@ -8,9 +8,6 @@
  <body>
 
      <?php include "header.php" ?>
-     <?php if (LoginManager::getInstance()->userLoggedIn()) : ?>
-     <?php include "navbar.php"; ?>
-     <?php endif; ?>
 
     Title: <a href = '<?php echo $data['film']->getPath(); ?>'> <?php echo $data['film']->getTitle(); ?> </a> <br>
 
