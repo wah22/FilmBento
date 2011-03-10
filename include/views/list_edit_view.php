@@ -8,7 +8,6 @@
  </head>
  <body>
      <?php include ("header.php"); ?>
-     <?php include('navbar.php'); ?>
 
     <h1><?php echo $data['list']->getName(); ?></h1><br>
     <input type ="hidden" name ="listID" value="<?php echo $data['list']->getID(); ?>">

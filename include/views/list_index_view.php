@@ -8,7 +8,6 @@
  </head>
  <body>
      <?php include ("header.php"); ?>
-     <?php include('navbar.php'); ?>
 
     <?php foreach ($data['user']->getLists() as $list) :  ?>
 
