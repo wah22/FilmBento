@@ -8,7 +8,6 @@
  </head>
  <body>
      <?php include("header.php"); ?>
-     <?php include('navbar.php'); ?>
 
      <div id="whatSeen">
         <h1>what have you seen?</h1>
@@ -20,7 +19,7 @@
         </form>
 
          <div id="add">
-             Not here? add a film
+             Not here? <a href="/?controller=AddFilmController">Add a film.</a>
          </a>
       </div>
  </body>

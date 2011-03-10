@@ -4,7 +4,6 @@
     <title></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
     <?php include("header.php"); ?>

@@ -3,10 +3,15 @@
  <head>
    <meta charset="utf-8">
    <title></title>
-   <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/themes/smoothness/jquery-ui.css">
+   <link href='http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+   <link rel="stylesheet" type="text/css" href="/css/main.css">
  </head>
  <body>
-     <form id="film" method="POST" action="">
+     <?php require_once 'header.php'; ?>
+
+     <h1>add a film<h1>
+
+     <form id="addFilm" method="POST" action="">
          <input type="hidden" name="function" value="addFilm">
          <label for="title">Title</label>
          <input id="title" name="title" type="text">

@@ -1,4 +1,3 @@
-
     <div id="header">
         <a href="/">
             <hgroup>

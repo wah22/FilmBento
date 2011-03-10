@@ -1,6 +1,6 @@
 <?php
 
-class Controller {
+abstract class Controller {
 
     protected $view;
 
@@ -13,6 +13,8 @@ class Controller {
             $this->index();
         }
     }
+
+    abstract function index();
 
     function logOut() {
         LoginManager::getInstance()->logOut();

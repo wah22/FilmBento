@@ -85,8 +85,6 @@ nav ul {
     position: relative;
     margin: 100px auto 0px auto;
 
-    width: 300px;
-
     font-weight: bold;
 }
 
@@ -111,11 +109,14 @@ nav ul {
     font-size: 25px;
 }
 
-#logIn #errors, #join #errors {
+#logIn #errors, #errors {
     text-align: center;
     position: relative;
     margin: 0px auto 0px auto;
-    width: 300px;
+
+    color:red;
+
+    font-size: 20px;
 }
 
 #logIn input[type="submit"], #join input[type="submit"]{
@@ -173,17 +174,39 @@ nav ul {
     text-align: center;
 }
 
+#userProfile ul {
+    margin:0;
+    padding: 0;
+}
+
 #userProfile .list {
     width: 400px;
     position: relative;
     margin: 0px auto 100px auto;
+
+    padding: 0;
 }
 
 #userProfile .list li {
     height: 60px;
     width: 400px;
     list-style-type: none;
-    background-color: whitesmoke;
+
+    margin: 0;
+    margin-top: 5px;
+
+    padding: 10px;
+
+    background-color: white;
+
+    font-size: 20px;
+
+    border-style: solid;
+    border-width: 1px;
+
+    -moz-box-shadow: 3px 3px 4px #000;
+    -webkit-box-shadow: 3px 3px 4px #000;
+    box-shadow: 3px 3px 4px #000;
 }
 
 #editList {
