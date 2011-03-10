@@ -1,7 +1,7 @@
     <div id="header">
         <a href="/">
             <hgroup>
-                <h1>Site Name</h1>
+                <h1>FilmBento</h1>
                 <h2>Track what you watch</h2>
             </hgroup>
         </a>

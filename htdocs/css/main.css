@@ -31,7 +31,15 @@ nav A:hover {text-decoration: underline; color: #983D00;}
 }
 
 #header h1 {
-    font-size: 20px;
+    font-size: 40px;
+}
+
+#header h2 {
+    position: absolute;
+    top:30px;
+    left: 50px;
+    font-size: 13px;
+    font-style: italic;
 }
 
 nav {
