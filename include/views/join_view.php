@@ -31,7 +31,7 @@
         </form>
 
         <div id="errors">
-            <?php if (isset($errors)) : ?>
+            <?php if (isset($data['errors'])) : ?>
                 <?php foreach ($data['errors'] as $error) : ?>
                     <?php echo $error; ?><br>
                 <?php endforeach; ?>
