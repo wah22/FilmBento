@@ -1,0 +1,254 @@
+body {
+    width: 800px;
+    position: relative;
+    margin: 0 auto 0 auto;
+    font-family: 'Ubuntu', arial, sans-serif;
+    position: relative;
+}
+
+#header, nav {
+    border-style: solid;
+    border-width: 1px;
+    border-top: 0;
+    border-right: 0;
+    border-left:0;
+}
+
+#header A:link {text-decoration: none; color: black;}
+#header A:visited {text-decoration: none; color: black;}
+#header A:hover {text-decoration: none; color: #983D00;}
+
+#user_panel A:link {text-decoration: underline; color: #D45500;}
+#user_panel A:visited {text-decoration: underline; color: #D45500;}
+#user_panel A:hover {text-decoration: underline; color: #983D00;}
+
+nav A:link {text-decoration: underline; color: #D45500;}
+nav A:visited {text-decoration: underline; color: #D45500;}
+nav A:hover {text-decoration: underline; color: #983D00;}
+
+#header {
+    height: 80px;
+}
+
+#header h1 {
+    font-size: 20px;
+}
+
+nav {
+    width: 100%;
+    height: 45px;
+}
+
+nav ul li {
+    float: left;
+}
+
+nav li {
+    width: 100px;
+    height: 100%;
+    padding-top: 10px;
+    text-align: center;
+}
+
+nav ul {
+    margin: 0 auto;
+    width: 940px;
+    list-style: none;
+}
+
+#user_panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#premise {
+    width:280px;
+    margin:20px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+#front-image {
+    width:420px;
+    height:400px;
+    position:absolute;
+    top:110px;
+    right:40px;
+}
+
+#front-image img {
+    width:400px;
+}
+
+#logIn, #join {
+    position: relative;
+    margin: 100px auto 0px auto;
+
+    width: 300px;
+
+    font-weight: bold;
+}
+
+#logIn input, #join input, label {
+    display: block;
+    position: relative;
+    margin: 0px auto;
+    width: 300px;
+}
+
+#logIn input, #join input {
+    width: 280px;
+    height: 25px;
+    font-size: 20px;
+
+    margin-bottom: 50px;
+
+    background-color: whitesmoke;
+}
+
+#logIn label, #join label {
+    font-size: 25px;
+}
+
+#logIn #errors, #join #errors {
+    text-align: center;
+    position: relative;
+    margin: 0px auto 0px auto;
+    width: 300px;
+}
+
+#logIn input[type="submit"], #join input[type="submit"]{
+   position: relative;
+    left: 80px;
+    height: 45px;
+    width: 73px;
+    font-size: 20px;
+}
+
+#whatSeen {
+    width: 100%;
+    position: relative;
+    margin: 10px auto 0 auto;
+    border-style: solid;
+    padding-bottom: 40px;
+    border-width: 1px;
+}
+
+#whatSeen #add {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+    font-size: 15px;
+}
+
+#whatSeen h1 {
+   font-size: 50px;
+   text-align: center;
+}
+
+#whatSeen input {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+#whatSeen input[type="text"] {
+    width: 600px;
+    height: 60px;
+
+    text-align: center;
+    font-style: italic;
+
+    font-size: 40px;
+}
+
+#whatSeen input[type="submit"] {
+    width: 100px;
+
+    height: 30px;
+}
+
+#userProfile h1 {
+    text-align: center;
+}
+
+#userProfile .list {
+    width: 400px;
+    position: relative;
+    margin: 0px auto 100px auto;
+}
+
+#userProfile .list li {
+    height: 60px;
+    width: 400px;
+    list-style-type: none;
+    background-color: whitesmoke;
+}
+
+#editList {
+    width: 750px;
+
+    position:relative;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    border-style: dotted;
+    border-width: 1px;
+}
+
+.ui-sortable {
+    width: 700px;
+
+    padding: 0;
+
+    position: relative;
+    
+    list-style-type: none;
+}
+
+.ui-sortable li {
+    position: relative;
+    left: 20px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    width: 680px;
+    height: 50px;
+    padding: 10px 10px 0px 10px;
+    margin: 0px 0px 10px 0px;
+    background-color: #F2F1F0;
+
+    font-size: 20px;
+
+    border-style: solid;
+    border-width: 1px;
+}
+
+#editList li input{
+    position: absolute;
+    top: 15px;
+    right: 10px;
+}
+
+#addFilm {
+    width: 300px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+}
+
+#addFilm input[type="text"]{
+    width: 300px;
+    height: 30px;
+    padding-left: 5px;
+    font-size: 20px;
+}
+
+#addFilm input[type="submit"]{
+    color: #D45500;
+    background-color: whitesmoke;
+}

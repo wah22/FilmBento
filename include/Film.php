@@ -1,8 +1,15 @@
 <?php
 
-class Film {
-    private $title;
+class Film implements Linkable {
 
+    private $id;
+    private $title;
+    private $seens = array();
+
+    function getID() {
+        return $this->id;
+    }
+    
     function setID($id) {
         $this->id = $id;
     }
@@ -13,5 +20,17 @@ class Film {
 
     function setTitle($title) {
         $this->title = $title;
+    }
+
+    function getSeens() {
+        return $this->seens;
+    }
+
+    function addToSeens($seen) {
+        $this->seens[] = $seen;
+    }
+
+    function getPath () {
+        return '/?controller=FilmController&film=' . urlencode($this->getTitle());
     }
 }
