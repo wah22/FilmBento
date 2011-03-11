@@ -42,8 +42,8 @@ class AddFilmController {
         }
         $filmModel->save($film);
 
-        $location = $film->getPath();
+        $location = "Location: " . $film->getPath();
 
-        echo $location;
+        header($location);
     }
 }
