@@ -28,7 +28,7 @@ class AddFilmController {
     }
 
     function addFilm() {
-        if (empty($_POST['film'])) {
+        if (empty($_POST['title'])) {
             $this->index();
             return;
         }
@@ -42,6 +42,8 @@ class AddFilmController {
         }
         $filmModel->save($film);
 
-        $this->index();
+        $location = $film->getPath();
+
+        echo $location;
     }
 }
