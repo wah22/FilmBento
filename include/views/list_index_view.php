@@ -15,6 +15,7 @@
 
     <?php endforeach; ?>
 
+    <?php include "footer.php"; ?>
  </body>
  </html>
 

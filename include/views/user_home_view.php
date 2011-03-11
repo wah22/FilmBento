@@ -18,10 +18,11 @@
             <input type="submit">
         </form>
 
-         <div id="add">
+        <div id="add">
              Not here? <a href="/?controller=AddFilmController">Add a film.</a>
-         </a>
-      </div>
+        </div>
+    </div>
+    <?php include "footer.php"; ?>
  </body>
  </html>
 

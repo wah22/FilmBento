@@ -17,5 +17,6 @@
          <input id="title" name="title" type="text">
          <input type="submit">
      </form>
+     <?php include "footer.php"; ?>
  </body>
  </html>

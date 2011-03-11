@@ -20,6 +20,6 @@
     <?php if (!$data['user']->hasSeen($data['film'])) : ?>
     <a href='/?controller=FilmController&film=<?php echo $data['film']->getTitle(); ?>&function=seen'>seen</a>
     <?php endif; ?>
-
+    <?php include "footer.php"; ?>
  </body>
  </html>

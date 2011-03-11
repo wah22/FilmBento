@@ -17,5 +17,6 @@
         <span style ="font-size:80px; font-weight: bold;">Seen it?</span><br>
         <a href ="/?controller=JoinController" style ="position:absolute; right:23px; bottom:0px">Click here to join.</a>
     </div>
+    <?php include "footer.php"; ?>
 </body>
 </html>

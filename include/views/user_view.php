@@ -34,5 +34,6 @@
             <?php // endif; ?>
         <?php endforeach; ?>
      </div>
+     <?php include "footer.php"; ?>
 </body>
 </html>
