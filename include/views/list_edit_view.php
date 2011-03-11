@@ -21,6 +21,7 @@
     </div>
 
     <div id="editList">
+
         <ol>
             <?php $seens = $data['list']->getSeens(); ?>
             <?php for ($i = 0; $i < 10; $i++) : ?>
@@ -35,22 +36,22 @@
                             <input type="submit" value="remove">
                         </form>
                      </li>
-
-                 <?php else : ?>
-
                 <?php endif; ?>
              <?php endfor; ?>
         </ol>
 
-        <div id="addFilm">
-            <form method="GET" action="">
-                <input type="hidden" name="controller" value="ListController">
-                <input type="hidden" name="function" value="addToList">
-                <input type="hidden" name="list" value="<?php echo $data['list']->getID(); ?>">
-                <input type="text" name="film" id="tags">
-                <input type="submit">
-            </form>
-        </div>
+        <?php if (count($seens) < 10) : ?>
+            <div id="addFilm">
+                <form method="GET" action="">
+                    <input type="hidden" name="controller" value="ListController">
+                    <input type="hidden" name="function" value="addToList">
+                    <input type="hidden" name="list" value="<?php echo $data['list']->getID(); ?>">
+                    <input type="text" name="film" id="tags">
+                    <input type="submit">
+                </form>
+            </div>
+        <?php endif; ?>
+
     </div>
     <?php include "footer.php"; ?>
 </body>
