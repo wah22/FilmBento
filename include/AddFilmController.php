@@ -28,6 +28,11 @@ class AddFilmController {
     }
 
     function addFilm() {
+        if (empty($_POST['film'])) {
+            $this->index();
+            return;
+        }
+
         $film = new Film();
         $film->setTitle($_POST['title']);
 
