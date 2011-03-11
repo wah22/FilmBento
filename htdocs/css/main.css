@@ -1,9 +1,11 @@
 body {
     width: 800px;
+    min-height: 600px;
     position: relative;
     margin: 0 auto 0 auto;
     font-family: 'Ubuntu', arial, sans-serif;
     position: relative;
+    padding-bottom: 100px;
 }
 
 #header, nav {
@@ -31,7 +33,6 @@ nav A:hover {text-decoration: underline; color: #983D00;}
 }
 
 #header h1 {
-<<<<<<< HEAD
     font-size: 40px;
 }
 
@@ -41,9 +42,7 @@ nav A:hover {text-decoration: underline; color: #983D00;}
     left: 50px;
     font-size: 13px;
     font-style: italic;
-=======
     font-size: 20px;
->>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
 }
 
 nav {
@@ -118,11 +117,8 @@ nav ul {
 }
 
 #logIn label, #join label {
-<<<<<<< HEAD
     font-size: 20px;
-=======
     font-size: 25px;
->>>>>>> 043932e38ebf62fd41badfc0e105c345de69f6a4
 }
 
 #logIn #errors, #errors {
@@ -228,7 +224,7 @@ nav ul {
 #editList {
     padding:0px;
 
-    width: 750px;
+    width: 700px;
     height: 770px;
 
     position:relative;
@@ -252,12 +248,14 @@ nav ul {
 }
 
 #editListNumbers {
+    text-align: right;
+
     padding: 0;
     margin-top: 15px;
 
     height: 100px;
 
-    left: 50px;
+    left: 70px;
 
     position: absolute;
 
@@ -276,25 +274,23 @@ nav ul {
 
 #editListNumbers ol {
     margin: 0;
-    width: 600px;
     padding: 0;
 }
 
 .ui-sortable {
-    width: 600px;
-
     padding: 0;
 
     position: relative;
 }
 
 .ui-sortable li {
+    display: block;
+
     position: relative;
 
-    margin-left: auto;
-    margin-right: auto;
+    left:60px;
 
-    width: 600px;
+    width: 500px;
     height: 50px;
     padding: 10px 10px 0px 10px;
     margin: 0px 0px 10px 0px;
@@ -334,4 +330,20 @@ nav ul {
 #addFilm input[type="submit"]{
     color: #D45500;
     background-color: whitesmoke;
+}
+
+footer {
+    width: 100%;
+
+    border-style: solid;
+    border-width: 1px;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+
+
+    position: absolute;
+    height: 50px;
+
+    bottom: 0px;
 }
