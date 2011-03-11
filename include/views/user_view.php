@@ -22,14 +22,16 @@
 
 
         <?php foreach ($data['user']->getLists() as $list) : ?>
-            <div class="list">
-                <h1><?php echo $list->getName(); ?><br></h1>
-                <ul>
-                    <?php foreach ($list->getSeens() as $seen) : ?>
-                        <li><?php echo $seen->getFilm()->getTitle(); ?></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
+            <?php //if (!empty( $list->getSeens() ) ) : ?>
+                <div class="list">
+                        <h1><?php echo $list->getName(); ?><br></h1>
+                    <ul>
+                        <?php foreach ($list->getSeens() as $seen) : ?>
+                            <li><?php echo $seen->getFilm()->getTitle(); ?></li>
+                        <?php endforeach; ?>
+                    </ul>
+                </div>
+            <?php // endif; ?>
         <?php endforeach; ?>
      </div>
 </body>
