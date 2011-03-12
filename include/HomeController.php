@@ -30,6 +30,8 @@ class HomeController extends Controller {
                 $data['films'][] = $film->getTitle();
             }
         }
+        
+    sort($data['films']);
 
         $this->view->load('user_home_view', $data);
     }
