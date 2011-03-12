@@ -40,7 +40,7 @@ class UserModel {
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $filmID = $row['film_id'];
-            $rating = new Rating($row['rating']);
+            $rating = $row['rating'];
             $seen = new Seen($id, $filmID, $rating);
             $user->addToSeens($seen);
         }
@@ -96,8 +96,12 @@ class UserModel {
         // save seens
         $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID(); $stmt->bindParam(':user_id', $userID);
+
+        $updateStmt = DB::getInstance()->prepare('UPDATE fr_seens SET rating = :rating WHERE user_id = :user_id && film_id = :film_id');
+
         foreach ($user->getSeens() as $seen) {
             $filmID = $seen->getFilm()->getID();
+            $rating = $seen->getRating();
             $stmt->bindParam(':film_id', $filmID);
             $stmt->execute();
 
@@ -106,6 +110,11 @@ class UserModel {
                 $stmt2->bindParam(':user_id', $userID);
                 $stmt2->bindParam(':film_id', $filmID);
                 $stmt2->execute();
+            } else {
+                $updateStmt->bindParam(':user_id', $userID);
+                $updateStmt->bindParam(':film_id', $filmID);
+                $updateStmt->bindParam(':rating', $rating);
+                $updateStmt->execute();
             }
         }
 

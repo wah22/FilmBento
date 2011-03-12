@@ -34,8 +34,7 @@ class FilmModel {
 
         while ($row = $stmt->fetch()) {
             $userID = $row['user_id'];
-            $rating = new Rating($row['rating']);
-            $seen = new Seen($userID, $id, $rating);
+            $seen = new Seen($userID, $id);
             $film->addToSeens($seen);
         }
 

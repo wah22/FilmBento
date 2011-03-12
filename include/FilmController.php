@@ -1,22 +1,13 @@
 <?php
 
-class FilmController {
+class FilmController extends Controller{
 
     private $model;
-    private $view;
 
     function __construct () {
         $this->model = new FilmModel();
-        $this->view = new View();
-
-        if (isset($_GET['function'])) {
-            $function = $_GET['function'];
-            if (function_exists($this->$function())) {
-                $this->$function();
-            }
-        }
-
-        $this->index();
+        
+        parent::__construct();
     }
 
     function index() {
@@ -44,5 +35,24 @@ class FilmController {
 
         $userModel = new UserModel();
         $userModel->save($user);
+
+        $this->index();
+    }
+
+    function rate () {
+        if (!isset($_POST['rating']) || empty($_POST['rating'])) {
+            throw new Exception('Rating not specified');
+        }
+
+        $film = $this->model->getFilm('title', $_POST['film']);
+
+        $user = LoginManager::getInstance()->getLoggedInUser();
+
+        $user->setRating($film, $_POST['rating']);
+
+        $userModel = new UserModel();
+        $userModel->save($user);
+
+        $this->index();
     }
 }

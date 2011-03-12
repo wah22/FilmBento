@@ -5,7 +5,7 @@ class Seen {
     private $filmID;
     private $rating;
 
-    function __construct($userID, $filmID, $rating = 1) {
+    function __construct($userID, $filmID, $rating = 0) {
         $this->userID = $userID;
         $this->filmID = $filmID;
         $this->rating = $rating;
@@ -24,10 +24,10 @@ class Seen {
     }
 
     function getRating() {
-        if ($this->rating->getValue()) {
-            return $this->rating;
-        } else {
-            return false;
-        }
+        return $this->rating;
+    }
+
+    function setRating($rating) {
+        $this->rating = $rating;
     }
 }

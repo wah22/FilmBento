@@ -41,19 +41,36 @@ class User implements Linkable {
         foreach ($this->seens as $seen) {
             if ($seen->getFilm()->getID() == $film->getID()) {
                 if ($seen->getRating()) {
-                    $rating = $seen->getRating()->getValue();
-                    return $rating;
+                    return $seen->getRating();
                 } else {
-                    return '';
+                    return false;
                 }
             }
         }
         return false;
     }
 
+    function setRating($film, $rating) {
+        foreach ($this->seens as $seen) {
+            if ($seen->getFilm()->getID() == $film->getID()) {
+                $seen->setRating($rating);
+                return;
+            }
+        }
+    }
+
     function hasSeen($film) {
         foreach ($this->seens as $seen) {
             if ($seen->getFilm()->getID() == $film->getID()) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    function hasRated($film) {
+        foreach ($this->seens as $seen) {
+            if ($seen->getFilm()->getID() == $film->getID() && $seen->getRating() != 0) {
                 return true;
             }
         }

@@ -13,10 +13,25 @@
 
         <h1><?php echo $data['film']->getTitle(); ?></h1>
 
-        <?php if (! $data['user']->hasSeen($data['film'])) : ?>
-        <div id="rating">
-            Enter Rating Here
-        </div>
+        <?php if ($data['user']->hasSeen($data['film']) && !$data['user']->hasRated($data['film'])) : ?>
+
+        <form id="rating" method="post" action="">
+            1<input type="radio" name="rating" value="1">
+            2<input type="radio" name="rating" value="2">
+            3<input type="radio" name="rating" value="3">
+            4<input type="radio" name="rating" value="4">
+            5<input type="radio" name="rating" value="5">
+
+            <input type="hidden" name="function" value="rate">
+            <input type="hidden" name="film" value="<?php echo $data['film']->getTitle(); ?>">
+
+            <input type="submit">
+        </form>
+
+        <?php else : ?>
+
+        <p>You rated this film <?php echo $data['user']->getRatingOf($data['film']); ?></p>
+
         <?php endif; ?>
 
         <div class="list">
