@@ -10,6 +10,7 @@
 
     <p>Woops, we couldn't find the film you entered on our database! Please check that you spelled the name correctly.
         You can add the film to our database <a href="/?controller=AddFilmController">here</a>.</p>
+
     <?php include "footer.php"; ?>
 </body>
 </html>
