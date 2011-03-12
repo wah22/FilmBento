@@ -13,6 +13,12 @@
 
         <h1><?php echo $data['film']->getTitle(); ?></h1>
 
+        <?php if (! $data['user']->hasSeen($data['film'])) : ?>
+        <div id="rating">
+            Enter Rating Here
+        </div>
+        <?php endif; ?>
+
         <div class="list">
             <h1>Recently seen by</h1>
 
