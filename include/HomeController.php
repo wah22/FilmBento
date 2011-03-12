@@ -45,15 +45,8 @@ class HomeController extends Controller {
 
         if (isset($film)) {
 
-            $seen = new Seen(LoginManager::getInstance()->getLoggedInUser()->getID(), $film->getID());
-
-            $user = LoginManager::getInstance()->getLoggedInUser();
-
-            $user->addToSeens($seen);
-
-            $userModel = new UserModel();
-
-            $userModel->save($user);
+            $location = $film->getPath();
+            header("Location: $location");
         }
 
         $this->index();
