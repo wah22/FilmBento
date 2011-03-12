@@ -191,7 +191,7 @@ nav ul {
     padding: 0;
 }
 
-#userProfile .list {
+#userProfile .list, #film .list {
     width: 400px;
     position: relative;
     margin: 0px auto 100px auto;
@@ -199,26 +199,12 @@ nav ul {
     padding: 0;
 }
 
-#userProfile .list li {
-    height: 60px;
-    width: 400px;
+#userProfile .list h1, #film .list h1 {
+    font-size: 25px;
+}
+
+#userProfile .list li, #userProfile .list li {
     list-style-type: none;
-
-    margin: 0;
-    margin-top: 5px;
-
-    padding: 10px;
-
-    background-color: white;
-
-    font-size: 20px;
-
-    border-style: solid;
-    border-width: 1px;
-
-    -moz-box-shadow: 3px 3px 4px #000;
-    -webkit-box-shadow: 3px 3px 4px #000;
-    box-shadow: 3px 3px 4px #000;
 }
 
 #editList {
@@ -330,6 +316,10 @@ nav ul {
 #addFilm input[type="submit"]{
     color: #D45500;
     background-color: whitesmoke;
+}
+
+#film h1, #film h2 {
+    text-align: center;
 }
 
 footer {

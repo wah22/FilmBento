@@ -3,6 +3,7 @@
  <head>
    <meta charset="utf-8">
    <title></title>
+   <link href='http://fonts.googleapis.com/css?family=Ubuntu:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" type="text/css" href="/css/main.css">
  </head>
  <body>
@@ -34,6 +35,7 @@
             <?php // endif; ?>
         <?php endforeach; ?>
      </div>
+     
      <?php include "footer.php"; ?>
 </body>
 </html>
