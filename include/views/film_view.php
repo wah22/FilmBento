@@ -22,7 +22,7 @@
         </div>
 
         <?php if (!$data['user']->hasSeen($data['film'])) : ?>
-        <a href='/?controller=FilmController&film=<?php echo $data['film']->getTitle(); ?>&function=seen'>seen</a>
+        <a href='/?controller=FilmController&film=<?php echo $data['film']->getTitle(); ?>&function=seen'>I've seen this</a>
         <?php endif; ?>
 
      </div>

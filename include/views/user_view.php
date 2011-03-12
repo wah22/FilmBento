@@ -28,7 +28,7 @@
                         <h1><?php echo $list->getName(); ?><br></h1>
                     <ul>
                         <?php foreach ($list->getSeens() as $seen) : ?>
-                            <li><?php echo $seen->getFilm()->getTitle(); ?></li>
+                            <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

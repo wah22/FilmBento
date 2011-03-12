@@ -9,7 +9,7 @@
  <body>
      <?php require_once 'header.php'; ?>
 
-     <h1>add a film<h1>
+     <h1>add a film</h1>
 
      <form id="addFilm" method="POST" action="">
          <input type="hidden" name="function" value="addFilm">
