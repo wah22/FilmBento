@@ -9,7 +9,7 @@
      <?php include ("header.php"); ?>
 
      <div id="userProfile">
-        <h1><a href='<?php echo $data['user']->getPath(); ?>'><?php echo $data['user']->getHandle(); ?></a></h1>
+        <h1><?php echo $data['user']->getHandle(); ?></h1>
 
         <div class="list">
             <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
