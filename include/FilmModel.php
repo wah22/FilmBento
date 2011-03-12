@@ -20,7 +20,7 @@ class FilmModel {
         $stmt->bindParam(':value', $value);
         $stmt->execute();
         if (!$stmt->rowCount()) {
-            throw new Exception('Could not find that film!');
+            return false;
         }
         $row = $stmt->fetch();
 

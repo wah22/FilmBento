@@ -37,16 +37,14 @@ class HomeController extends Controller {
     function seen () {
         $filmModel = new FilmModel();
 
-        try {
-            $film = $filmModel->getFilm('title', $_POST['film']);
-        } catch (Exception $e) {
-                $this->couldNotFindFilm();
-        }
+        $film = $filmModel->getFilm('title', $_POST['film']);
 
-        if (isset($film)) {
-
+        if ($film) {
             $location = $film->getPath();
             header("Location: $location");
+        } else {
+            $this->couldNotFindFilm();
+            return;
         }
 
         $this->index();
