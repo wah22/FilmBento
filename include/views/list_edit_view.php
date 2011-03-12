@@ -47,7 +47,7 @@
                     <input type="hidden" name="function" value="addToList">
                     <input type="hidden" name="list" value="<?php echo $data['list']->getID(); ?>">
                     <input type="text" name="film" id="tags">
-                    <input type="submit">
+                    <input type="submit" value="Add">
                 </form>
             </div>
         <?php endif; ?>
