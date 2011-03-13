@@ -4,6 +4,7 @@ body {
     position: relative;
     margin: 0 auto 0 auto;
     font-family: 'Ubuntu', arial, sans-serif;
+    font-size: 14px;
     position: relative;
     padding-bottom: 100px;
 }
@@ -181,6 +182,9 @@ nav ul {
     height: 30px;
 }
 
+#userProfile {
+}
+  
 #userProfile h1 {
     text-align: center;
 }
@@ -191,12 +195,18 @@ nav ul {
 }
 
 #userProfile .list, #film .list {
-    width: 400px;
+    width: 300px;
     position: relative;
     margin: 0px auto 100px auto;
-
-    padding: 0;
+    padding: 20px;
+    border: 1px solid black;
 }
+
+
+#userProfile .list A:link {text-decoration: none; color: black;}
+#userProfile .list A:visited {text-decoration: none; color: black;}
+#userProfile .list A:hover {text-decoration: underline; color: blue;}
+
 
 #userProfile .list h1, #film .list h1 {
     font-size: 25px;
@@ -204,6 +214,11 @@ nav ul {
 
 #userProfile .list li, #userProfile .list li {
     list-style-type: none;
+    border: 1px solid black;
+    border-bottom: 0;
+    border-left: 0;
+    border-right: 0;
+    padding: 10px;
 }
 
 #editList {
