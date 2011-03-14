@@ -65,7 +65,8 @@ class UserModel {
                     if (!$user->hasSeen($film)) {
                         throw new Exception('The user has not seen this film!');
                     }
-                    $seen = $user->getSeen($filmModel->getFilm('id', $row['film_id']));
+
+                    $seen = $user->getSeen($film);
                     $list->addSeen($seen);
                 }
             }
@@ -89,23 +90,13 @@ class UserModel {
         }
     }
 
-    function save($user) {
-
-        /*
-        $email = $user->getEmail(); $stmt->bindParam(':email', $email);
-        $handle = $user->getHandle(); $stmt->bindParam(':handle', $handle);
-        $password = $user->getPassword(); $stmt->bindParam(':password', $password);
-        $stmt->execute();
-        */
-        
+    function save($user) {        
         // save seens
         $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID(); $stmt->bindParam(':user_id', $userID);
 
         $updateStmt = DB::getInstance()->prepare('UPDATE fr_seens
-                                                SET rating = :rating
-                                                    date = FROM_UNIXTIME(:date)
-                                                WHERE user_id = :user_id && film_id = :film_id');
+                                                SET rating = :rating WHERE user_id = :user_id && film_id = :film_id');
 
         foreach ($user->getSeens() as $seen) {
             $filmID = $seen->getFilm()->getID();
@@ -124,7 +115,6 @@ class UserModel {
                 $updateStmt->bindParam(':user_id', $userID);
                 $updateStmt->bindParam(':film_id', $filmID);
                 $updateStmt->bindParam(':rating', $rating);
-                $updateStmt->bindParam(':date', $date);
                 $updateStmt->execute();
             }
         }

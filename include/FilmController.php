@@ -44,7 +44,7 @@ class FilmController extends Controller{
             throw new Exception('Rating not specified');
         }
 
-        $film = $this->model->getFilm('title', $_POST['film']);
+        $film = $this->model->getFilm('id', $_POST['film']);
 
         $user = LoginManager::getInstance()->getLoggedInUser();
 

@@ -38,8 +38,8 @@ class User implements Linkable {
             if ($seen->getFilm()->getID() == $film->getID()) {
                 return $seen;
             }
-            return false;
         }
+        return false;
     }
 
     /*

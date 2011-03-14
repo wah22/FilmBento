@@ -23,7 +23,7 @@
             5<input type="radio" name="rating" value="5">
 
             <input type="hidden" name="function" value="rate">
-            <input type="hidden" name="film" value="<?php echo $data['film']->getTitle(); ?>">
+            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
 
             <input type="submit">
         </form>
