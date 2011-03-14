@@ -60,7 +60,11 @@ class UserModel {
             $stmt->execute();
             $list = new FilmList($listID, $name);
             while ($row = $stmt->fetch()) {
-                if ($filmModel->getFilm('id', $row['film_id'])) {
+                $film = $filmModel->getFilm('id', $row['film_id']);
+                if ($film) {
+                    if (!$user->hasSeen($film)) {
+                        throw new Exception('The user has not seen this film!');
+                    }
                     $seen = $user->getSeen($filmModel->getFilm('id', $row['film_id']));
                     $list->addSeen($seen);
                 }
