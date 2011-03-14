@@ -28,7 +28,7 @@
             <input type="submit">
         </form>
 
-        <?php else : ?>
+        <?php elseif ($data['user']->hasRated($data['film'])) : ?>
 
         <p>You rated this film <?php echo $data['user']->getRatingOf($data['film']); ?></p>
 
@@ -36,15 +36,19 @@
 
         <div class="list">
             <h1>Recently seen by</h1>
-
             <?php foreach($data['film']->getSeens() as $seen) : ?>
-            <a href='<?php echo $seen->getUser()->getPath(); ?>'><?php echo $seen->getUser()->getHandle(); ?></a><br>
+            here
+            <p><a href='<?php echo $seen->getUser()->getPath(); ?>'><?php echo $seen->getUser()->getHandle(); ?></a></p>
             <?php endforeach; ?>
         </div>
 
         <?php if (!$data['user']->hasSeen($data['film'])) : ?>
-        <a href='/?controller=FilmController&film=<?php echo $data['film']->getTitle(); ?>&function=seen'>I've seen this</a>
-        <?php endif; ?>
+        <form method="post" action="">
+            <input type="hidden" name="function" value="seen">
+            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+            <input type ="submit" value="Seen it">
+        </form>
+       <?php endif; ?>
 
      </div>
 

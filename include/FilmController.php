@@ -25,7 +25,7 @@ class FilmController extends Controller{
 
     function seen () {
 
-        $film = $this->model->getFilm('title', $_GET['film']);
+        $film = $this->model->getFilm('id', $_POST['film']);
 
         $user = LoginManager::getInstance()->getLoggedInUser();
 
