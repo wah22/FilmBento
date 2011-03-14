@@ -61,7 +61,7 @@ class UserModel {
             $list = new FilmList($listID, $name);
             while ($row = $stmt->fetch()) {
                 if ($filmModel->getFilm('id', $row['film_id'])) {
-                    $seen = new Seen($id, $row['film_id']);
+                    $seen = $user->getSeen($filmModel->getFilm('id', $row['film_id']));
                     $list->addSeen($seen);
                 }
             }
