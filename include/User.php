@@ -33,8 +33,22 @@ class User implements Linkable {
         return $this->handle;
     }
 
-    function getSeens() {
-        return $this->seens;
+    /*
+     * returns the last $num of the user's seens or if the user has not seen $num films it returns what they have seen
+     */
+    function getSeens($num = 0) {
+        if (! $num) {
+            return $this->seens;
+        } else {
+            if ($num > count($this->seens)) {
+                return $this->seens;
+            }
+
+            for ($i = count($this->seens) - $num; $i < count($this->seens); $i++) {
+                $return[] = $this->seens[$i];
+            }
+            return $return;
+        }
     }
 
     function getRatingOf($film) {
