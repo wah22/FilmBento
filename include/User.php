@@ -33,6 +33,15 @@ class User implements Linkable {
         return $this->handle;
     }
 
+    function getSeen($film) {
+        foreach ($this->seens as $seen) {
+            if ($seen->getFilm()->getID() == $film->getID()) {
+                return $seen;
+            }
+            return false;
+        }
+    }
+
     /*
      * returns the last $num of the user's seens or if the user has not seen $num films it returns what they have seen
      */
