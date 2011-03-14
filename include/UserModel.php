@@ -34,14 +34,15 @@ class UserModel {
         // initiate a film model to handle creating the films for the list
         $filmModel = new FilmModel();
                
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id');
+        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE user_id = :user_id');
         $id = $user->getID();
         $stmt->bindParam(':user_id', $id);
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $filmID = $row['film_id'];
             $rating = $row['rating'];
-            $seen = new Seen($id, $filmID, $rating);
+            $date = $row['date'];
+            $seen = new Seen($id, $filmID, $rating, $date);
             $user->addToSeens($seen);
         }
 
@@ -97,23 +98,29 @@ class UserModel {
         $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID(); $stmt->bindParam(':user_id', $userID);
 
-        $updateStmt = DB::getInstance()->prepare('UPDATE fr_seens SET rating = :rating WHERE user_id = :user_id && film_id = :film_id');
+        $updateStmt = DB::getInstance()->prepare('UPDATE fr_seens
+                                                SET rating = :rating
+                                                    date = FROM_UNIXTIME(:date)
+                                                WHERE user_id = :user_id && film_id = :film_id');
 
         foreach ($user->getSeens() as $seen) {
             $filmID = $seen->getFilm()->getID();
             $rating = $seen->getRating();
+            $date = $seen->getDate();
             $stmt->bindParam(':film_id', $filmID);
             $stmt->execute();
 
             if (!$stmt->rowCount()) {
-                $stmt2 = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES ( NULL, :user_id, :film_id, 0)');
+                $stmt2 = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES ( NULL, :user_id, :film_id, 0, FROM_UNIXTIME(:date))');
                 $stmt2->bindParam(':user_id', $userID);
                 $stmt2->bindParam(':film_id', $filmID);
+                $stmt2->bindParam(':date', $date);
                 $stmt2->execute();
             } else {
                 $updateStmt->bindParam(':user_id', $userID);
                 $updateStmt->bindParam(':film_id', $filmID);
                 $updateStmt->bindParam(':rating', $rating);
+                $updateStmt->bindParam(':date', $date);
                 $updateStmt->execute();
             }
         }

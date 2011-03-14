@@ -29,7 +29,7 @@ class FilmController extends Controller{
 
         $user = LoginManager::getInstance()->getLoggedInUser();
 
-        $seen = new Seen($user->getID(), $film->getID());
+        $seen = new Seen($user->getID(), $film->getID(), 0, time());
 
         $user->addToSeens($seen);
 

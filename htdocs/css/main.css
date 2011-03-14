@@ -195,13 +195,12 @@ nav ul {
 }
 
 #userProfile .list, #film .list {
-    width: 300px;
+    width: 400px;
     position: relative;
     margin: 0px auto 100px auto;
     padding: 20px;
     border: 1px solid black;
 }
-
 
 #userProfile .list A:link {text-decoration: none; color: black;}
 #userProfile .list A:visited {text-decoration: none; color: black;}
@@ -218,7 +217,15 @@ nav ul {
     border-bottom: 0;
     border-left: 0;
     border-right: 0;
-    padding: 10px;
+    padding: 20px;
+    position: relative;
+}
+
+#userProfile .list li .whenSeen, #film .list li .whenSeen {
+    position: absolute;
+    right :2px;
+    top: 0px;
+    color: gray;
 }
 
 #editList {

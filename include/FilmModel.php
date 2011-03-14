@@ -27,14 +27,16 @@ class FilmModel {
         $film->setID($row['id']);
         $film->setTitle($row['title']);
 
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE film_id = :id');
+        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE film_id = :id');
         $id = $film->getID();
         $stmt->bindParam(':id', $id);
         $stmt->execute();
 
         while ($row = $stmt->fetch()) {
             $userID = $row['user_id'];
-            $seen = new Seen($userID, $id);
+            $rating = $row['rating'];
+            $date = $row['date'];
+            $seen = new Seen($userID, $id, $rating, $date);
             $film->addToSeens($seen);
         }
 

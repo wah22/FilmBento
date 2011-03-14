@@ -16,7 +16,10 @@
             <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
             <ul>
                 <?php foreach ( $data['user']->getSeens() as $seen ) : ?>
-                <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a></li>
+                <li>
+                    <a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a>
+                    <div class="whenSeen"><?php echo $seen->whenSeen(); ?></div>
+                </li>
                 <?php endforeach; ?>
             </ul>
         </div>
