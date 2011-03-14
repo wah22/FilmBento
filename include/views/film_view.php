@@ -37,8 +37,7 @@
         <div class="list">
             <h1>Recently seen by</h1>
             <?php foreach($data['film']->getSeens() as $seen) : ?>
-            here
-            <p><a href='<?php echo $seen->getUser()->getPath(); ?>'><?php echo $seen->getUser()->getHandle(); ?></a></p>
+            <p><a href="<?php echo $seen->getUser()->getPath(); ?>"><?php echo $seen->getUser()->getHandle(); ?></a></p>
             <?php endforeach; ?>
         </div>
 
