@@ -30,9 +30,23 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
 <script>
     $(function() {
-            var availableTags = <?php echo json_encode($data['films']); ?>;
-            $( "#tags" ).autocomplete({
-                    source: availableTags
+
+        $( "#tags" ).autocomplete({
+
+            source: function(req, add){
+                        var term = req.term;
+
+                        var url = "/?controller=FilmController&function=search&query=" + term;
+
+                        $.getJSON(url, function(data) {
+                              var suggestions = [];
+                              $.each(data, function(i,item){
+                                suggestions.push(item);
+                             });
+                             add(suggestions);
+                        })
+                    }
+
             });
     });
 </script>

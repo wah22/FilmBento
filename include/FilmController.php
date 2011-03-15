@@ -55,4 +55,24 @@ class FilmController extends Controller{
 
         $this->index();
     }
+
+    /*
+     * displays films titles of returned search results of $_GET['query'] in json format
+     */
+    function search() {
+        if ( ! isset($_GET['query']) || empty($_GET['query']) ) {
+            return false;
+        }
+
+        $filmModel = new FilmModel();
+        $films = $filmModel->search(urldecode($_GET['query']));
+        
+        $results = array();
+        foreach($films as $film) {
+            $results[] = $film->getTitle();
+        }
+
+        $json = json_encode((object)$results);
+        echo $json;
+    }
 }

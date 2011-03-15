@@ -81,4 +81,20 @@ class FilmModel {
             return false;
         }
     }
+
+    /*
+     * returns an array of $films matching a query
+     */
+    function search($query) {
+        $search = DB::getInstance()->prepare('SELECT id FROM fr_films WHERE title LIKE :query ORDER BY title');
+        $q = "%$query%";
+        $search->bindParam(':query', $q);
+        $search->execute();
+
+        $results = array();
+        while ($row = $search->fetch()) {
+            $results[] = $this->getFilm('id', $row['id']);
+        }
+        return $results;
+    }
 }
