@@ -8,8 +8,19 @@
 <body>
     <?php require_once 'header.php'; ?>
 
-    <p>Woops, we couldn't find the film you entered on our database! Please check that you spelled the name correctly.
-        You can add the film to our database <a href="/?controller=AddFilmController">here</a>.</p>
+    <div id="couldntFind">
+
+        <p id="uh-oh">Huh?</p>
+
+        <img src="images/tosh-confused.jpg">
+
+        <div id="text">
+            <p>We couldn't find the film you entered on our database.</p>
+            <p>Please check that you spelled the name correctly.</p>
+            <p>You can add the film to our database <a href="/?controller=AddFilmController">here</a>.</p>
+        </div>
+
+    </div>
 
     <?php include "footer.php"; ?>
 </body>

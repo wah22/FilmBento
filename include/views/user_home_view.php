@@ -15,7 +15,7 @@
         <form method="POST" action="/">
             <input type ="hidden" name="function" value="seen">
             <input type="text" name ="film" id="tags"><br>
-            <input type="submit">
+            <input type="image" src="images/arrow.png" alt="go">
         </form>
 
         <div id="add">
