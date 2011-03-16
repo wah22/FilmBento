@@ -56,7 +56,8 @@ class User implements Linkable {
             for ($i = count($this->seens) - $num; $i < count($this->seens); $i++) {
                 $return[] = $this->seens[$i];
             }
-            return $return;
+            $reversed = array_reverse($return);
+            return $reversed;
         }
     }
 
