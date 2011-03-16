@@ -32,12 +32,15 @@ class AddFilmController extends Controller {
         if ($film) {
             $location = $film->getPath();
             header("Location: $location");
+        } else {
+            $film = new Film();
+            $film->setTitle($_POST['title']);
+
+            $filmModel->save($film);
+
+            $location = "Location: " . $film->getPath();
+
+            header($location);
         }
-        
-        $filmModel->save($film);
-
-        $location = "Location: " . $film->getPath();
-
-        header($location);
     }
 }
