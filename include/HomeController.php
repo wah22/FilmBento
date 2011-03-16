@@ -21,18 +21,7 @@ class HomeController extends Controller {
         $data = array();
         
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
-        $data['films'] = array();
-
-        $filmModel = new FilmModel();
-        foreach ($filmModel->getAllFilms() as $film) {
-            $user = LoginManager::getInstance()->getLoggedInUser();
-            if (!$user->hasSeen($film)) {
-                $data['films'][] = $film->getTitle();
-            }
-        }
         
-    sort($data['films']);
-
         $this->view->load('user_home_view', $data);
     }
 
