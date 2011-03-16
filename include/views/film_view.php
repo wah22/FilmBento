@@ -15,23 +15,27 @@
 
         <?php if ($data['user']->hasSeen($data['film']) && !$data['user']->hasRated($data['film'])) : ?>
 
-        <form id="rating" method="post" action="">
-            1<input type="radio" name="rating" value="1">
-            2<input type="radio" name="rating" value="2">
-            3<input type="radio" name="rating" value="3">
-            4<input type="radio" name="rating" value="4">
-            5<input type="radio" name="rating" value="5">
+            <div id="rate">
+                <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
+                <form method="post" action="">
+                    <input type="hidden" name="function" value="rate">
+                    <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
 
-            <input type="hidden" name="function" value="rate">
-            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-
-            <input type="submit">
-        </form>
+                    <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
+                </form>
+                <?php endfor; ?>
+            </div>
 
         <?php elseif ($data['user']->hasRated($data['film'])) : ?>
 
-        <p>You rated this film <?php echo $data['user']->getRatingOf($data['film']); ?></p>
+            <div id="rate">
 
+                <?php for( $i = 0 ; $i < $data['user']->getRatingOf($data['film']) ; $i++ ) : ?>
+                    <img src="/images/stars/star_filled.png">
+                <?php endfor; ?>
+
+            </div>
+        
         <?php endif; ?>
 
         <div class="list">
@@ -54,3 +58,5 @@
     <?php include "footer.php"; ?>
  </body>
  </html>
+
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>

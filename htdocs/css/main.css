@@ -195,7 +195,7 @@ nav ul {
 }
 
 #userProfile .list, #film .list {
-    width: 400px;
+    width: 500px;
     position: relative;
     margin: 0px auto 100px auto;
     padding: 20px;
@@ -211,7 +211,7 @@ nav ul {
     font-size: 25px;
 }
 
-#userProfile .list li, #userProfile .list li {
+#userProfile .list li, #film .list li {
     list-style-type: none;
     border: 1px solid black;
     border-bottom: 0;
@@ -221,11 +221,20 @@ nav ul {
     position: relative;
 }
 
+#userProfile .list li .title, #film .list li .title {
+    display: inline;
+}
+
 #userProfile .list li .whenSeen, #film .list li .whenSeen {
     position: absolute;
     right :2px;
     top: 0px;
     color: gray;
+}
+
+#userProfile .list li .rating {
+    display: inline;
+    position: relative;
 }
 
 #editList {
@@ -343,6 +352,14 @@ nav ul {
     text-align: center;
 }
 
+#film #rate {
+    height: 82px;
+    width: 260px;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+}
+
 footer {
     font-size: 11px;
     width: 100%;
@@ -358,4 +375,10 @@ footer {
     height: 50px;
 
     bottom: 0px;
+}
+
+input[type=radio] {
+    width: 60px;
+    height: 60px;
+    content:url(/images/stars/star_empty.png);
 }

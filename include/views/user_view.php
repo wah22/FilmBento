@@ -17,7 +17,10 @@
             <ul>
                 <?php foreach ( $data['user']->getSeens(10) as $seen ) : ?>
                 <li>
-                    <a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a>
+                    <div class="title">
+                        <a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a>
+                    </div>
+                    <div class="rating"><?php echo $seen->getRating(); ?></div>
                     <div class="whenSeen"><?php echo $seen->whenSeen(); ?></div>
                 </li>
                 <?php endforeach; ?>

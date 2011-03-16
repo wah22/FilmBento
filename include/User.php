@@ -108,10 +108,7 @@ class User implements Linkable {
     function addToSeens($seen) {
         foreach ($this->seens as $entry) {
             if ($entry->getFilm()->getID() == $seen->getFilm()->getID()) {
-                foreach ($this->seens as $seen) {
-                    echo $seen->getFilm()->getTitle();
-                }
-                throw new Exception('User has already seen that film!');
+                return false;
             }
         }
         $this->seens[] = $seen;
