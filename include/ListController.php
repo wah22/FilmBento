@@ -68,6 +68,12 @@ class ListController {
     function addToList() {
         $filmModel = new FilmModel();
         $film = $filmModel->getFilm('title', $_GET['film']);
+
+        if (!$film) {
+            $this->view->load('could_not_find_film_view');
+            return;
+        }
+
         $seen = new Seen($this->user->getID(), $film->getID());
         $list = $this->user->getList($_GET['list']);
         $list->addSeen($seen);
