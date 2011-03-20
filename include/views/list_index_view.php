@@ -105,7 +105,9 @@
             source: function(req, add){
                 var term = req.term;
 
-                var url = "/?controller=FilmController&function=searchSeens&user=1&query=" + term;
+                var url = "/?controller=FilmController&function=searchSeens&user=<?php echo $data['user']->getID(); ?>&query=" + term;
+
+                alert(url);
 
                 $.getJSON(url, function(data) {
                       var suggestions = [];
