@@ -9,33 +9,33 @@
  <body>
     <?php include ("header.php"); ?>
 
+     <div id="listWrapper">
+
     <?php foreach($data['user']->getLists() as $list) : ?>
 
     <div class="list">
         <a href ="#"><?php echo $list->getName(); ?></a><br>
 
         <div class="body">
-            <div id="editList">
+            <div class="editList">
                 <ol>
                     <?php $seens = $list->getSeens(); ?>
                     <?php for ($i = 0; $i < 10; $i++) : ?>
                         <?php if (isset($seens[$i])) : ?>
                             <li id="recordsArray_<?php echo $seens[$i]->getFilm()->getID() ?>">
                                 <?php echo $seens[$i]->getFilm()->getTitle(); ?>
-                                <form method="GET" action="">
-                                    <input type="hidden" name="controller" value="ListController">
-                                    <input type="hidden" name="function" value="removeFromList">
+                                <form method="POST" action="" class ="removeFilm">
                                     <input type="hidden" name="film" value="<?php echo $seens[$i]->getFilm()->getID(); ?>">
                                     <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
                                     <input type="submit" value="remove">
                                 </form>
-                             </li>
+                            </li>
                         <?php endif; ?>
                      <?php endfor; ?>
                 </ol>
 
                 <?php if (count($seens) < 10) : ?>
-                    <div id="addFilm">
+                    <div class="addFilm">
                         <form method="POST" action="/?controller=ListController">
                             <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
                             <input type="text" name="film" class="tags">
@@ -46,8 +46,11 @@
             </div>
         </div>
     </div>
+    <div id="listWrapper">
 
      <?php endforeach; ?>
+
+     </div>
 
     <?php include "footer.php"; ?>
  </body>
@@ -57,32 +60,47 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
 <script>
     $(function() {
-        $("#editList ol").sortable({ opacity: 0.6, cursor: 'move', update: function() {
-                var order = $(this).sortable("serialize");
-                $.post("/?controller=ListController&list=1&function=sort", order, function(theResponse){
-                });
-        }
-        });
-
-        $("#addFilm").submit(function() {
-            var list = $('#addFilm input[name=list]').val();
-            var film = $('#addFilm input[name=film]').val();
-            var url = "/?controller=ListController&function=addToList&list=" + list + "&film=" + film;
-
-            $.ajax(url);
-        })
 
         $("div.body").hide();
 
-        $(".list a").click(function() {
-            if ( ! $(this).parent().find('div.body').is(':visible') ) {
-                $(this).parent().find('div.body').slideDown("slow");
-            } else {
-                $(this).parent().find('div.body').slideUp("slow");
-            }
+        setUpAutocomplete();
+        setUpSortable();
+        setUpSlideable();
+
+        $(".addFilm").live('submit', function() {
+            var list = $(this).find('input[name=list]').val();
+            var film = $(this).find('input[name=film]').val();
+            var url = "/?controller=ListController&function=addToList&list=" + list + "&film=" + encodeURI(film);
+            
+            $.ajax(url);
+
+            $('#listWrapper').load('/?controller=ListController .list', function () {
+                setUpAutocomplete();
+                setUpSortable();
+                setUpSlideable();
+            });
+
             return false;
         })
 
+        $(".removeFilm").live('submit' ,function() {
+            var list = $(this).parent().find('input[name=list]').val();
+            var film = $(this).parent().find('input[name=film]').val();
+            var url = "/?controller=ListController&function=removeFromList&list=" + list + "&film=" + film;
+
+            $.ajax(url);
+            
+            $('#listWrapper').load('/?controller=ListController .list', function () {
+                setUpAutocomplete();
+                setUpSortable();
+                setUpSlideable();
+            });
+            
+            return false;
+        })
+    });
+
+    function setUpAutocomplete() {
         $( ".tags" ).autocomplete({
             source: function(req, add){
                 var term = req.term;
@@ -98,5 +116,25 @@
                 })
             }
         });
-    });
+    }
+
+    function setUpSortable() {
+        $(".editList ol").sortable({ opacity: 1.0, cursor: 'move', update: function() {
+            var order = $(this).sortable("serialize");
+            $.post("/?controller=ListController&list=1&function=sort", order, function(theResponse){
+            });
+        }
+        });
+    }
+
+    function setUpSlideable() {
+        $(".list a").click(function() {
+            if ( ! $(this).parent().find('div.body').is(':visible') ) {
+                $(this).parent().find('div.body').slideDown("slow");
+            } else {
+                $(this).parent().find('div.body').slideUp("slow");
+            }
+            return false;
+        })
+    }
 </script>

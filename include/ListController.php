@@ -85,8 +85,5 @@ class ListController {
         $this->user->getList($_GET['list'])->remove($_GET['film']);
         $userModel = new UserModel();
         $userModel->save($this->user);
-
-        $location = "Location: /?controller=ListController&function=edit&list=" . $_GET['list'];
-        header($location);
     }
 }

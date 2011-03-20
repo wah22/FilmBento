@@ -241,7 +241,7 @@ nav ul {
     position: relative;
 }
 
-#editList {
+.editList {
     padding:0px;
 
     width: 700px;
@@ -259,7 +259,7 @@ nav ul {
     background-color: white;
 }
 
-#editList ol {
+.editList ol {
     padding: 0px;
 
     width: 600px;
@@ -270,33 +270,12 @@ nav ul {
     margin-right: auto;
 }
 
-#editListNumbers li, .ui-sortable li {
-    height: 60px;
-    list-style-type: none;
-}
-
-#editListNumbers li {
-    margin: 0;
-    height: 72px;
-}
-
-#editListNumbers ol {
-    margin: 0;
-    padding: 0;
-}
-
-.ui-sortable {
-    padding: 0;
-
-    position: relative;
-}
-
-.ui-sortable li {
+.editList li {
     display: block;
 
     position: relative;
 
-    left:60px;
+    left:40px;
 
     width: 500px;
     height: 50px;
@@ -314,13 +293,13 @@ nav ul {
     box-shadow: 3px 3px 4px #000;
 }
 
-#editList li input{
+.editList li input{
     position: absolute;
     top: 15px;
     right: 10px;
 }
 
-#addFilm {
+.addFilm {
     width: 300px;
     position: relative;
     margin-left: auto;
@@ -328,14 +307,14 @@ nav ul {
     padding: 20px;
 }
 
-#addFilm input[type="text"]{
+.addFilm input[type="text"]{
     width: 300px;
     height: 30px;
     padding-left: 5px;
     font-size: 20px;
 }
 
-#addFilm input[type="submit"]{
+.addFilm input[type="submit"]{
     color: #D45500;
     background-color: whitesmoke;
 }
