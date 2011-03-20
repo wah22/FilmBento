@@ -9,15 +9,14 @@
  <body>
     <?php include ("header.php"); ?>
 
-     <div id="listWrapper">
+    <div id="editList">
 
-    <?php foreach($data['user']->getLists() as $list) : ?>
+        <?php foreach($data['user']->getLists() as $list) : ?>
 
-    <div class="list">
-        <a href ="#"><?php echo $list->getName(); ?></a><br>
+        <div class="list">
+            <h1><a href ="#"><?php echo $list->getName(); ?></a></h1>
 
-        <div class="body">
-            <div class="editList">
+            <div class="body">
                 <ol>
                     <?php $seens = $list->getSeens(); ?>
                     <?php for ($i = 0; $i < 10; $i++) : ?>
@@ -31,26 +30,22 @@
                                 </form>
                             </li>
                         <?php endif; ?>
-                     <?php endfor; ?>
-                </ol>
+                    <?php endfor; ?>
 
                 <?php if (count($seens) < 10) : ?>
-                    <div class="addFilm">
+                    <li class="addFilm">
                         <form method="POST" action="/?controller=ListController">
                             <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
                             <input type="text" name="film" class="tags">
                             <input type="submit" value="Add">
                         </form>
-                    </div>
+                    </li>
                 <?php endif; ?>
+                </ol>
             </div>
         </div>
+        <?php endforeach; ?>
     </div>
-    <div id="listWrapper">
-
-     <?php endforeach; ?>
-
-     </div>
 
     <?php include "footer.php"; ?>
  </body>
@@ -71,10 +66,10 @@
             var list = $(this).find('input[name=list]').val();
             var film = $(this).find('input[name=film]').val();
             var url = "/?controller=ListController&function=addToList&list=" + list + "&film=" + encodeURI(film);
-            alert(url);
+
             $.ajax(url);
 
-            $('#listWrapper').load('/?controller=ListController .list', function () {
+            $('#editList').load('/?controller=ListController .list', function () {
                 setUpAutocomplete();
                 setUpSortable();
                 setUpSlideable();
@@ -90,7 +85,7 @@
 
             $.ajax(url);
             
-            $('#listWrapper').load('/?controller=ListController .list', function () {
+            $('#editList').load('/?controller=ListController .list', function () {
                 setUpAutocomplete();
                 setUpSortable();
                 setUpSlideable();
@@ -119,7 +114,7 @@
     }
 
     function setUpSortable() {
-        $(".editList ol").sortable({ opacity: 1.0, cursor: 'move', update: function() {
+        $(".list ol").sortable({ opacity: 1.0, cursor: 'move', update: function() {
             var order = $(this).sortable("serialize");
             $.post("/?controller=ListController&list=1&function=sort", order, function(theResponse){
             });
@@ -128,13 +123,13 @@
     }
 
     function setUpSlideable() {
-        $(".list a").click(function() {
+        $(".list h1").click(function() {
             if ( ! $(this).parent().find('div.body').is(':visible') ) {
                 $(this).parent().find('div.body').slideDown("slow");
             } else {
                 $(this).parent().find('div.body').slideUp("slow");
             }
             return false;
-        })
+        }) 
     }
 </script>

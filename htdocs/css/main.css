@@ -50,24 +50,28 @@ nav A:hover {text-decoration: underline; color: #488CFF;}
 }
 
 nav {
+    font-size: 20px;
     width: 100%;
-    height: 45px;
-}
-
-nav ul li {
-    float: left;
+    display: block;
+    margin-bottom: 20px;
 }
 
 nav li {
-    width: 100px;
-    height: 100%;
-    padding-top: 10px;
+    position: relative;
+    top: 5px;
+
+    width: 200px;
+    margin: 0;
+    margin-right: 80px;
+    
     text-align: center;
+    display: inline;
 }
 
 nav ul {
-    margin: 0 auto;
-    width: 940px;
+    margin: 0;
+    width: 100%;
+    height: 40px;
     list-style: none;
 }
 
@@ -147,7 +151,7 @@ nav ul {
     width: 100%;
     height: 220px;
     position: relative;
-    margin: 10px auto 0 auto;
+    margin: 0px auto 0 auto;
     border-style: solid;
     padding-bottom: 40px;
     border-width: 1px;
@@ -199,7 +203,7 @@ nav ul {
 }
 
 #userProfile .list, #film .list {
-    width: 500px;
+    width: 600px;
     position: relative;
     margin: 0px auto 100px auto;
     padding: 20px;
@@ -251,16 +255,16 @@ nav ul {
     position: relative;
 }
 
-.editList {
+#editList .list {
     padding:0px;
 
-    width: 700px;
-    height: 770px;
+    width: 600px;
 
     position:relative;
 
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
     margin-bottom: 20px;
 
     border-style: dotted;
@@ -269,7 +273,21 @@ nav ul {
     background-color: white;
 }
 
-.editList ol {
+#editList .list h1 {
+    text-align: center;
+    margin: 0;
+}
+
+#editList .list h1 A:link {text-decoration: none; color: black;}
+#editList .list h1 A:visited {text-decoration: none; color: black;}
+#editList .list h1 A:hover {text-decoration: underline; color: blue;}
+
+
+#editList .list body {
+    height: 550px;
+}
+
+#editList .list ol {
     padding: 0px;
 
     width: 600px;
@@ -280,7 +298,7 @@ nav ul {
     margin-right: auto;
 }
 
-.editList li {
+#editList .list li {
     display: block;
 
     position: relative;
@@ -288,7 +306,7 @@ nav ul {
     left:40px;
 
     width: 500px;
-    height: 50px;
+    height: 30px;
     padding: 10px 10px 0px 10px;
     margin: 0px 0px 10px 0px;
     background-color: white;
@@ -301,13 +319,13 @@ nav ul {
     box-shadow: 3px 3px 4px #000;
 }
 
-.editList li input{
+#editList .list .removeFilm{
     position: absolute;
-    top: 15px;
+    top: 8px;
     right: 10px;
 }
 
-.addFilm {
+#editList .addFilm {
     width: 300px;
     position: relative;
     margin-left: auto;
@@ -315,14 +333,18 @@ nav ul {
     padding: 20px;
 }
 
-.addFilm input[type="text"]{
-    width: 300px;
-    height: 30px;
-    padding-left: 5px;
-    font-size: 20px;
+#editList .addFilm input {
+    position: relative;
+    bottom: 4px;
+    left: 120px;
 }
 
-.addFilm input[type="submit"]{
+#editList .addFilm input[type="text"] {
+    width: 200px;
+    height: 20px;
+}
+
+#editList .addFilm input[type="submit"]{
     color: #D45500;
     background-color: whitesmoke;
 }
