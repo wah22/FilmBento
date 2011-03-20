@@ -1,29 +1,20 @@
 <?php
 
-class ListController {
-
-    private $view;
+class ListController extends Controller {
+    
     private $user;
 
     function __construct() {
-        $this->view = new View();
-        $this->user = LoginManager::getInstance()->getLoggedInUser();
-
-        if (isset($_GET['function'])) {
-            $function = $_GET['function'];
-            if (function_exists($this->$function())) {
-                $this->$function();
-            }
-        } else {
-            $this->index();
+        if (!LoginManager::getInstance()->userLoggedIn()) {
+            $this->redirectToLogin();
         }
+        
+        parent::__construct();
+
+        $this->user = LoginManager::getInstance()->getLoggedInUser();
     }
 
     function index() {
-        if (!LoginManager::getInstance()->userLoggedIn()) {
-            throw new Exception('user not logged in');
-        }
-
         $data = array();
 
         $data['lists'] = array();

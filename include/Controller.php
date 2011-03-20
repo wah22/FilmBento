@@ -16,6 +16,10 @@ abstract class Controller {
 
     abstract function index();
 
+    function redirectToLogIn() {
+        header("Location: /?controller=LoginController");
+    }
+
     function logOut() {
         LoginManager::getInstance()->logOut();
 

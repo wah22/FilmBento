@@ -5,6 +5,10 @@ class AddFilmController extends Controller {
     private $user;
 
     function  __construct() {
+        if (!LoginManager::getInstance()->userLoggedIn()) {
+            $this->redirectToLogin();
+        }
+
         parent::__construct();
 
         $this->user = LoginManager::getInstance()->getLoggedInUser();
