@@ -9,9 +9,9 @@ class ListController extends Controller {
             $this->redirectToLogin();
         }
         
-        parent::__construct();
-
         $this->user = LoginManager::getInstance()->getLoggedInUser();
+
+        parent::__construct();
     }
 
     function index() {
@@ -58,14 +58,14 @@ class ListController extends Controller {
 
     function addToList() {
         $filmModel = new FilmModel();
-        $film = $filmModel->getFilm('title', $_GET['film']);
+        $film = $filmModel->getFilm('title', urldecode($_GET['film']));
 
         if (!$film) {
             $this->view->load('could_not_find_film_view');
             return;
         }
 
-        $seen = new Seen($this->user->getID(), $film->getID());
+        $seen = $this->user->getSeen($film);
         $list = $this->user->getList($_GET['list']);
         $list->addSeen($seen);
         $userModel = new UserModel();

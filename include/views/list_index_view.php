@@ -71,7 +71,7 @@
             var list = $(this).find('input[name=list]').val();
             var film = $(this).find('input[name=film]').val();
             var url = "/?controller=ListController&function=addToList&list=" + list + "&film=" + encodeURI(film);
-            
+            alert(url);
             $.ajax(url);
 
             $('#listWrapper').load('/?controller=ListController .list', function () {
@@ -106,8 +106,6 @@
                 var term = req.term;
 
                 var url = "/?controller=FilmController&function=searchSeens&user=<?php echo $data['user']->getID(); ?>&query=" + term;
-
-                alert(url);
 
                 $.getJSON(url, function(data) {
                       var suggestions = [];

@@ -206,6 +206,16 @@ nav ul {
     border: 1px solid black;
 }
 
+#userProfile .list img {
+    width: 20px;
+}
+
+#userProfile .list .rating {
+    position: relative;
+    left: 20px;
+    top: 1px;
+}
+
 #userProfile .list A:link {text-decoration: none; color: black;}
 #userProfile .list A:visited {text-decoration: none; color: black;}
 #userProfile .list A:hover {text-decoration: underline; color: blue;}
@@ -282,8 +292,6 @@ nav ul {
     padding: 10px 10px 0px 10px;
     margin: 0px 0px 10px 0px;
     background-color: white;
-
-    font-size: 20px;
 
     border-style: solid;
     border-width: 1px;

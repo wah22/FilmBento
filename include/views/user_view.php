@@ -20,7 +20,13 @@
                     <div class="title">
                         <a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a>
                     </div>
-                    <div class="rating"><?php echo $seen->getRating(); ?></div>
+
+                    <div class="rating">
+                        <?php for ( $i = 0 ; $i < $seen->getRating(); $i++ ) : ?>
+                        <img src="/images/stars/star_filled.png">
+                        <?php endfor; ?>
+                    </div>
+
                     <div class="whenSeen"><?php echo $seen->whenSeen(); ?></div>
                 </li>
                 <?php endforeach; ?>
