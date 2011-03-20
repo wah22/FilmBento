@@ -12,7 +12,7 @@
      <div id="whatSeen">
         <h1>what have you seen?</h1>
 
-        <form method="POST" action="/">
+        <form method="POST" action="/" id="whatSeenForm">
             <input type ="hidden" name="function" value="seen">
             <input type="text" name ="film" id="tags"><br>
             <input type="submit" value="&#62;" id="goButton" disabled="true">
@@ -30,6 +30,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
 <script>
     $(function() {
+
+        $('#whatSeenForm').submit(function() {
+            if ($('#tags').val() == "") {
+                return false;
+            }
+        })
 
         $( "#tags" ).autocomplete({
 

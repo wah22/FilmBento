@@ -15,7 +15,7 @@
     <div id ="front-image">
         <img src ="/images/tosh.jpg" alt = "Tosh">
         <span style ="font-size:80px; font-weight: bold;">Seen it?</span><br>
-        <a href ="/?controller=JoinController" style ="position:absolute; right:23px; bottom:0px">Click here to join.</a>
+        <a href ="/?controller=JoinController" id ="joinUp">join up</a>
     </div>
     <?php include "footer.php"; ?>
 </body>

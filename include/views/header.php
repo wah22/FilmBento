@@ -2,7 +2,8 @@
         <a href="/">
             <hgroup>
                 <h1>FilmBento</h1>
-                <h2>Track what you watch</h2>
+                <h2>Track what you watch.</h2>
+                <h3>beta</h3>
             </hgroup>
         </a>
 
