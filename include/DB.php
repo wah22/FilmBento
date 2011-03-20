@@ -7,19 +7,14 @@ class DB {
     }
 
     public static function getInstance() {
-            if (empty(self::$instance)) {
-                try{
-                    self::$instance = new PDO('mysql:
-                                              host=localhost;
-                                              dbname=fr;
-                                              port=4492',
-                                              'root',
-                                              'NiShi0Ji');
-                } catch (Exception $e) {
-                    echo "Database not configured correctly:", $e->getMessage();
-                    $dbh->rollBack();
-                }
-            }
-            return self::$instance;
+        if (empty(self::$instance)) {
+            self::$instance = new PDO('mysql:
+                                      host=' . DB_HOST . ';
+                                      dbname=' . DB_NAME . ';
+                                      port='. DB_PORT,
+                                      DB_USERNAME,
+                                      DB_PASSWORD);
+        }
+        return self::$instance;
     }
 }
