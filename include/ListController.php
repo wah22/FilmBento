@@ -79,9 +79,6 @@ class ListController {
         $list->addSeen($seen);
         $userModel = new UserModel();
         $userModel->save($this->user);
-
-        $location = "Location: /?controller=ListController&function=edit&list=" . $_GET['list'];
-        header($location);
     }
 
     function removeFromList() {

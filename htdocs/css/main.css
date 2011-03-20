@@ -251,9 +251,12 @@ nav ul {
 
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 20px;
 
     border-style: dotted;
     border-width: 1px;
+
+    background-color: white;
 }
 
 #editList ol {
@@ -265,21 +268,6 @@ nav ul {
 
     margin-left: auto;
     margin-right: auto;
-}
-
-#editListNumbers {
-    text-align: right;
-
-    padding: 0;
-    margin-top: 15px;
-
-    height: 100px;
-
-    left: 70px;
-
-    position: absolute;
-
-    font-size: 50px;
 }
 
 #editListNumbers li, .ui-sortable li {

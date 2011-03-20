@@ -75,4 +75,22 @@ class FilmController extends Controller{
         $json = json_encode((object)$results);
         echo $json;
     }
+
+    function searchSeens() {
+        if ( ! isset($_GET['query']) || empty($_GET['query'])
+                || ! isset($_GET['user']) || empty($_GET['user'] )) {
+            return false;
+        }
+
+        $filmModel = new FilmModel();
+        $films = $filmModel->searchSeens($_GET['user'], urldecode($_GET['query']));
+
+        $results = array();
+        foreach($films as $film) {
+            $results[] = $film->getTitle();
+        }
+
+        $json = json_encode((object)$results);
+        echo $json;
+    }
 }

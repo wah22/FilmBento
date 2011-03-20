@@ -2,7 +2,6 @@
 
 class FilmModel {
 
-    
     function getFilm($by, $value) {
         $film = new Film();
         
@@ -94,6 +93,22 @@ class FilmModel {
         $results = array();
         while ($row = $search->fetch()) {
             $results[] = $this->getFilm('id', $row['id']);
+        }
+        return $results;
+    }
+
+    function searchSeens($userID, $query) {
+        $search = DB::getInstance()->prepare('SELECT film_id FROM fr_seens, fr_films
+                                            WHERE fr_seens.film_id = fr_films.id && fr_films.title LIKE :query && user_id = :user_id
+                                            ORDER BY title');
+        $q = "%$query%";
+        $search->bindParam(':query', $q);
+        $search->bindParam(':user_id', $userID);
+        $search->execute();
+
+        $results = array();
+        while ($row = $search->fetch()) {
+            $results[] = $this->getFilm('id', $row['film_id']);
         }
         return $results;
     }
