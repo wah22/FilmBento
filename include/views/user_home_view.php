@@ -15,7 +15,7 @@
         <form method="POST" action="/">
             <input type ="hidden" name="function" value="seen">
             <input type="text" name ="film" id="tags"><br>
-            <input type="image" src="images/arrow.png" alt="go">
+            <input type="submit" value="&#62;" id="goButton" disabled="true">
         </form>
 
         <div id="add">
@@ -47,6 +47,14 @@
                         })
                     }
 
+            });
+
+            $('#tags').change(function() {
+                if ($('#tags').val() != "") {
+                    $("#goButton").removeAttr('disabled');
+                } else {
+                    $('#goButton').attr("disabled", "true");
+                }
             });
     });
 </script>

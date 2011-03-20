@@ -183,11 +183,14 @@ nav ul {
     font-size: 40px;
 }
 
-#whatSeen input[type="image"] {
+#whatSeen input[type="submit"] {
     position: absolute;
+    width: 80px;
+    height: 40px;
+    top: 135px;
+    right: 80px;
 
-    top: 115px;
-    right: 60px;
+    font-size: 20px;
 }
 
 #userProfile {
