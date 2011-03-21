@@ -54,14 +54,14 @@
                         })
                     }
 
-            });
+        });
 
-            $('#tags').change(function() {
-                if ($('#tags').val() != "") {
-                    $("#goButton").removeAttr('disabled');
-                } else {
-                    $('#goButton').attr("disabled", "true");
-                }
-            });
+        $('#tags').keyup(function() {
+            if ($('#tags').val() != "") {
+                $("#goButton").removeAttr('disabled');
+            } else {
+                $('#goButton').attr("disabled", "true");
+            }
+        });
     });
 </script>
