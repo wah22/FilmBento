@@ -32,6 +32,7 @@
                             </li>
                         <?php endif; ?>
                     <?php endfor; ?>
+                </ol>
 
                 <?php if (count($seens) < 10) : ?>
                     <li class="addFilm">
@@ -42,7 +43,6 @@
                         </form>
                     </li>
                 <?php endif; ?>
-                </ol>
             </div>
         </div>
         <?php endforeach; ?>
