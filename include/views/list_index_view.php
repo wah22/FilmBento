@@ -97,20 +97,35 @@
     });
 
     function setUpAutocomplete() {
-        $( ".tags" ).autocomplete({
-            source: function(req, add){
-                var term = req.term;
 
-                var url = "/?controller=FilmController&function=searchSeens&user=<?php echo $data['user']->getID(); ?>&query=" + term;
+        $(".tags").each(function(){
+            var list_id = $(this).parent().find('input[name=list]').val();
 
-                $.getJSON(url, function(data) {
-                      var suggestions = [];
-                      $.each(data, function(i,item){
-                        suggestions.push(item);
-                     });
-                     add(suggestions);
-                })
-            }
+            var url = "/?controller=API&function=userList&user=1&list=1";
+
+            $.getJSON(url, function(data) {
+                var onList = [];
+                $.each(data, function(i, item) {
+                    onList.push(item);
+                });
+            });
+
+            $(this).autocomplete({
+                source: function(req, add){
+                    var term = req.term;
+
+                    url = "/?controller=API&function=search&query=" + term;
+
+                    $.getJSON(url, function(data) {
+                          var suggestions = [];
+                          $.each(data, function(i,item) {
+
+                            suggestions.push(item);
+                         });
+                         add(suggestions);
+                    })
+                }
+            });
         });
     }
 

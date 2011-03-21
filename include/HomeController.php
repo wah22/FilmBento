@@ -17,7 +17,6 @@ class HomeController extends Controller {
             return;
         }
 
-
         $data = array();
         
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();

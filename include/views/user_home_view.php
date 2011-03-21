@@ -43,7 +43,7 @@
             source: function(req, add){
                         var term = req.term;
 
-                        var url = "/?controller=FilmController&function=search&query=" + term;
+                        var url = "/?controller=API&function=search&query=" + term;
 
                         $.getJSON(url, function(data) {
                               var suggestions = [];
