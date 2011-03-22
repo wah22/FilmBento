@@ -5,6 +5,7 @@
    <title></title>
    <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" type="text/css" href="/css/main.css">
+   <link rel="stylesheet" type="text/css" href="/css/film.css">
  </head>
  <body>
      <?php include "header.php" ?>
@@ -13,6 +14,14 @@
 
         <h1><?php echo $data['film']->getTitle(); ?></h1>
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
+        
+        <?php if (!$data['user']->hasSeen($data['film'])) : ?>
+        <form method="post" action="">
+            <input type="hidden" name="function" value="seen">
+            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+            <input type ="submit" value="Seen it" id="seenIt">
+        </form>
+       <?php endif; ?>
 
         <?php if ($data['user']->hasSeen($data['film']) && !$data['user']->hasRated($data['film'])) : ?>
 
@@ -21,7 +30,7 @@
                 <form method="post" action="">
                     <input type="hidden" name="function" value="rate">
                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-
+                    <input type="hidden" name="rating" value="<?php echo $i; ?>">
                     <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
                 </form>
                 <?php endfor; ?>
@@ -45,14 +54,6 @@
             <p><a href="<?php echo $seen->getUser()->getPath(); ?>"><?php echo $seen->getUser()->getHandle(); ?></a></p>
             <?php endforeach; ?>
         </div>
-
-        <?php if (!$data['user']->hasSeen($data['film'])) : ?>
-        <form method="post" action="">
-            <input type="hidden" name="function" value="seen">
-            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-            <input type ="submit" value="Seen it">
-        </form>
-       <?php endif; ?>
 
      </div>
 

@@ -1,0 +1,23 @@
+#userProfile .list {
+    width: 600px;
+
+    position: relative;
+
+    margin: 0px auto 50px auto;
+
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 12px;
+    
+    border: 1px solid black;
+}
+
+#userProfile .title {
+    width: 300px;
+}
+
+#userProfile .rating {
+    position: absolute;
+    left: 310px;
+    top: 3px;
+}

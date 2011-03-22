@@ -5,6 +5,7 @@
    <title></title>
    <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
    <link rel="stylesheet" type="text/css" href="/css/main.css">
+   <link rel="stylesheet" type="text/css" href="/css/user.css">
  </head>
  <body>
      <?php include ("header.php"); ?>
@@ -37,7 +38,7 @@
         <?php foreach ($data['user']->getLists() as $list) : ?>
             <?php //if (!empty( $list->getSeens() ) ) : ?>
                 <div class="list">
-                        <h1><?php echo $list->getName(); ?><br></h1>
+                    <h1><?php echo $list->getName(); ?><br></h1>
                     <ul>
                         <?php foreach ($list->getSeens() as $seen) : ?>
                             <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a></li>
