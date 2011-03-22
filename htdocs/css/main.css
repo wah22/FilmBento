@@ -243,15 +243,6 @@ nav ul {
     padding: 0;
 }
 
-#film .list {
-    width: 600px;
-    position: relative;
-    margin: 0px auto 100px auto;
-    padding: 20px;
-    padding-top: 0px;
-    border: 1px solid black;
-}
-
 #userProfile .list img {
     width: 20px;
 }
