@@ -25,6 +25,7 @@ class FilmModel {
 
         $film->setID($row['id']);
         $film->setTitle($row['title']);
+        $film->setYear($row['year']);
 
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE film_id = :id');
         $id = $film->getID();
@@ -62,9 +63,11 @@ class FilmModel {
             //$stmt->execute();
         } else {
             // save new film to db
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title)');
+            $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year)');
             $title = $film->getTitle();
+            $year = $film->getYear();
             $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':year', $year);
             $stmt->execute();
         }
     }

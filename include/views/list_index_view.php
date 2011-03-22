@@ -25,6 +25,8 @@
                             <li id="recordsArray_<?php echo $seens[$i]->getFilm()->getID() ?>">
                                 <?php echo $seens[$i]->getFilm()->getTitle(); ?>
                                 <form method="POST" action="" class ="removeFilm">
+                                    <input type="hidden" name="controller" value="ListController">
+                                    <input type="hidden" name="function" value="removeFromList">
                                     <input type="hidden" name="film" value="<?php echo $seens[$i]->getFilm()->getID(); ?>">
                                     <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
                                     <input type="submit" value="remove">
@@ -36,7 +38,9 @@
 
                 <?php if (count($seens) < 10) : ?>
                     <li class="addFilm">
-                        <form method="POST" action="/?controller=ListController">
+                        <form method="POST" action="">
+                            <input type="hidden" name="controller" value="ListController">
+                            <input type="hidden" name="function" value="addToList">
                             <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
                             <input type="text" name="film" class="tags">
                             <input type="submit" value="Add">

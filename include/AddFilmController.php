@@ -25,7 +25,7 @@ class AddFilmController extends Controller {
     }
 
     function addFilm() {
-        if (empty($_POST['title'])) {
+        if (empty($_POST['title']) || empty($_POST['year'])) {
             $this->index();
             return;
         }
@@ -39,6 +39,7 @@ class AddFilmController extends Controller {
         } else {
             $film = new Film();
             $film->setTitle($_POST['title']);
+            $film->setYear($_POST['year']);
 
             $filmModel->save($film);
 

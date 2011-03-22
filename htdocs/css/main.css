@@ -148,7 +148,7 @@ nav ul {
     font-weight: bold;
 }
 
-#logIn input, #join input, label {
+#logIn input, #join input {
     display: block;
     position: relative;
     margin: 0px auto;

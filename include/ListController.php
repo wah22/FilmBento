@@ -58,7 +58,7 @@ class ListController extends Controller {
 
     function addToList() {
         $filmModel = new FilmModel();
-        $film = $filmModel->getFilm('title', urldecode($_GET['film']));
+        $film = $filmModel->getFilm('title', urldecode($_POST['film']));
 
         if (!$film) {
             $this->view->load('could_not_find_film_view');
@@ -66,15 +66,19 @@ class ListController extends Controller {
         }
 
         $seen = $this->user->getSeen($film);
-        $list = $this->user->getList($_GET['list']);
+        $list = $this->user->getList($_POST['list']);
         $list->addSeen($seen);
         $userModel = new UserModel();
         $userModel->save($this->user);
+
+        $this->index();
     }
 
     function removeFromList() {
-        $this->user->getList($_GET['list'])->remove($_GET['film']);
+        $this->user->getList($_POST['list'])->remove($_POST['film']);
         $userModel = new UserModel();
         $userModel->save($this->user);
+
+        $this->index();
     }
 }

@@ -15,7 +15,9 @@
          <input type="hidden" name="function" value="addFilm">
          <label for="title">Title</label>
          <input id="title" name="title" type="text">
-         <input type="submit">
+         <label for="year">Year</label>
+         <input id="year" name="year" type="text">
+         <input type="submit" value="Add">
      </form>
      <?php include "footer.php"; ?>
  </body>

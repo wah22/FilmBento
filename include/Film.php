@@ -4,6 +4,7 @@ class Film implements Linkable {
 
     private $id;
     private $title;
+    private $year;
     private $seens = array();
 
     function getID() {
@@ -20,6 +21,14 @@ class Film implements Linkable {
 
     function setTitle($title) {
         $this->title = $title;
+    }
+
+    function getYear() {
+        return $this->year;
+    }
+
+    function setyear($year) {
+        $this->year = $year;
     }
 
     function getSeens() {

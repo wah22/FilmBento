@@ -12,6 +12,7 @@
      <div id="film">
 
         <h1><?php echo $data['film']->getTitle(); ?></h1>
+        <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
 
         <?php if ($data['user']->hasSeen($data['film']) && !$data['user']->hasRated($data['film'])) : ?>
 
