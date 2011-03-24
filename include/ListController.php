@@ -1,5 +1,8 @@
 <?php
 
+/*
+ * The controller for the user's "Lists" page
+ */
 class ListController extends Controller {
     
     private $user;
@@ -28,7 +31,7 @@ class ListController extends Controller {
 
     function edit() {
         if (!isset($_GET['list'])) {
-            throw new Exception('a list must be specified');
+            header('Location: /');
         }
 
         $data = array();

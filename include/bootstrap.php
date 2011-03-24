@@ -11,9 +11,20 @@ define('DB_USERNAME', $db_username);
 define('DB_PASSWORD', $db_password);
 
 function __autoload($class_name) {
-    require_once(ROOT_PATH . '/include/' . $class_name . '.php');
+    if (file_exists(ROOT_PATH.'/include/'.$class_name.'.php')) {
+            require_once(ROOT_PATH.'/include/'.$class_name.'.php');
+            return true;
+    }
+    if (file_exists(ROOT_PATH.'/include/controllers/'.$class_name.'.php')) {
+            require_once(ROOT_PATH.'/include/controllers/'.$class_name.'.php');
+            return true;
+    }
 }
 
+
+/*
+ * Display errors if in testing environment
+ */
 if ($testing == true) {
     ini_set('display_errors',1);
     error_reporting(E_ALL|E_STRICT);
