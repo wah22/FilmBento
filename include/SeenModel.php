@@ -47,7 +47,7 @@ class SeenModel {
         return $seens;
     }
 
-        function getFilmsLastSeens ($numToGet, $film) {
+    function getFilmsLastSeens ($numToGet, $film) {
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date
                                           FROM fr_seens
                                           WHERE film_id = :film_id

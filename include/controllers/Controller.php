@@ -2,6 +2,10 @@
 
 abstract class Controller {
 
+    protected $userModel;
+    protected $filmModel;
+    protected $seenModel;
+
     protected $view;
 
     /*
@@ -9,6 +13,10 @@ abstract class Controller {
      * if a function is specified it calls that function, if not it calls the index function
      */
     function __construct() {
+        $this->userModel = new UserModel();
+        $this->filmModel = new FilmModel();
+        $this->seenModel = new SeenModel();
+
         $this->view = new View();
 
         if (isset($_REQUEST['function'])) {

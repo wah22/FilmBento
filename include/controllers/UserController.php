@@ -1,12 +1,8 @@
 <?php
 
 class UserController extends Controller {
-    
-    private $model;
 
     function __construct() {
-        $this->model = new UserModel();
-
         parent::__construct();
      }
 
@@ -16,17 +12,14 @@ class UserController extends Controller {
       */
     function index() {
         if( isset($_GET['user']) ) {
-            $user = $this->model->getUser('handle', $_GET['user']);
+            $user = $this->userModel->getUser('handle', $_GET['user']);
 
-            $seenModel = new SeenModel();
-            $seens = $seenModel->getLastSeens(10, $user);
+            $seens = $this->seenModel->getLastSeens(10, $user);
 
             $seensArray = array();
 
-            $filmModel = new FilmModel();
-
             foreach ($seens as $seen) {
-                $film = $filmModel->getFilm('id', $seen->getFilmID());
+                $film = $this->filmModel->getFilm('id', $seen->getFilmID());
                 
                 $array = array(
                     'title' => $film->getTitle(),

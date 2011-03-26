@@ -2,17 +2,13 @@
 
 class FilmController extends Controller{
 
-    private $model;
-
     function __construct () {
-        $this->model = new FilmModel();
-        
         parent::__construct();
     }
 
     function index() {
         if (isset($_GET['film'])) {
-            $film = $this->model->getFilm('title', $_GET['film']);
+            $film = $this->filmModel->getFilm('title', $_GET['film']);
             $data = array(
                 'film' => $film
             );
@@ -20,32 +16,27 @@ class FilmController extends Controller{
             $user = LoginManager::getInstance()->getLoggedInUser();
             $data['user'] = $user;
 
-            $seenModel = new SeenModel();
-
-            if ($seenModel->userHasSeen($user, $film)) {
+            if ($this->seenModel->userHasSeen($user, $film)) {
                 $data['hasSeen'] = true;
             } else {
                 $data['hasSeen'] = false;
             }
 
-            if ($seenModel->userHasRated($user, $film)) {
+            if ($this->seenModel->userHasRated($user, $film)) {
                 $data['hasRated'] = true;
 
-                $seen = $seenModel->getSeen($user, $film);
+                $seen = $this->seenModel->getSeen($user, $film);
                 $rating = $seen->getRating();
                 $data['rating'] = $rating;
             } else {
                 $data['hasRated'] = false;
             }
 
-            $userModel = new UserModel();
-
-            $seenModel = new SeenModel();
-            $lastSeens = $seenModel->getFilmsLastSeens(10, $film);
+            $lastSeens = $this->seenModel->getFilmsLastSeens(10, $film);
 
             $lastSeensArray = array();
             foreach ($lastSeens as $lastSeen) {
-                $user = $userModel->getUser('id', $lastSeen->getUserID());
+                $user = $this->userModel->getUser('id', $lastSeen->getUserID());
                 $lastSeenArray = array(
                     'user' => $user->getHandle(),
                     'path' => $user->getPath()
@@ -65,19 +56,17 @@ class FilmController extends Controller{
             return;
         }
        
-        $film = $this->model->getFilm('id', $_POST['film']);
+        $film = $this->filmModel->getFilm('id', $_POST['film']);
         $user = LoginManager::getInstance()->getLoggedInUser();
-                
-        $seenModel = new SeenModel();
 
-        if ($seenModel->userHasSeen($user, $film)) {
+        if ($this->seenModel->userHasSeen($user, $film)) {
             $this->index();
             return;
         }
 
         $seen = new Seen($user->getID(), $film->getID(), 0, time());
 
-        $seenModel->create($seen);
+        $this->seenModel->create($seen);
 
         $this->index();
     }
@@ -88,16 +77,15 @@ class FilmController extends Controller{
             return;
         }
 
-        $film = $this->model->getFilm('id', $_POST['film']);
+        $film = $this->filmModel->getFilm('id', $_POST['film']);
 
         $user = LoginManager::getInstance()->getLoggedInUser();
 
         $rating = $_POST['rating'];
 
-        $seenModel = new SeenModel();
-        $seen = $seenModel->getSeen($user, $film);
+        $seen = $this->seenModel->getSeen($user, $film);
         $seen->setRating($rating);
-        $seenModel->save($seen);
+        $this->seenModel->save($seen);
 
         $this->index();
     }
@@ -108,7 +96,6 @@ class FilmController extends Controller{
             return false;
         }
 
-        $filmModel = new FilmModel();
         $films = $filmModel->searchSeens($_GET['user'], urldecode($_GET['query']));
 
         $results = array();
