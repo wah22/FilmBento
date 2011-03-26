@@ -13,16 +13,12 @@ class Seen {
         $this->date = $date;
     }
 
-    function getUser() {
-        $userModel = new UserModel();
-        $user = $userModel->getUser('id', $this->userID);
-        return $user;
+    function getUserID() {
+        return $this->userID;
     }
 
-    function getFilm() {
-        $filmModel = new FilmModel();
-        $film = $filmModel->getFilm('id', $this->filmID);
-        return $film;
+    function getFilmID() {
+        return $this->filmID;
     }
 
     function getRating() {

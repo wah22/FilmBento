@@ -5,7 +5,6 @@ class User implements Linkable {
     private $id;
     private $email;
     private $handle;
-    private $seens = array();
     private $lists = array();
     private $password; //md5
 
@@ -31,88 +30,6 @@ class User implements Linkable {
 
     function getHandle() {
         return $this->handle;
-    }
-
-    function getSeen($film) {
-        foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID()) {
-                return $seen;
-            }
-        }
-        return false;
-    }
-
-    /*
-     * returns the last $num of the user's seens or if the user has not seen $num films it returns what they have seen
-     */
-    function getSeens($num = 0) {
-        if (! $num) {
-            return $this->seens;
-        } else {
-            if ($num > count($this->seens)) {
-                return $this->seens;
-            }
-
-            for ($i = count($this->seens) - $num; $i < count($this->seens); $i++) {
-                $return[] = $this->seens[$i];
-            }
-            $reversed = array_reverse($return);
-            return $reversed;
-        }
-    }
-
-    function getRatingOf($film) {
-        foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID()) {
-                if ($seen->getRating()) {
-                    return $seen->getRating();
-                } else {
-                    return false;
-                }
-            }
-        }
-        return false;
-    }
-
-    function setRating($film, $rating) {
-        foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID()) {
-                $seen->setRating($rating);
-                return;
-            }
-        }
-    }
-
-    function hasSeen($film) {
-        foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function hasRated($film) {
-        foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID() && $seen->getRating() != 0) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    function setSeen($film) {
-        $seen = new Seen($this->id, $film->getID(), 1);
-        $this->addToSeens($seen);
-    }
-
-    function addToSeens($seen) {
-        foreach ($this->seens as $entry) {
-            if ($entry->getFilm()->getID() == $seen->getFilm()->getID()) {
-                return false;
-            }
-        }
-        $this->seens[] = $seen;
     }
 
     function getPath() {

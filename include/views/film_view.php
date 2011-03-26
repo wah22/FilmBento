@@ -9,13 +9,12 @@
  </head>
  <body>
      <?php include "header.php" ?>
-
+     
      <div id="film">
-
         <h1><?php echo $data['film']->getTitle(); ?></h1>
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
         
-        <?php if (!$data['user']->hasSeen($data['film'])) : ?>
+        <?php if (!$data['hasSeen']) : ?>
         <form method="post" action="">
             <input type="hidden" name="function" value="seen">
             <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
@@ -23,7 +22,7 @@
         </form>
        <?php endif; ?>
 
-        <?php if ($data['user']->hasSeen($data['film']) && !$data['user']->hasRated($data['film'])) : ?>
+        <?php if ($data['hasSeen'] && !$data['hasRated']) : ?>
 
             <div id="rate">
                 <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
@@ -36,29 +35,24 @@
                 <?php endfor; ?>
             </div>
 
-        <?php elseif ($data['user']->hasRated($data['film'])) : ?>
+        <?php elseif ($data['hasRated']) : ?>
 
             <div id="rate">
-
-                <?php for( $i = 0 ; $i < $data['user']->getRatingOf($data['film']) ; $i++ ) : ?>
+                <?php for( $i = 0 ; $i < $data['rating'] ; $i++ ) : ?>
                     <img src="/images/stars/star_filled.png">
                 <?php endfor; ?>
-
             </div>
         
         <?php endif; ?>
 
         <div class="list">
             <h1>Recently seen by</h1>
-            <?php foreach($data['film']->getSeens() as $seen) : ?>
-            <p><a href="<?php echo $seen->getUser()->getPath(); ?>"><?php echo $seen->getUser()->getHandle(); ?></a></p>
+            <?php foreach($data['recentlySeens'] as $seen) : ?>
+            <p><a href="<?php echo $seen['path']; ?>"><?php echo $seen['user']; ?></a></p>
             <?php endforeach; ?>
         </div>
-
      </div>
 
     <?php include "footer.php"; ?>
  </body>
  </html>
-
- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>

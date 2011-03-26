@@ -28,50 +28,7 @@ class UserModel {
         $user->setEmail($row['email']);
         $user->setHandle($row['handle']);
         $user->setPassword($row['password']);
-
-        // create the user's seen films
-
-        // initiate a film model to handle creating the films for the list
-        $filmModel = new FilmModel();
-               
-        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE user_id = :user_id');
-        $id = $user->getID();
-        $stmt->bindParam(':user_id', $id);
-        $stmt->execute();
-        while ($row = $stmt->fetch()) {
-            $filmID = $row['film_id'];
-            $rating = $row['rating'];
-            $date = $row['date'];
-            $seen = new Seen($id, $filmID, $rating, $date);
-            $user->addToSeens($seen);
-        }
-
-        // initiate lists
-        $stmt2 = DB::getInstance()->prepare('SELECT * FROM fr_lists');
-        $stmt2->execute();
-        while ($row2 = $stmt2->fetch()) {
-            $name = $row2['name'];
-            $listID = $row2['id'];
-
-            $stmt = DB::getInstance()->prepare('SELECT * FROM fr_list_entries WHERE user_id = :user_id && list_id = :list_id ORDER BY rank ASC');
-            $id = $user->getID();
-            $stmt->bindParam(':user_id', $id);
-            $stmt->bindParam(':list_id', $listID);
-            $stmt->execute();
-            $list = new FilmList($listID, $name);
-            while ($row = $stmt->fetch()) {
-                $film = $filmModel->getFilm('id', $row['film_id']);
-                if ($film) {
-                    if (!$user->hasSeen($film)) {
-                        throw new Exception('The user has not seen this film!');
-                    }
-
-                    $seen = $user->getSeen($film);
-                    $list->addSeen($seen);
-                }
-            }
-            $user->addList($list);
-        }
+        
         return $user;
     }
 
@@ -90,75 +47,7 @@ class UserModel {
         }
     }
 
-    function save($user) {        
-        // save seens
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
-        $userID = $user->getID(); $stmt->bindParam(':user_id', $userID);
-
-        $updateStmt = DB::getInstance()->prepare('UPDATE fr_seens
-                                                SET rating = :rating WHERE user_id = :user_id && film_id = :film_id');
-
-        foreach ($user->getSeens() as $seen) {
-            $filmID = $seen->getFilm()->getID();
-            $rating = $seen->getRating();
-            $date = $seen->getDate();
-            $stmt->bindParam(':film_id', $filmID);
-            $stmt->execute();
-
-            if (!$stmt->rowCount()) {
-                $stmt2 = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES ( NULL, :user_id, :film_id, 0, FROM_UNIXTIME(:date))');
-                $stmt2->bindParam(':user_id', $userID);
-                $stmt2->bindParam(':film_id', $filmID);
-                $stmt2->bindParam(':date', $date);
-                $stmt2->execute();
-            } else {
-                $updateStmt->bindParam(':user_id', $userID);
-                $updateStmt->bindParam(':film_id', $filmID);
-                $updateStmt->bindParam(':rating', $rating);
-                $updateStmt->execute();
-            }
-        }
-
-        // save lists
-        foreach ($user->getLists() as $list) {
-           
-            $checkStmt = DB::getInstance()->prepare('SELECT * FROM fr_list_entries WHERE rank = :rank && list_id = :list_id && user_id = :user_id');
-            $insertStmt = DB::getInstance()->prepare('INSERT INTO fr_list_entries VALUES ( NULL, :user_id, :film_id, :rank, :list_id )');
-            $stmt = DB::getInstance()->prepare('UPDATE fr_list_entries SET film_id = :film_id WHERE user_id = :user_id && list_id = :list_id && rank = :rank');
-            $userID = $user->getID();
-            $stmt->bindParam(':user_id', $userID);
-            $checkStmt->bindParam(':user_id', $userID);
-
-            $listID = $list->getID();
-            $stmt->bindParam(':list_id', $listID);
-            $checkStmt->bindParam(':list_id', $listID);
-
-            $insertStmt->bindParam(':user_id', $userID);
-            $insertStmt->bindParam(':list_id', $listID);
-
-            foreach ($list->getSeens() as $rank=>$seen) {
-                $rank++;
-                $filmID = $seen->getFilm()->getID();
-                $stmt->bindParam(':film_id', $filmID); 
-                $stmt->bindParam(':rank', $rank);
-                $checkStmt->bindParam(':rank', $rank);
-                $checkStmt->execute();
-                if ($checkStmt->rowCount()) {
-                    $stmt->execute();
-                } else {
-                    $insertStmt->bindParam(':rank', $rank);
-                    $insertStmt->bindparam(':film_id', $filmID);
-                    $insertStmt->execute();
-                }
-            }
-
-            // delete the extra entries
-            $delstmt = DB::getInstance()->prepare('DELETE FROM fr_list_entries WHERE user_id = :user_id && list_id = :list_id && rank > :count');
-            $count = count($list->getSeens());
-            $delstmt->bindParam(':count', $count);
-            $delstmt->bindParam(':list_id', $listID);
-            $delstmt->bindParam(':user_id', $userID);
-            $delstmt->execute();
-        }
+    function save($user) {
+        
     }
 }

@@ -17,41 +17,87 @@ class FilmController extends Controller{
                 'film' => $film
             );
 
-            $data['user'] = LoginManager::getInstance()->getLoggedInUser();
+            $user = LoginManager::getInstance()->getLoggedInUser();
+            $data['user'] = $user;
+
+            $seenModel = new SeenModel();
+
+            if ($seenModel->userHasSeen($user, $film)) {
+                $data['hasSeen'] = true;
+            } else {
+                $data['hasSeen'] = false;
+            }
+
+            if ($seenModel->userHasRated($user, $film)) {
+                $data['hasRated'] = true;
+
+                $seen = $seenModel->getSeen($user, $film);
+                $rating = $seen->getRating();
+                $data['rating'] = $rating;
+            } else {
+                $data['hasRated'] = false;
+            }
+
+            $userModel = new UserModel();
+
+            $seenModel = new SeenModel();
+            $lastSeens = $seenModel->getFilmsLastSeens(10, $film);
+
+            $lastSeensArray = array();
+            foreach ($lastSeens as $lastSeen) {
+                $user = $userModel->getUser('id', $lastSeen->getUserID());
+                $lastSeenArray = array(
+                    'user' => $user->getHandle(),
+                    'path' => $user->getPath()
+                );
+                $lastSeensArray[] = $lastSeenArray;
+            }
+
+            $data['recentlySeens'] = $lastSeensArray;
 
             $this->view->load('film_view', $data);
         }
     }
 
     function seen () {
-
+        if(empty($_POST['film'])) {
+            $this->index();
+            return;
+        }
+       
         $film = $this->model->getFilm('id', $_POST['film']);
-
         $user = LoginManager::getInstance()->getLoggedInUser();
+                
+        $seenModel = new SeenModel();
+
+        if ($seenModel->userHasSeen($user, $film)) {
+            $this->index();
+            return;
+        }
 
         $seen = new Seen($user->getID(), $film->getID(), 0, time());
 
-        $user->addToSeens($seen);
-
-        $userModel = new UserModel();
-        $userModel->save($user);
+        $seenModel->create($seen);
 
         $this->index();
     }
 
     function rate () {
-        if (!isset($_POST['rating']) || empty($_POST['rating'])) {
-            throw new Exception('Rating not specified');
+        if (empty($_POST['rating'])) {
+            $this->index();
+            return;
         }
 
         $film = $this->model->getFilm('id', $_POST['film']);
 
         $user = LoginManager::getInstance()->getLoggedInUser();
 
-        $user->setRating($film, $_POST['rating']);
+        $rating = $_POST['rating'];
 
-        $userModel = new UserModel();
-        $userModel->save($user);
+        $seenModel = new SeenModel();
+        $seen = $seenModel->getSeen($user, $film);
+        $seen->setRating($rating);
+        $seenModel->save($seen);
 
         $this->index();
     }

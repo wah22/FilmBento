@@ -17,7 +17,29 @@ class UserController extends Controller {
     function index() {
         if( isset($_GET['user']) ) {
             $user = $this->model->getUser('handle', $_GET['user']);
-            $data = array ( 'user' => $user);
+
+            $seenModel = new SeenModel();
+            $seens = $seenModel->getLastSeens(10, $user);
+
+            $seensArray = array();
+
+            $filmModel = new FilmModel();
+
+            foreach ($seens as $seen) {
+                $film = $filmModel->getFilm('id', $seen->getFilmID());
+                
+                $array = array(
+                    'title' => $film->getTitle(),
+                    'path' => $film->getPath(),
+                    'rating' => $seen->getRating(),
+                    'when' => $seen->whenSeen()
+                );
+
+                $seensArray[] = $array;
+            }
+
+            $data = array ( 'user' => $user,
+                            'seens' => $seensArray);
             $this->view->load('user_view', $data);
         } else {
             header('Location: /');
