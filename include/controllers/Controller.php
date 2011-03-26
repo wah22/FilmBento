@@ -5,6 +5,7 @@ abstract class Controller {
     protected $userModel;
     protected $filmModel;
     protected $seenModel;
+    protected $listModel;
 
     protected $view;
 
@@ -16,6 +17,7 @@ abstract class Controller {
         $this->userModel = new UserModel();
         $this->filmModel = new FilmModel();
         $this->seenModel = new SeenModel();
+        $this->listModel = new FilmListModel();
 
         $this->view = new View();
 

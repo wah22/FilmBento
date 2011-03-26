@@ -3,10 +3,12 @@
 class FilmList {
 
     private $id;
+    private $userID;
     private $name;
-    private $seens = array();
+    private $entries = array();
 
-    function __construct($id, $name) {
+    function __construct($userID, $id, $name) {
+        $this->userID= $userID;
         $this->id = $id;
         $this->name = $name;
     }
@@ -14,38 +16,43 @@ class FilmList {
     function getID() {
         return $this->id;
     }
-    
+
+    function getUserID() {
+        return $this->userID;
+    }
+
+
     function getName() {
         return $this->name;
     }
     
-    function getSeens() {
-        return $this->seens;
+    function getEntries() {
+        return $this->entries;
     }
     
-    function addSeen(Seen $seen) {
-        foreach ($this->seens as $entry) {
-            if ($entry->getFilm()->getID() == $seen->getFilm()->getID()) {
-                throw new Exception('that film is already on the list');
+    function addEntry($newEntry) {
+        foreach ($this->entries as $entry) {
+            if ($entry == $newEntry) {
+                return;
             }
         }
-        $this->seens[] = $seen;
+        $this->entries[] = $newEntry;
     }
 
     function remove($filmID) {
-        foreach ($this->seens as $key=>$seen) {
-            if ($seen->getFilm()->getID() == $filmID) {
-                unset($this->seens[$key]);
+        foreach ($this->entries as $key=>$entry) {
+            if ($entry == $filmID) {
+                unset($this->entries[$key]);
             }
         }
 
-        $newSeens = array();
+        $newEntries = array();
 
-        foreach ($this->seens as $key=>$seen) {
-            $newSeens[] = $seen;
+        foreach ($this->entries as $key=>$entry) {
+            $newEntries[] = $entry;
         }
 
-        $this->seens = $newSeens;
+        $this->entries = $newEntries;
     }
 
     /*
@@ -53,22 +60,12 @@ class FilmList {
      * The array must be in the format $rank=>filmID
      */
     function sort($array) {
-        $newSeens = array();
-
-        foreach ($array as $rank=>$filmID) {
-            foreach ($this->seens as $seen) {
-                if ($seen->getFilm()->getID() == $filmID) {
-                    $newSeens[] = $seen;
-                }
-            }
-        }
-
-        $this->seens = $newSeens;
+        $this->entries = $array;
     }
 
     function hasFilm($film) {
         foreach ($this->seens as $seen) {
-            if ($seen->getFilm()->getID() == $film->getID()) {
+            if ($seen == $film->getID()) {
                 return true;
             }
         }

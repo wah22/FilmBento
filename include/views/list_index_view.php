@@ -12,23 +12,22 @@
 
     <div id="editList">
 
-        <?php foreach($data['user']->getLists() as $list) : ?>
+        <?php foreach($data['lists'] as $list) : ?>
 
         <div class="list">
-            <h1><a href ="#"><?php echo $list->getName(); ?></a></h1>
+            <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
 
             <div class="body">
                 <ol>
-                    <?php $seens = $list->getSeens(); ?>
                     <?php for ($i = 0; $i < 10; $i++) : ?>
-                        <?php if (isset($seens[$i])) : ?>
-                            <li id="recordsArray_<?php echo $seens[$i]->getFilm()->getID() ?>">
-                                <?php echo $seens[$i]->getFilm()->getTitle(); ?>
+                        <?php if (isset($list['films'][$i])) : ?>
+                            <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
+                                <?php echo $list['films'][$i]['title']; ?>
                                 <form method="POST" action="" class ="removeFilm">
                                     <input type="hidden" name="controller" value="ListController">
                                     <input type="hidden" name="function" value="removeFromList">
-                                    <input type="hidden" name="film" value="<?php echo $seens[$i]->getFilm()->getID(); ?>">
-                                    <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
+                                    <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
+                                    <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
                                     <input type="submit" value="remove">
                                 </form>
                             </li>
@@ -36,12 +35,12 @@
                     <?php endfor; ?>
                 </ol>
 
-                <?php if (count($seens) < 10) : ?>
+                <?php if (count($list['films']) < 10) : ?>
                     <li class="addFilm">
                         <form method="POST" action="">
                             <input type="hidden" name="controller" value="ListController">
                             <input type="hidden" name="function" value="addToList">
-                            <input type="hidden" name="list" value="<?php echo $list->getID(); ?>">
+                            <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
                             <input type="text" name="film" class="tags">
                             <input type="submit" value="Add">
                         </form>
@@ -72,7 +71,11 @@
             var film = $(this).find('input[name=film]').val();
             var url = "/?controller=ListController&function=addToList&list=" + list + "&film=" + encodeURI(film);
 
-            $.ajax(url);
+            $.ajax({
+                url: url,
+                success: function(data) {
+                }
+                });
 
             $('#editList').load('/?controller=ListController .list', function () {
                 setUpAutocomplete();
@@ -88,7 +91,10 @@
             var film = $(this).parent().find('input[name=film]').val();
             var url = "/?controller=ListController&function=removeFromList&list=" + list + "&film=" + film;
 
-            $.ajax(url);
+            $.ajax({url: url,
+                    success: function(data) {
+                        
+                    }});
             
             $('#editList').load('/?controller=ListController .list', function () {
                 setUpAutocomplete();

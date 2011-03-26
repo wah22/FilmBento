@@ -20,11 +20,32 @@ class ListController extends Controller {
     function index() {
         $data = array();
 
+        $user = LoginManager::getInstance()->getLoggedInUser();
+        $data['user'] = $user;
+
         $data['lists'] = array();
 
-        $user = LoginManager::getInstance()->getLoggedInUser();
+        $lists = $this->listModel->getLists($user);
 
-        $data['user'] = $user;
+        foreach ($lists as $list) {
+            $filmsArray = array();
+
+            foreach ($list->getEntries() as $entry) {
+                $film = $this->filmModel->getFilm('id', $entry);
+                $filmArray = array(
+                    'id' => $film->getID(),
+                    'title' => $film->getTitle()
+                );
+                $filmsArray[] = $filmArray;
+            }
+
+            $listArray = array(
+                'id' => $list->getID(),
+                'name' => $list->getName(),
+                'films' => $filmsArray
+            );
+            $data['lists'][] = $listArray;
+        }
 
         $this->view->load('list_index_view', $data);
     }
@@ -52,35 +73,39 @@ class ListController extends Controller {
     }
 
     function sort() {
-        $list = $this->user->getList($_GET['list']);
+        $user = LoginManager::getInstance()->getLoggedInUser();
+        $list = $this->listModel->getList($user, $_GET['list']);
         $list->sort($_POST['recordsArray']);
-
-        $userModel = new UserModel();
-        $userModel->save($this->user);
+        $this->listModel->save($list);
+        echo 'sorted';
     }
 
     function addToList() {
-        $filmModel = new FilmModel();
-        $film = $filmModel->getFilm('title', urldecode($_POST['film']));
+        $film = $this->filmModel->getFilm('title', urldecode($_REQUEST['film']));
+        $user = LoginManager::getInstance()->getLoggedInUser();
 
         if (!$film) {
             $this->view->load('could_not_find_film_view');
             return;
         }
 
-        $seen = $this->user->getSeen($film);
-        $list = $this->user->getList($_POST['list']);
-        $list->addSeen($seen);
-        $userModel = new UserModel();
-        $userModel->save($this->user);
+        $list = $this->listModel->getList($user, $_REQUEST['list']);
+        $list->addEntry($film->getID());
+        $this->listModel->save($list);
+
+        print_r($list);
 
         $this->index();
     }
 
     function removeFromList() {
-        $this->user->getList($_POST['list'])->remove($_POST['film']);
-        $userModel = new UserModel();
-        $userModel->save($this->user);
+        $user = LoginManager::getInstance()->getLoggedInUser();
+
+        $list = $this->listModel->getList($user, $_REQUEST['list']);
+
+        $list->remove($_REQUEST['film']);
+        
+        $this->listModel->save($list);
 
         $this->index();
     }
