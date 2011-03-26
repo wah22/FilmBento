@@ -195,7 +195,11 @@ nav ul {
     margin: 0px auto 0 auto;
     border-style: solid;
     padding-bottom: 40px;
-    border-width: 1px;
+
+    border: 1px solid black;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 }
 
 #whatSeen #add {
