@@ -8,9 +8,9 @@
    <link rel="stylesheet" type="text/css" href="/css/film.css">
  </head>
  <body>
-     <?php include "header.php" ?>
+    <?php include "header.php" ?>
      
-     <div id="film">
+    <div id="film">
         <h1><?php echo $data['film']->getTitle(); ?></h1>
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
         
