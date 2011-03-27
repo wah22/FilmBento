@@ -8,12 +8,15 @@
         </a>
 
         <div id="user_panel">
-            <?php if (! LoginManager::getInstance()->userLoggedIn()) : ?>
-            <a href="/?controller=LoginController">log in</a>
-            <?php else : ?>
-            Hello, <a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a>!
-            <a href="/?controller=LoginController&function=LogOut">Log out</a>
-            <?php endif; ?>
+            <ul>
+                <?php if (! LoginManager::getInstance()->userLoggedIn()) : ?>
+                <li><a href="/?controller=LoginController">Log In</a></li>
+                <?php else : ?>
+                <li><a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a></li> |
+                <li><a href="">Account Settings</a></li> |
+                <li><a href="/?controller=LoginController&function=LogOut">Log Out</a></li>
+                <?php endif; ?>
+            </ul>
         </div>
     </div>
 
