@@ -11,10 +11,12 @@
      <?php include ("header.php"); ?>
 
      <div id="userProfile">
-        <h1><?php echo $data['user']->getHandle(); ?></h1>
+       <h1><?php echo $data['user']->getHandle(); ?></h1>
 
         <div class="list">
-            <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
+            <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">
+                <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
+            </a>
             <ul>
                 <?php foreach ( $data['seens'] as $seen ) : ?>
                 <li>

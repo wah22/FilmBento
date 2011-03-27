@@ -24,15 +24,16 @@ class SeenModel {
         return $seen;
     }
 
-    function getLastSeens ($numToGet, $user) {
+    function getLastSeens ($numToGet, $user, $offset = 0) {
         $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date
                                           FROM fr_seens
                                           WHERE user_id = :user_id
                                           ORDER BY date DESC
-                                          LIMIT :num_to_get');
+                                          LIMIT :offset, :num_to_get');
         $id = $user->getID();
         $stmt->bindParam(':user_id', $id);
 
+        $stmt->bindParam(':offset', $offset, PDO::PARAM_INT); // casting necessary here due to php bug
         $stmt->bindParam(':num_to_get', $numToGet, PDO::PARAM_INT); // casting necessary here due to php bug
 
         $stmt->execute();

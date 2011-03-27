@@ -6,36 +6,73 @@ class UserController extends Controller {
         parent::__construct();
      }
 
-     /*
-      * Displays the user profile specified
-      * or if a user not specified redirects
-      */
+   /*
+    * Displays the user profile specified
+    * or if a user not specified redirects
+    */
     function index() {
-        if( isset($_GET['user']) ) {
-            $user = $this->userModel->getUser('handle', $_GET['user']);
-
-            $seens = $this->seenModel->getLastSeens(10, $user);
-
-            $seensArray = array();
-
-            foreach ($seens as $seen) {
-                $film = $this->filmModel->getFilm('id', $seen->getFilmID());
-                
-                $array = array(
-                    'title' => $film->getTitle(),
-                    'path' => $film->getPath(),
-                    'rating' => $seen->getRating(),
-                    'when' => $seen->whenSeen()
-                );
-
-                $seensArray[] = $array;
-            }
-
-            $data = array ( 'user' => $user,
-                            'seens' => $seensArray);
-            $this->view->load('user_view', $data);
-        } else {
+        if( empty($_GET['user']) ) {
             header('Location: /');
         }
+        
+        $user = $this->userModel->getUser('handle', $_GET['user']);
+
+        $seens = $this->seenModel->getLastSeens(10, $user);
+
+        $seensArray = array();
+
+        foreach ($seens as $seen) {
+            $film = $this->filmModel->getFilm('id', $seen->getFilmID());
+
+            $array = array(
+                'title' => $film->getTitle(),
+                'path' => $film->getPath(),
+                'rating' => $seen->getRating(),
+                'when' => $seen->whenSeen()
+            );
+
+            $seensArray[] = $array;
+        }
+
+        $data = array ( 'user' => $user,
+                        'seens' => $seensArray);
+        $this->view->load('user_view', $data);
+    }
+
+    /*
+     * Displays all the films the user has seen
+     */
+    function films() {
+        if (empty($_GET['user']) || empty($_GET['page'])) {
+            header('Location: /');
+        }
+
+        $user = $this->userModel->getuser('handle', $_GET['user']);
+
+        $offset = ($_GET['page'] - 1) * 10;
+
+        $seens = $this->seenModel->getLastSeens(100, $user, $offset);
+
+        $seensOutput = array();
+
+        foreach ($seens as $seen) {
+            $film = $this->filmModel->getFilm('id', $seen->getFilmID());
+
+            $array = array(
+                'title' => $film->getTitle(),
+                'path' => $film->getPath(),
+                'rating' => $seen->getRating(),
+                'when' => $seen->whenSeen()
+            );
+
+            $seensOutput[] = $array;
+        }
+
+        $data = array(
+            'user' => $user,
+            'seens' => $seensOutput
+        );
+
+        $this->view->load('user_all_films_view', $data);
     }
 }

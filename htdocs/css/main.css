@@ -305,6 +305,34 @@ nav li a:hover {
 
 #userProfile h1 {
     text-align: center;
+    text-decoration: none;
+}
+
+#userProfile .list {
+    width: 600px;
+
+    position: relative;
+
+    margin: 0px auto 50px auto;
+
+    padding: 20px;
+    padding-top: 0px;
+    padding-bottom: 12px;
+
+    border: 1px solid black;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#userProfile .title {
+    width: 300px;
+}
+
+#userProfile .rating {
+    position: absolute;
+    left: 310px;
+    top: 3px;
 }
 
 #userProfile ul {
@@ -318,13 +346,12 @@ nav li a:hover {
 
 #userProfile .list A:link {text-decoration: none; color: black;}
 #userProfile .list A:visited {text-decoration: none; color: black;}
-#userProfile .list A:hover {text-decoration: underline; color: blue;}
+#userProfile .list A:hover {text-decoration: underline; color: black;}
 
 
 #userProfile .list h1, #film .list h1 {
     font-size: 20px;
     text-align: left;
-    text-decoration: underline;
 }
 
 #userProfile .list li, #film .list li {
