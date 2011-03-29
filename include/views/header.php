@@ -13,8 +13,8 @@
                 <li><a href="/?controller=LoginController">Log In</a></li>
                 <?php else : ?>
                 <li><a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a></li> |
-                <li><a href="">Account Settings</a></li> |
-                <li><a href="/?controller=LoginController&function=LogOut">Log Out</a></li>
+                <li><a href="/?controller=AccountSettingsController">Account Settings</a></li> |
+                <li><a href="?controller=LoginController&function=LogOut">Log Out</a></li>
                 <?php endif; ?>
             </ul>
         </div>

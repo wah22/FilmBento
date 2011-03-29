@@ -48,6 +48,18 @@ class UserModel {
     }
 
     function save($user) {
-        
+        $email = $user->getEmail();
+        $handle = $user->getHandle();
+        $password = $user->getPassword();
+        $id = $user->getID();
+
+        $stmt = DB::getInstance()->prepare('UPDATE fr_users
+                                            SET email = :email, handle = :handle, password = :password
+                                            WHERE id = :user_id');
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':handle', $handle);
+        $stmt->bindParam(':password', $password);
+        $stmt->bindParam(':user_id', $id);
+        $stmt->execute();
     }
 }

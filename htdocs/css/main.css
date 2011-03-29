@@ -10,6 +10,38 @@ body {
     padding-bottom: 100px;
 }
 
+fieldset {
+    margin: 20px auto 0 auto;
+
+    padding: 15px 0 10px 10px;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+
+    background-color: #F6F5F0;
+}
+
+fieldset h2 {
+    margin: 0;
+}
+
+input {
+    font-size: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"] {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+}
+
+label {
+    margin-right: 10px;
+
+    display: block;
+}
+
 input[type="submit"] {
     color: black;
     font-weight: bold;
@@ -182,7 +214,7 @@ nav li a:hover {
 }
 
 #user_panel A:link, #user_panel A:visited {
-    font-size : 12px;
+    font-size : 14px;
     text-decoration: none;
     color: #488CFF;
     text-shadow: 0px 1px 1px #fff;
@@ -241,14 +273,7 @@ nav li a:hover {
 
 #join fieldset {
     width: 400px;
-    margin: 20px auto 0 auto;
     padding: 10px 20px;
-
-    border-radius: 3px;
-    -moz-border-radius: 3px;
-    -webkit-border-radius: 3px;
-
-    background-color: #F6F5F0;
 }
 
 #join fieldset p {
@@ -260,25 +285,12 @@ nav li a:hover {
     color: gray;
 }
 
-#join label {
-    display: block;
-
-    font-size: 20px;
-    font-weight: bold;
-}
-
 #join input[type="text"], #join input[type="email"], #join input[type="password"] {
     height: 30px;
     
     margin-top: 10px;
 
     padding-left: 4px;
-
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-
-    font-size: 20px;
 }
 
 #join input[type="submit"] {
@@ -491,6 +503,10 @@ nav li a:hover {
     right: 10px;
 }
 
+#editList .list .removeFilm input{
+    font-size: 12px;
+}
+
 #editList .addFilm {
     width: 300px;
     position: relative;
@@ -503,6 +519,7 @@ nav li a:hover {
     position: relative;
     bottom: 4px;
     left: 120px;
+    font-size: 12px;
 }
 
 #editList .addFilm input[type="text"] {
