@@ -230,33 +230,59 @@ nav li a:hover {
     width:400px;
 }
 
-#logIn, #join {
-    position: relative;
-    margin: 100px auto 0px auto;
+#join {
+    text-align: center;
+}
 
+#join p {
+    margin: 0;
+    padding: 0;
+}
+
+#join fieldset {
+    width: 400px;
+    margin: 20px auto 0 auto;
+    padding: 10px 20px;
+
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
+}
+
+#join fieldset p {
+    margin: 10px 0 10px 0;
+    padding: 0;
+}
+
+#join fieldset .notes p {
+    color: gray;
+}
+
+#join label {
+    display: block;
+
+    font-size: 20px;
     font-weight: bold;
 }
 
-#logIn input, #join input {
-    display: block;
-    position: relative;
-    margin: 0px auto;
-    width: 300px;
+#join input[type="text"], #join input[type="email"], #join input[type="password"] {
+    height: 30px;
+    
+    margin-top: 10px;
+
+    padding-left: 4px;
+
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+
+    font-size: 20px;
 }
 
-#logIn input, #join input {
-    width: 280px;
-    height: 25px;
-    font-size: 20px;
-
-    margin-bottom: 50px;
-
-    background-color: whitesmoke;
-}
-
-#logIn label, #join label {
-    font-size: 20px;
-    font-size: 25px;
+#join input[type="submit"] {
+    width: 100px;
+    height: 40px;
+    margin: 20px 0 20px 0;
 }
 
 #logIn #errors, #errors {
@@ -266,15 +292,7 @@ nav li a:hover {
 
     color:red;
 
-    font-size: 20px;
-}
-
-#logIn input[type="submit"], #join input[type="submit"]{
-   position: relative;
-    left: 80px;
-    height: 45px;
-    width: 73px;
-    font-size: 20px;
+    font-size: 15px;
 }
 
 #whatSeen {

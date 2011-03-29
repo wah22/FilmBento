@@ -10,19 +10,38 @@
      <?php include ("header.php"); ?>
 
     <div id="join">
+
+        <h1>Create a page</h1>
+
         <form method="post" action="">
+            <fieldset>
+                <label for="handle">your name</label>
+                <input type="text" name="handle">
+                <div class="notes">
+                    <p>This is the name that will appear in your url.<br>
+                    It can be anything u like.</p>
+                </div> 
+            </fieldset>
 
-            <label for="email">your email address</label>
-            <input type="text" name="email">
+            <fieldset>
+                <label for="email">your email address</label>
+                <input type="email" name="email">
+                <div class="notes">
+                    <p>Your email address will be kept Top Secret.</p>
+                </div>
+            </fieldset>
 
-            <label for="password">choose a password</label>
-            <input type="password" name="password">
+            <fieldset>
+                <p>
+                    <label for="password">choose a password</label>
+                    <input type="password" name="password">
+                </p>
 
-            <label for="password2">confirm your password</label>
-            <input type="password" name="password2">
-
-            <label for="handle">choose your name</label>
-            <input type="text" name="handle">
+                <p>
+                    <label for="password2">confirm your password</label>
+                    <input type="password" name="password2">
+                </p>
+            </fieldset>
             
             <input type ="submit" value ="Join">
 
