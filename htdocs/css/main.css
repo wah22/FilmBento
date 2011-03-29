@@ -247,6 +247,8 @@ nav li a:hover {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+
+    background-color: #F6F5F0;
 }
 
 #join fieldset p {
@@ -307,6 +309,8 @@ nav li a:hover {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+
+    background-color: #F6F5F0;
 }
 
 #whatSeen #add {
@@ -343,6 +347,10 @@ nav li a:hover {
     right: 80px;
 
     font-size: 20px;
+}
+
+.list {
+        background-color: #F6F5F0;
 }
 
 #userProfile h1 {
@@ -413,6 +421,7 @@ nav li a:hover {
     color: gray;
 }
 
+
 #editList .list {
     padding:0px;
 
@@ -428,7 +437,7 @@ nav li a:hover {
     border-style: dotted;
     border-width: 1px;
 
-    background-color: white;
+    background-color: #F6F5F0;
 }
 
 #editList .list h1 {
@@ -439,11 +448,6 @@ nav li a:hover {
 #editList .list h1 A:link {text-decoration: none; color: black;}
 #editList .list h1 A:visited {text-decoration: none; color: black;}
 #editList .list h1 A:hover {text-decoration: underline; color: blue;}
-
-
-#editList .list body {
-    height: 550px;
-}
 
 #editList .list ol {
     padding: 0px;
