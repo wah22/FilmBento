@@ -445,6 +445,10 @@ nav li a:hover {
     margin: 0;
 }
 
+#editList .body {
+    padding-bottom: 20px;
+}
+
 #editList .list h1 A:link {text-decoration: none; color: black;}
 #editList .list h1 A:visited {text-decoration: none; color: black;}
 #editList .list h1 A:hover {text-decoration: underline; color: blue;}
