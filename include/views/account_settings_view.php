@@ -9,10 +9,12 @@
 <body>
     <?php include("header.php"); ?>
 
+    <h1>Manage your account</h1>
+
     <div id="accountSettings">
         <form method="post" action="/?controller=AccountSettingsController&function=save">
             <fieldset>
-                <h2>your credentials</h2>
+                <legend>your credentials</legend>
                 <p>
                     <label for="email">email</label>
                     <input type="email" value="<?php echo $data['user']['email'];?>" name="email">
@@ -27,7 +29,7 @@
 
         <form>
             <fieldset>
-                <h2>delete my account</h2>
+                <legend>delete your account</h2></legend>
                 <p>Wanna get rid of your FilmBento page?</p>
                 <p>You'll lose everything and stuff.</p>
                 <input type="hidden" name="controller" value="AccountSettingsController">

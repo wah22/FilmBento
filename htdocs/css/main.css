@@ -10,6 +10,15 @@ body {
     padding-bottom: 100px;
 }
 
+h1 {
+    text-align: center;
+}
+
+legend {
+    font-weight: bold;
+    font-size: 25px;
+}
+
 fieldset {
     margin: 20px auto 0 auto;
 
@@ -20,10 +29,6 @@ fieldset {
     -webkit-border-radius: 3px;
 
     background-color: #F6F5F0;
-}
-
-fieldset h2 {
-    margin: 0;
 }
 
 input {
@@ -100,6 +105,7 @@ nav A:hover {text-decoration: underline; color: #488CFF;}
 }
 
 #header h1 {
+    text-align: left;
     font-size: 35px;
     font-style: italic;
     margin: 0;
