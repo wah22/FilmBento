@@ -41,6 +41,7 @@
 
 
         <?php foreach ($data['lists'] as $list) : ?>
+            <?php if (isset($list['films'][0])) : ?>
                 <div class="userList">
                     <h1><?php echo $list['name']; ?><br></h1>
                     <ul>
@@ -51,7 +52,7 @@
                         <?php endforeach; ?>
                     </ul>
                 </div>
-            <?php // endif; ?>
+            <?php endif; ?>
         <?php endforeach; ?>
      </div>
      
