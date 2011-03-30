@@ -393,6 +393,21 @@ nav li a:hover {
     -webkit-border-radius: 3px;
 }
 
+#userProfile .list {
+    padding-bottom: 30px;
+}
+
+#userProfile .list .viewMore {
+    position: absolute;
+    right: 23px;
+    bottom: 10px;
+}
+
+#userProfile .list .viewMore a:visited,
+#userProfile .list .viewMore a:link {
+    color: #488CFF;
+}
+
 #userProfile .userList {
     text-align: center;
 }
