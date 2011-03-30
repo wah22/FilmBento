@@ -30,7 +30,9 @@
                 <h2>delete my account</h2>
                 <p>Wanna get rid of your FilmBento page?</p>
                 <p>You'll lose everything and stuff.</p>
-                    <input type="submit" value ="Delete Account">
+                <input type="hidden" name="controller" value="AccountSettingsController">
+                <input type="hidden" name="function" value="deleteAccount">
+                <input type="submit" value ="Delete Account">
             </fieldset>
         </form>
     </div>

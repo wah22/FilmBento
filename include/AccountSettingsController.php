@@ -43,4 +43,9 @@ class AccountSettingsController extends PrivateController {
 
         $this->index();
     }
+
+    function deleteAccount() {
+        $this->userModel->delete($this->user);
+        $this->view->load('bai_view');
+    }
 }

@@ -672,3 +672,16 @@ footer p {
     left: 600px;
     width: 100px;
 }
+
+#bai {
+    position: relative;
+    left: 100px;
+
+    font-size: 50px;
+    font-weight: bold;
+}
+
+#bai img {
+    position: relative;
+    left: 110px;
+}

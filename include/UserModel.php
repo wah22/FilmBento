@@ -2,6 +2,21 @@
 
 class UserModel {
 
+    function create($email, $handle, $password) {
+        $password = md5($password);
+
+        if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
+            // save user info
+            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password )');
+            $stmt->bindParam(':email', $email);
+            $stmt->bindParam(':handle', $handle);
+            $stmt->bindParam(':password', $password);
+            $stmt->execute();
+        } else {
+            return false;
+        }
+    }
+
     function getUser($by, $value) {
         $user = new User();
 
@@ -32,21 +47,6 @@ class UserModel {
         return $user;
     }
 
-    function create($email, $handle, $password) {
-        $password = md5($password);
-
-        if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
-            // save user info
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password )');
-            $stmt->bindParam(':email', $email);
-            $stmt->bindParam(':handle', $handle);
-            $stmt->bindParam(':password', $password);
-            $stmt->execute();
-        } else {
-            return false;
-        }
-    }
-
     function save($user) {
         $email = $user->getEmail();
         $handle = $user->getHandle();
@@ -60,6 +60,14 @@ class UserModel {
         $stmt->bindParam(':handle', $handle);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':user_id', $id);
+        $stmt->execute();
+    }
+
+    function delete($user) {
+        $id = $user->getID();
+        $stmt = DB::getInstance()->prepare('DELETE FROM fr_users
+                                            WHERE id = :id');
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
     }
 }
