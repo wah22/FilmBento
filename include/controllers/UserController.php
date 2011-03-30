@@ -34,8 +34,28 @@ class UserController extends Controller {
             $seensArray[] = $array;
         }
 
+        $lists = $this->listModel->getLists($user);
+
+        $listsOutput = array();
+
+        foreach ($lists as $list) {
+            $listOutput['name'] = $list->getName();
+
+            foreach ($list->getEntries() as $entry) {
+                $film = $this->filmModel->getFilm('id', $entry);
+                $listOutput['films'][] = array(
+                    'title' => $film->getTitle(),
+                    'path' => $film->getPath()
+                );
+            }
+            $listsOutput[] = $listOutput;
+        }
+
         $data = array ( 'user' => $user,
-                        'seens' => $seensArray);
+                        'seens' => $seensArray,
+                        'lists' => $listsOutput
+                );
+        
         $this->view->load('user_view', $data);
     }
 

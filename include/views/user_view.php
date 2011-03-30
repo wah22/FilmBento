@@ -37,12 +37,14 @@
         </div>
 
 
-        <?php foreach ($data['user']->getLists() as $list) : ?>
-                <div class="list">
-                    <h1><?php echo $list->getName(); ?><br></h1>
+        <?php foreach ($data['lists'] as $list) : ?>
+                <div class="userList">
+                    <h1><?php echo $list['name']; ?><br></h1>
                     <ul>
-                        <?php foreach ($list->getSeens() as $seen) : ?>
-                            <li><a href='<?php echo $seen->getFilm()->getPath(); ?>'><?php echo $seen->getFilm()->getTitle(); ?></a></li>
+                        <?php foreach ($list['films'] as $key=>$film) : ?>
+                            <li>
+                                <span class="key"><?php echo $key+1; ?></span>
+                                <a href='<?php echo $film['path']; ?>'><?php echo $film['title']; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>

@@ -361,7 +361,7 @@ nav li a:hover {
     font-size: 20px;
 }
 
-.list {
+.list, .userList {
         background-color: #F6F5F0;
 }
 
@@ -370,7 +370,7 @@ nav li a:hover {
     text-decoration: none;
 }
 
-#userProfile .list {
+#userProfile .list, #userProfile .userList {
     width: 600px;
 
     position: relative;
@@ -385,6 +385,16 @@ nav li a:hover {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
+}
+
+#userProfile .userList {
+    text-align: center;
+}
+
+#userProfile .userList .key {
+    position: absolute;
+    left: 10px;
+    font-size: 40px;
 }
 
 #userProfile .title {
@@ -406,17 +416,17 @@ nav li a:hover {
     width: 20px;
 }
 
-#userProfile .list A:link {text-decoration: none; color: black;}
-#userProfile .list A:visited {text-decoration: none; color: black;}
-#userProfile .list A:hover {text-decoration: underline; color: black;}
+#userProfile .list A:link, #userProfile .userList A:link {text-decoration: none; color: black;}
+#userProfile .list A:visited, #userProfile .userList A:visited {text-decoration: none; color: black;}
+#userProfile .list A:hover, #userProfile .userList A:hover {text-decoration: underline; color: black;}
 
 
-#userProfile .list h1, #film .list h1 {
+#userProfile .list h1, #userProfile .userList h1, #film .list h1 {
     font-size: 20px;
     text-align: left;
 }
 
-#userProfile .list li, #film .list li {
+#userProfile .list li, #userProfile .userList li, #film .list li {
     list-style-type: none;
     border: 1px solid black;
     border-bottom: 0;
@@ -431,6 +441,15 @@ nav li a:hover {
     right :4px;
     top: 4px;
     color: gray;
+}
+
+#userProfile .userList li {
+    height: 50px;
+}
+
+#userProfile .userList a {
+    position: relative;
+    top: 15px;
 }
 
 
