@@ -28,7 +28,7 @@
                                     <input type="hidden" name="function" value="removeFromList">
                                     <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
                                     <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
-                                    <input type="submit" value="remove">
+                                    <input type="submit" value="x">
                                 </form>
                             </li>
                         <?php endif; ?>
