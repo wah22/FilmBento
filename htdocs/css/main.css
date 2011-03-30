@@ -410,6 +410,7 @@ nav li a:hover {
 
 #userProfile .userList {
     text-align: center;
+    font-size: 15px;
 }
 
 #userProfile .userList .key {

@@ -21,7 +21,6 @@ function __autoload($class_name) {
     }
 }
 
-
 /*
  * Display errors if in testing environment
  */

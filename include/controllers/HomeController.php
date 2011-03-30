@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends Controller {
+class HomeController extends PrivateController {
     
     function __construct() {
         parent::__construct();
@@ -19,13 +19,6 @@ class HomeController extends Controller {
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
         $this->view->load('user_home_view', $data);
-    }
-
-    /*
-     * The page shown if a user is not logged in
-     */
-    function mainHome() {
-        $this->view->load('site_description_view');
     }
 
     /*

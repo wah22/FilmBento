@@ -9,6 +9,10 @@ require_once('../include/bootstrap.php');
 if (isset($_REQUEST['controller'])) {
     $controller =  new $_REQUEST['controller'];
 } else {
-    $controller = new HomeController();
+    if (LoginManager::getInstance()->userLoggedIn()) {
+        $controller = new HomeController();
+    } else {
+        $controller = new SiteDescriptionController();
+    }
 }
 
