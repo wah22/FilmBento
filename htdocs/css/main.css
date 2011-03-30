@@ -305,6 +305,18 @@ nav li a:hover {
     margin: 20px 0 20px 0;
 }
 
+#logIn {
+    width: 263px;
+    position: relative;
+    margin: 150px auto 0 auto;
+}
+
+#logIn input[type="submit"] {
+    display: block;
+    margin-top: 20px;
+    margin-left: 80px;
+}
+
 #logIn #errors, #errors {
     text-align: center;
     position: relative;
@@ -472,6 +484,12 @@ nav li a:hover {
 #userProfile .userList a {
     position: relative;
     top: 15px;
+}
+
+#userProfile #pageLinks {
+    text-align: right;
+    position: absolute;
+    right: 100px;
 }
 
 

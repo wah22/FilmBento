@@ -11,16 +11,18 @@
 
     <div id="logIn">
         <form method="POST" action="">
+            <fieldset>
+                <legend>Log In</legend>
+                <label for="identifier">username</label>
+                <input type="text" name="identifier">
 
-            <label for="identifier">username</label>
-            <input type="text" name="identifier"><br>
+                <label for="password">password</label>
+                <input type="password" name="password">
+                <input type="submit" value="Log in">
 
-            <label for="password">password</label>
-            <input type="password" name="password"><br>
-            <input type="submit" value="Log in">
-
-            <input type="hidden" name="controller" value="LoginController">
-            <input type="hidden" name="function" value="login">
+                <input type="hidden" name="controller" value="LoginController">
+                <input type="hidden" name="function" value="login">
+            </fieldset>
         </form>
 
         <div id="errors">

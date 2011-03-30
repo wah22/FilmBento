@@ -35,7 +35,7 @@
                 <?php endforeach; ?>
             </ul>
             <div class="viewMore">
-                <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">view more</a>
+                <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">View More</a>
             </div>
         </div>
 

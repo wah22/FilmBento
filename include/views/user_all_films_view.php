@@ -32,6 +32,15 @@
                 <?php endforeach; ?>
             </ul>
         </div>
+            <div id="pageLinks">
+                <?php if ($_GET['page'] > 1) : ?>
+                <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=<?php echo $_GET['page'] - 1; ?>"><<< </a>
+                <?php endif; ?>
+                <?php if ($data['moreToCome']) : ?>
+                <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=<?php echo $_GET['page'] + 1; ?>" > >>></a>
+                <?php endif; ?>
+            </div>
+     </div>
 
     <?php include "footer.php"; ?>
 </body>

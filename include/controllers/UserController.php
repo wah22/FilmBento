@@ -69,9 +69,21 @@ class UserController extends Controller {
 
         $user = $this->userModel->getuser('handle', $_GET['user']);
 
-        $offset = ($_GET['page'] - 1) * 10;
+        $numToShowPerPage = 100;
 
-        $seens = $this->seenModel->getLastSeens(100, $user, $offset);
+        $offset = ($_GET['page'] - 1) * $numToShowPerPage;
+
+        $seens = $this->seenModel->getLastSeens($numToShowPerPage, $user, $offset);
+
+        if (!count($seens)) {
+            header('Location: /?controller=UserController&user=' . $_GET['user'] . '&function=films&page=1');
+        }
+
+        if ($this->seenModel->getNumFilmsSeen($user) > ($numToShowPerPage * $_GET['page'])) {
+            $moreToCome = true;
+        } else {
+            $moreToCome = false;
+        }
 
         $seensOutput = array();
 
@@ -90,7 +102,8 @@ class UserController extends Controller {
 
         $data = array(
             'user' => $user,
-            'seens' => $seensOutput
+            'seens' => $seensOutput,
+            'moreToCome' => $moreToCome
         );
 
         $this->view->load('user_all_films_view', $data);

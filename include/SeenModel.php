@@ -48,6 +48,18 @@ class SeenModel {
         return $seens;
     }
 
+    function getNumFilmsSeen($user) {
+        $id = $user->getID();
+        $stmt = DB::getInstance()->prepare('SELECT *
+                                  FROM fr_seens
+                                  WHERE user_id = :user_id');
+        $stmt->bindParam(':user_id', $id);
+        $stmt->execute();
+        $numSeen = $stmt->rowCount();
+
+        return $numSeen;
+    }
+
     function getFilmsLastSeens ($numToGet, $film) {
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date
                                           FROM fr_seens
