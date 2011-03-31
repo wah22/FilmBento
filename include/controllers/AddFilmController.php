@@ -1,8 +1,6 @@
 <?php
 
-class AddFilmController extends Controller {
-
-    private $user;
+class AddFilmController extends PrivateController {
 
     function  __construct() {
         if (!LoginManager::getInstance()->userLoggedIn()) {

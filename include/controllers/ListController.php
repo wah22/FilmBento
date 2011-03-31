@@ -3,9 +3,7 @@
 /*
  * The controller for the user's "Lists" page
  */
-class ListController extends Controller {
-    
-    private $user;
+class ListController extends PrivateController {
 
     function __construct() {
         if (!LoginManager::getInstance()->userLoggedIn()) {
