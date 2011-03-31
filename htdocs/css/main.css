@@ -22,7 +22,7 @@ legend {
 fieldset {
     margin: 20px auto 0 auto;
 
-    padding: 15px 0 10px 10px;
+    padding: 0px 0 10px 10px;
 
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -30,6 +30,15 @@ fieldset {
 
     background-color: #F6F5F0;
 }
+
+fieldset .notes, fieldset .notes p {
+    color: gray;
+    margin: 0;
+    padding: 0;
+
+    text-align: center;
+}
+
 
 input {
     font-size: 15px;
@@ -274,11 +283,6 @@ nav li a:hover {
     text-align: center;
 }
 
-#join p {
-    margin: 0;
-    padding: 0;
-}
-
 #join fieldset {
     width: 400px;
     padding: 10px 20px;
@@ -287,10 +291,6 @@ nav li a:hover {
 #join fieldset p {
     margin: 10px 0 10px 0;
     padding: 0;
-}
-
-#join fieldset .notes p {
-    color: gray;
 }
 
 #join input[type="text"], #join input[type="email"], #join input[type="password"] {
@@ -358,7 +358,6 @@ nav li a:hover {
 }
 
 #whatSeen input[type="text"] {
-
     width: 400px;
     height: 60px;
 
@@ -373,10 +372,9 @@ nav li a:hover {
 
 #whatSeen input[type="submit"] {
     position: absolute;
-    width: 60px;
-    height: 30px;
-    top: 120px;
-    right: 18px;
+
+    top: 110px;
+    right: 26px;
 
     font-size: 20px;
 }
@@ -761,4 +759,5 @@ footer p {
 
 #accountSettings fieldset {
     width: 500px;
+    padding-top: 0;
 }

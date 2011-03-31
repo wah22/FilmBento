@@ -16,7 +16,7 @@
         <form method="POST" action="/" id="whatSeenForm">
             <input type ="hidden" name="function" value="seen">
             <input type="text" name ="film" id="tags"><br>
-            <input type="submit" value="&#62;" id="goButton" disabled="true">
+            <input type="submit" value="Go" id="goButton" disabled="true">
         </form>
 
         <div id="add">
