@@ -39,6 +39,7 @@ class UserController extends Controller {
         $listsOutput = array();
 
         foreach ($lists as $list) {
+            $listOutput = array();
             $listOutput['name'] = $list->getName();
 
             foreach ($list->getEntries() as $entry) {
