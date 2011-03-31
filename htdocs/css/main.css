@@ -32,7 +32,7 @@ fieldset {
 }
 
 input {
-    font-size: 20px;
+    font-size: 15px;
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
@@ -48,7 +48,9 @@ label {
 }
 
 input[type="submit"] {
-    color: black;
+    background-color: #3E3D39;
+
+    color: whitesmoke;
     font-weight: bold;
 
     padding: 5px 10px;
@@ -593,18 +595,28 @@ nav li a:hover {
 
 #film h1, #film h2{
     text-align: center;
+    
 }
 
 #film #rate {
     width: 150px;
     height: 82px;
     position: absolute;
-    top: 150px;
+    top: 170px;
     right: 0px;
+}
+
+#film #rate fieldset {
+    padding: 7px;
+}
+
+#film #rate fieldset legend{
+    font-size: 14px;
 }
 
 #film #rate input[type="image"] {
     width: 25px;
+    margin: 0;
 }
 
 #film #rate img {
@@ -613,12 +625,9 @@ nav li a:hover {
 }
 
 #film #seenIt {
-    width: 80px;
-    height: 45px;
-
     position: absolute;
     right: 40px;
-    top: 165px;
+    top: 180px;
 }
 
 #film .list {
@@ -626,7 +635,7 @@ nav li a:hover {
 
     position: relative;
 
-    margin: 0px auto 50px auto;
+    margin: 50px auto 50px auto;
 
     padding: 20px;
     padding-top: 0px;
