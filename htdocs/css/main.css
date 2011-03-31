@@ -427,6 +427,7 @@ nav li a:hover {
     font-size: 15px;
 }
 
+
 #userProfile .userList .key {
     position: absolute;
     left: 10px;
@@ -460,6 +461,10 @@ nav li a:hover {
 #userProfile .list h1, #userProfile .userList h1, #film .list h1 {
     font-size: 20px;
     text-align: left;
+}
+
+#userProfile .userList h1 {
+    text-align: center;
 }
 
 #userProfile .list li, #userProfile .userList li, #film .list li {
