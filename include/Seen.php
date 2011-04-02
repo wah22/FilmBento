@@ -10,7 +10,7 @@ class Seen {
         $this->userID = $userID;
         $this->filmID = $filmID;
         $this->rating = $rating;
-        if ($date = 0) {
+        if ($date == 0) {
             $date = time();
         }
         $this->date = $date;
@@ -37,21 +37,8 @@ class Seen {
     }
 
     function whenSeen () {
-        if ((time() - $this->date) < (60*2)) {
-            $when = "Just now";
-            return $when;
-        }
-
-        if ((time() - $this->date) < (60 * 60)) {
-            $when = strval( round( (time() - $this->date) / 60 ) );
-            $when .= " minutes ago";
-            return $when;
-        }
-
-        if ((time() - $this->date) < 86400) {
-            $when = strval( round( (time() - $this->date) / 60 / 60 ) );
-            $when .= " hours ago";
-            return $when;
+        if (date('l, j F', $this->date) == date('l, j F', time()) ) {
+            return 'Today';
         }
 
         return date('l, j F', $this->date);
