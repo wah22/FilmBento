@@ -572,7 +572,6 @@ nav li a:hover {
 }
 
 #editList .addFilm {
-    width: 300px;
     position: relative;
     margin-left: auto;
     margin-right: auto;
@@ -592,8 +591,6 @@ nav li a:hover {
 }
 
 #editList .addFilm input[type="submit"]{
-    color: #D45500;
-    background-color: whitesmoke;
 }
 
 #film h1, #film h2{
