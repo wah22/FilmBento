@@ -15,6 +15,8 @@
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
 
         <?php if($data['user']) : ?>
+        <a id="edit" href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit film details</a>
+
         <?php if (!$data['hasSeen']) : ?>
         <form method="post" action="">
             <input type="hidden" name="function" value="seen">
@@ -24,7 +26,6 @@
        <?php endif; ?>
 
         <?php if ($data['hasSeen']) : ?>
-        <a id="edit" href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit</a>
         <div id="rate">
             <fieldset>
                 <legend>Seen</legend>
