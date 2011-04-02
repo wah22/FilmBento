@@ -39,6 +39,8 @@
         })
 
         $( "#tags" ).autocomplete({
+            
+            minLength: 3,
 
             source: function(req, add){
                         var term = req.term;
