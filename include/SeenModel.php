@@ -144,4 +144,13 @@ class SeenModel {
         $stmt->bindParam(':rating', $rating);
         $stmt->execute();
     }
+
+    function delete($seen) {
+        $stmt = DB::getInstance()->prepare('DELETE FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
+        $userID = $seen->getUserID();
+        $filmID = $seen->getFilmID();
+        $stmt->bindParam(':user_id', $userID);
+        $stmt->bindParam(':film_id', $filmID);
+        $stmt->execute();
+    }
 }

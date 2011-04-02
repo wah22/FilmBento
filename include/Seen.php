@@ -6,10 +6,13 @@ class Seen {
     private $rating;
     private $date;
 
-    function __construct( $userID, $filmID, $rating, $date ) {
+    function __construct( $userID, $filmID, $rating = 0, $date = 0 ) {
         $this->userID = $userID;
         $this->filmID = $filmID;
         $this->rating = $rating;
+        if ($date = 0) {
+            $date = time();
+        }
         $this->date = $date;
     }
 

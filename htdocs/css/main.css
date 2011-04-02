@@ -602,7 +602,7 @@ nav li a:hover {
 }
 
 #film #rate {
-    width: 150px;
+    width: 180px;
     height: 82px;
     position: absolute;
     top: 170px;
@@ -618,12 +618,7 @@ nav li a:hover {
 }
 
 #film #rate input[type="image"] {
-    width: 25px;
-    margin: 0;
-}
-
-#film #rate img {
-    width: 25px;
+    width: 30px;
     margin: 0;
 }
 
@@ -633,8 +628,14 @@ nav li a:hover {
     top: 180px;
 }
 
+#film #unSee, #film #unSee input {
+    display: inline;
+    font-size: 10px;
+    margin-left: 2px;
+}
+
 #film .list {
-    width: 600px;
+    width: 360px;
 
     position: relative;
 

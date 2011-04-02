@@ -17,15 +17,16 @@ class FilmController extends Controller{
             $data['user'] = $user;
 
             if ($this->seenModel->userHasSeen($user, $film)) {
+                $seen = $this->seenModel->getSeen($user, $film);
+
                 $data['hasSeen'] = true;
+                $data['whenSeen'] = $seen->whenSeen();
             } else {
                 $data['hasSeen'] = false;
             }
 
             if ($this->seenModel->userHasRated($user, $film)) {
                 $data['hasRated'] = true;
-
-                $seen = $this->seenModel->getSeen($user, $film);
                 $rating = $seen->getRating();
                 $data['rating'] = $rating;
             } else {
@@ -51,7 +52,7 @@ class FilmController extends Controller{
     }
 
     function seen () {
-        if(empty($_POST['film'])) {
+        if(empty($_POST['film']) || !LoginManager::getInstance()->userLoggedIn()) {
             $this->index();
             return;
         }
@@ -64,9 +65,25 @@ class FilmController extends Controller{
             return;
         }
 
-        $seen = new Seen($user->getID(), $film->getID(), 0, time());
+        $user = LoginManager::getInstance()->getLoggedInUser();
+        $seen = new Seen($user->getID(), $film->getID());
 
         $this->seenModel->create($seen);
+
+        $this->index();
+    }
+
+    function unsee() {
+        if(empty($_POST['film']) || !LoginManager::getInstance()->userLoggedIn()) {
+            $this->index();
+            return;
+        }
+
+        $user = LoginManager::getInstance()->getLoggedInUser();
+        $film = $this->filmModel->getFilm('id', $_POST['film']);
+        $seen = $this->seenModel->getSeen($user, $film);
+
+        $this->seenModel->delete($seen);
 
         $this->index();
     }

@@ -25,19 +25,28 @@
         <?php if ($data['hasSeen']) : ?>
         <div id="rate">
             <fieldset>
-            <legend>My rating</legend>
-            <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
-            <form method="post" action="">
-                    <input type="hidden" name="function" value="rate">
+                <legend>Seen</legend>
+                <?php echo $data['whenSeen']; ?>
+                <form method="post" action="" id="unSee">
+                    <input type="hidden" name="function" value="unsee">
                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                    <input type="hidden" name="rating" value="<?php echo $i; ?>">
-                    <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
-                    <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
-                    <?php else : ?>
-                    <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
-                    <?php endif; ?>
-            </form>
-            <?php endfor; ?>
+                    <input type ="submit" value="X">
+               </form>
+            </fieldset>
+            <fieldset>
+                <legend>My rating</legend>
+                <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
+                <form method="post" action="">
+                        <input type="hidden" name="function" value="rate">
+                        <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+                        <input type="hidden" name="rating" value="<?php echo $i; ?>">
+                        <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
+                        <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
+                        <?php else : ?>
+                        <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
+                        <?php endif; ?>
+                </form>
+                <?php endfor; ?>
             </fieldset>
         </div>
         <?php endif; ?>
