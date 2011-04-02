@@ -24,6 +24,7 @@
                 <input type="hidden" name="function" value="login">
             </fieldset>
         </form>
+        <a href="/?controller=LoginController&function=forgotPassword">Forgot my password</a>
 
         <div id="errors">
             <?php foreach ($data['errors'] as $error) : ?>
