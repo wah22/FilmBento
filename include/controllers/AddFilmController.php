@@ -27,9 +27,8 @@ class AddFilmController extends PrivateController {
             $this->index();
             return;
         }
-        $filmModel = new FilmModel();
 
-        $film = $filmModel->getFilm('title', $_POST['title']);
+        $film = $this->filmModel->getFilm('title', $_POST['title']);
 
         if ($film) {
             $location = $film->getPath();
@@ -39,7 +38,7 @@ class AddFilmController extends PrivateController {
             $film->setTitle($_POST['title']);
             $film->setYear($_POST['year']);
 
-            $filmModel->save($film);
+            $this->filmModel->create($film);
 
             $location = "Location: " . $film->getPath();
 

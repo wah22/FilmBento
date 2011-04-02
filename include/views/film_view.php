@@ -13,7 +13,8 @@
     <div id="film">
         <h1><?php echo $data['film']->getTitle(); ?></h1>
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
-        
+
+        <?php if($data['user']) : ?>
         <?php if (!$data['hasSeen']) : ?>
         <form method="post" action="">
             <input type="hidden" name="function" value="seen">
@@ -23,6 +24,7 @@
        <?php endif; ?>
 
         <?php if ($data['hasSeen']) : ?>
+        <a id="edit" href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit</a>
         <div id="rate">
             <fieldset>
                 <legend>Seen</legend>
@@ -49,6 +51,7 @@
                 <?php endfor; ?>
             </fieldset>
         </div>
+        <?php endif; ?>
         <?php endif; ?>
 
         <div class="list">

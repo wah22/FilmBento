@@ -1,6 +1,14 @@
 <?php
 
 class FilmModel {
+    function create($film) {
+        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year)');
+        $title = $film->getTitle();
+        $year = $film->getYear();
+        $stmt->bindParam(':title', $title);
+        $stmt->bindParam(':year', $year);
+        $stmt->execute();
+    }
 
     function getFilm($by, $value) {
         $film = new Film();
@@ -43,6 +51,16 @@ class FilmModel {
         return $film;
     }
 
+    function save($film) {
+        $filmID = $film->getID();
+        $year = $film->getYear();
+        $stmt = DB::getInstance()->prepare('UPDATE fr_films SET year = :year
+                                            WHERE id = :film_id');
+        $stmt->bindParam(':film_id', $filmID);
+        $stmt->bindParam(':year', $year);
+        $stmt->execute();
+    }
+
     function getAllFilms() {
         $films = array();
 
@@ -53,23 +71,6 @@ class FilmModel {
         }
         
         return $films;
-    }
-
-    function save($film) {
-        // if film already exists
-        if ($this->filmExists($film)) {
-            //$stmt = DB::getInstance()->prepare('UPDATE fr_films SET xxx WHERE title = :title');
-            //$stmt->bindParam(':title', $title);
-            //$stmt->execute();
-        } else {
-            // save new film to db
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year)');
-            $title = $film->getTitle();
-            $year = $film->getYear();
-            $stmt->bindParam(':title', $title);
-            $stmt->bindParam(':year', $year);
-            $stmt->execute();
-        }
     }
 
     function filmExists($film) {

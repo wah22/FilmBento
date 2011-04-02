@@ -331,7 +331,7 @@ nav li a:hover {
 
 #whatSeen {
     width: 600px;
-    height: 200px;
+    height: 170px;
     position: relative;
     margin: 0px auto 0 auto;
     border-style: solid;
@@ -367,7 +367,7 @@ nav li a:hover {
     text-align: center;
     font-style: italic;
 
-    font-size: 40px;
+    font-size: 30px;
 }
 
 #whatSeen input[type="submit"] {
@@ -595,14 +595,21 @@ nav li a:hover {
 
 #film h1, #film h2{
     text-align: center;
+    margin: 0;
     
+}
+
+#film #edit {
+    position: absolute;
+    top: 135px;
+    right: 10px;
 }
 
 #film #rate {
     width: 180px;
     height: 82px;
     position: absolute;
-    top: 170px;
+    top: 150px;
     right: 0px;
 }
 

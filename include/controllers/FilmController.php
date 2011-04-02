@@ -2,53 +2,55 @@
 
 class FilmController extends Controller{
 
-    function __construct () {
+    private $film;
+
+    function __construct() {
+        $filmModel = new FilmModel();
+        $this->film = $filmModel->getFilm('title', $_GET['film']);
+
         parent::__construct();
     }
 
     function index() {
-        if (isset($_GET['film'])) {
-            $film = $this->filmModel->getFilm('title', $_GET['film']);
-            $data = array(
-                'film' => $film
-            );
+        $data = array(
+            'film' => $this->film
+        );
 
-            $user = LoginManager::getInstance()->getLoggedInUser();
-            $data['user'] = $user;
+        $user = LoginManager::getInstance()->getLoggedInUser();
+        $data['user'] = $user;
 
-            if ($this->seenModel->userHasSeen($user, $film)) {
-                $seen = $this->seenModel->getSeen($user, $film);
+        if ($user && $this->seenModel->userHasSeen($user, $this->film)) {
+            $seen = $this->seenModel->getSeen($user, $this->film);
 
-                $data['hasSeen'] = true;
-                $data['whenSeen'] = $seen->whenSeen();
-            } else {
-                $data['hasSeen'] = false;
-            }
-
-            if ($this->seenModel->userHasRated($user, $film)) {
-                $data['hasRated'] = true;
-                $rating = $seen->getRating();
-                $data['rating'] = $rating;
-            } else {
-                $data['hasRated'] = false;
-            }
-
-            $lastSeens = $this->seenModel->getFilmsLastSeens(10, $film);
-
-            $lastSeensArray = array();
-            foreach ($lastSeens as $lastSeen) {
-                $user = $this->userModel->getUser('id', $lastSeen->getUserID());
-                $lastSeenArray = array(
-                    'user' => $user->getHandle(),
-                    'path' => $user->getPath()
-                );
-                $lastSeensArray[] = $lastSeenArray;
-            }
-
-            $data['recentlySeens'] = $lastSeensArray;
-
-            $this->view->load('film_view', $data);
+            $data['hasSeen'] = true;
+            $data['whenSeen'] = $seen->whenSeen();
+        } else {
+            $data['hasSeen'] = false;
         }
+
+        if ($user && $this->seenModel->userHasRated($user, $this->film)) {
+            $data['hasRated'] = true;
+            $rating = $seen->getRating();
+            $data['rating'] = $rating;
+        } else {
+            $data['hasRated'] = false;
+        }
+
+        $lastSeens = $this->seenModel->getFilmsLastSeens(10, $this->film);
+
+        $lastSeensArray = array();
+        foreach ($lastSeens as $lastSeen) {
+            $user = $this->userModel->getUser('id', $lastSeen->getUserID());
+            $lastSeenArray = array(
+                'user' => $user->getHandle(),
+                'path' => $user->getPath()
+            );
+            $lastSeensArray[] = $lastSeenArray;
+        }
+
+        $data['recentlySeens'] = $lastSeensArray;
+
+        $this->view->load('film_view', $data);
     }
 
     function seen () {
@@ -57,16 +59,15 @@ class FilmController extends Controller{
             return;
         }
        
-        $film = $this->filmModel->getFilm('id', $_POST['film']);
         $user = LoginManager::getInstance()->getLoggedInUser();
 
-        if ($this->seenModel->userHasSeen($user, $film)) {
+        if ($this->seenModel->userHasSeen($user, $this->film)) {
             $this->index();
             return;
         }
 
         $user = LoginManager::getInstance()->getLoggedInUser();
-        $seen = new Seen($user->getID(), $film->getID());
+        $seen = new Seen($user->getID(), $this->film->getID());
 
         $this->seenModel->create($seen);
 
@@ -80,8 +81,7 @@ class FilmController extends Controller{
         }
 
         $user = LoginManager::getInstance()->getLoggedInUser();
-        $film = $this->filmModel->getFilm('id', $_POST['film']);
-        $seen = $this->seenModel->getSeen($user, $film);
+        $seen = $this->seenModel->getSeen($user, $this->film);
 
         $this->seenModel->delete($seen);
 
@@ -94,13 +94,11 @@ class FilmController extends Controller{
             return;
         }
 
-        $film = $this->filmModel->getFilm('id', $_POST['film']);
-
         $user = LoginManager::getInstance()->getLoggedInUser();
 
         $rating = $_POST['rating'];
 
-        $seen = $this->seenModel->getSeen($user, $film);
+        $seen = $this->seenModel->getSeen($user, $this->film);
         $seen->setRating($rating);
         $this->seenModel->save($seen);
 
@@ -122,5 +120,19 @@ class FilmController extends Controller{
 
         $json = json_encode((object)$results);
         echo $json;
+    }
+
+    function edit() {
+        if (isset($_POST['year'])) {
+            $this->film->setyear($_POST['year']);
+            $this->filmModel->save($this->film);
+            header ("Location:".  $this->film->getPath());
+        }
+
+        $data = array (
+            'film' => $this->film
+        );
+
+        $this->view->load('edit_film_view', $data);
     }
 }
