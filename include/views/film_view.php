@@ -14,8 +14,14 @@
         <h1><?php echo $data['film']->getTitle(); ?></h1>
         <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
 
+        <div id="details">
+            <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
+            <?php if($data['user']) : ?>
+            <p><a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit details</a></p>
+            <?php endif; ?>
+        </div>
+
         <?php if($data['user']) : ?>
-        <a id="edit" href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit film details</a>
 
         <?php if (!$data['hasSeen']) : ?>
         <form method="post" action="">

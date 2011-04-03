@@ -50,6 +50,9 @@ class FilmController extends Controller{
 
         $data['recentlySeens'] = $lastSeensArray;
 
+        $userWhoAdded = $this->userModel->getUser('id', $this->film->getUserWhoAddedId());
+        $data['addedBy'] = $userWhoAdded;
+
         $this->view->load('film_view', $data);
     }
 

@@ -2,11 +2,13 @@
 
 class FilmModel {
     function create($film) {
-        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year)');
+        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year, :added_by_user_id)');
         $title = $film->getTitle();
         $year = $film->getYear();
+        $addedID = $film->getUserWhoAddedID();
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':year', $year);
+        $stmt->bindParam(':added_by_user_id', $addedID);
         $stmt->execute();
     }
 
@@ -34,6 +36,7 @@ class FilmModel {
         $film->setID($row['id']);
         $film->setTitle($row['title']);
         $film->setYear($row['year']);
+        $film->setUserWhoAddedID($row['added_by_user_id']);
 
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE film_id = :id');
         $id = $film->getID();

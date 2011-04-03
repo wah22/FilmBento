@@ -37,6 +37,7 @@ class AddFilmController extends PrivateController {
             $film = new Film();
             $film->setTitle($_POST['title']);
             $film->setYear($_POST['year']);
+            $film->setUserWhoAddedID($this->user->getID());
 
             $this->filmModel->create($film);
 

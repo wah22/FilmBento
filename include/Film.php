@@ -6,6 +6,7 @@ class Film implements Linkable {
     private $title;
     private $year;
     private $seens = array();
+    private $userWhoAddedId;
 
     function getID() {
         return $this->id;
@@ -37,6 +38,14 @@ class Film implements Linkable {
 
     function addToSeens($seen) {
         $this->seens[] = $seen;
+    }
+
+    function setUserWhoAddedID($id) {
+        $this->userWhoAddedID = $id;
+    }
+
+    function getUserWhoAddedID() {
+        return $this->userWhoAddedID;
     }
 
     function getPath () {
