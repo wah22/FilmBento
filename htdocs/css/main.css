@@ -23,6 +23,11 @@ p {
     padding: 0;
 }
 
+ul {
+    margin: 0;
+    padding: 0;
+}
+
 legend {
     font-weight: bold;
     font-size: 25px;
@@ -46,6 +51,9 @@ fieldset .notes {
     padding: 0;
 }
 
+.list li{
+    list-style-type: none;
+}
 
 input {
     font-size: 15px;
@@ -390,8 +398,8 @@ nav li a:hover {
     font-size: 20px;
 }
 
-.list, .userList {
-        background-color: #F6F5F0;
+#userProfile .list, #userProfile .userList {
+    background-color: #F6F5F0;
 }
 
 #userProfile {

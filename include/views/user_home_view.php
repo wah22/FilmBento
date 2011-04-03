@@ -24,6 +24,16 @@
                  Not here? <a href="/?controller=AddFilmController">Add a film.</a>
             </div>
         </div>
+
+        <div class="list">
+            <h2>Recently Added</h2>
+            <ul>
+                <?php foreach ($data['recentlyAddedFilms'] as $film) : ?>
+                <li><a href="<?php echo $film->getPath(); ?>"><?php echo $film->getTitle(); ?></a></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+
         <?php include "footer.php"; ?>
     </div>
 

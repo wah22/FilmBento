@@ -2,7 +2,7 @@
 
 class FilmModel {
     function create($film) {
-        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year, :added_by_user_id)');
+        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year, :added_by_user_id, NOW())');
         $title = $film->getTitle();
         $year = $film->getYear();
         $addedID = $film->getUserWhoAddedID();
@@ -118,5 +118,15 @@ class FilmModel {
             $results[] = $this->getFilm('id', $row['film_id']);
         }
         return $results;
+    }
+
+    function getRecentlyAdded($numToGet = 10) {
+        $stmt = DB::getInstance()->prepare("SELECT * FROM fr_films ORDER BY when_added ASC LIMIT $numToGet");
+        $stmt->execute();
+        $films = array();
+        while ($row = $stmt->fetch()) {
+            $films[] = $this->getFilm('id', $row['id']);
+        }
+        return $films;
     }
 }

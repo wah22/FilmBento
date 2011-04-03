@@ -7,17 +7,12 @@ class HomeController extends PrivateController {
     }
 
     /*
-     * If a user is not logged in they will be shown the main home page
-     * Logged in users will be shown their own home page
+     * Displays the users home page
      */
     function index() {
-        if (!LoginManager::getInstance()->userLoggedIn()) {;
-            $this->mainHome();
-            return;
-        }
-
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
+        $data['recentlyAddedFilms'] = $this->filmModel->getRecentlyAdded(10);
         $this->view->load('user_home_view', $data);
     }
 
