@@ -6,13 +6,10 @@ class Seen {
     private $rating;
     private $date;
 
-    function __construct( $userID, $filmID, $rating = 0, $date = 0 ) {
+    function __construct( $userID, $filmID, $rating, $date ) {
         $this->userID = $userID;
         $this->filmID = $filmID;
         $this->rating = $rating;
-        if ($date == 0) {
-            $date = time();
-        }
         $this->date = $date;
     }
 
@@ -39,6 +36,10 @@ class Seen {
     function whenSeen () {
         if (date('l, j F', $this->date) == date('l, j F', time()) ) {
             return 'Today';
+        }
+
+        if (date('o', $this->date) != date('o', time())) {
+            return date('l, j F o', $this->date);
         }
 
         return date('l, j F', $this->date);
