@@ -36,12 +36,10 @@ fieldset {
     background-color: #F6F5F0;
 }
 
-fieldset .notes, fieldset .notes p {
+fieldset .notes {
     color: gray;
-    margin: 0;
+    margin: 6px 0 6px 0;
     padding: 0;
-
-    text-align: center;
 }
 
 
@@ -392,6 +390,25 @@ nav li a:hover {
         background-color: #F6F5F0;
 }
 
+#userProfile {
+    width: 640px;
+    position: relative;
+    margin: 0 auto 0 auto;
+}
+
+#userProfile #info {
+    width: 100%;
+    height: 200px;
+
+    position: relative;
+    margin: 0 auto 40px auto;
+    padding: 0;
+}
+
+#userProfile #info img {
+    float: left;
+}
+
 #userProfile h1 {
     text-align: center;
     text-decoration: none;
@@ -402,7 +419,7 @@ nav li a:hover {
 
     position: relative;
 
-    margin: 0px auto 50px auto;
+    margin: 0px auto 40px auto;
 
     padding: 20px;
     padding-top: 0px;
@@ -777,6 +794,10 @@ footer p {
 #accountSettings fieldset {
     width: 500px;
     padding-top: 0;
+}
+
+#accountSettings input[type="submit"]{
+    margin-top: 10px;
 }
 
 #FAQ article {

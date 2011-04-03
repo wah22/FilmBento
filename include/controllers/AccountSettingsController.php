@@ -7,12 +7,8 @@ class AccountSettingsController extends PrivateController {
     }
 
     function index() {
-        $userOutput = array(
-            'email' => $this->user->getEmail()
-        );
-
         $data = array(
-            'user' => $userOutput
+            'user' => $this->user
         );
 
         $this->view->load('account_settings_view', $data);

@@ -60,4 +60,11 @@ class User implements Linkable {
     function setPassword($password) {
         $this->password = $password;
     }
+
+    function getGravatar() {
+        $hash = md5( strtolower( trim( $this->getEmail() ) ) );
+        $default = "mm"; //mystery man
+        $url = "http://www.gravatar.com/avatar/$hash?s=200&d=$default";
+        return $url;
+    }
 }

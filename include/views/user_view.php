@@ -9,10 +9,13 @@
  </head>
  <body>
      <?php include ("header.php"); ?>
-
+     
      <div id="userProfile">
-       <h1><?php echo $data['user']->getHandle(); ?></h1>
-
+        <div id="info">
+            <img src="<?php echo $data['user']->getGravatar(); ?>">
+            <h1><?php echo $data['user']->getHandle(); ?></h1>
+        </div>
+         
         <div class="list">
             <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">
                 <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>

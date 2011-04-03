@@ -15,15 +15,6 @@
 
         <form method="post" action="">
             <fieldset>
-                <label for="handle">your name</label>
-                <input type="text" name="handle">
-                <div class="notes">
-                    <p>This is the name that will appear in your url.<br>
-                    It can be anything u like.</p>
-                </div> 
-            </fieldset>
-
-            <fieldset>
                 <label for="email">your email address</label>
                 <input type="email" name="email">
                 <div class="notes">
@@ -42,6 +33,25 @@
                     <input type="password" name="password2">
                 </p>
             </fieldset>
+
+            <fieldset>
+                <label for="handle">your name</label>
+                <input type="text" name="handle">
+                <div class="notes">
+                    <p>This is the name that will appear in your url.</p>
+                    <p>It can be anything u like.</p>
+                </div>
+            </fieldset>
+
+            <!--
+            <fieldset>
+                <div class="notes">
+                    <p>Avatars in FilmBento are provided by Gravatar</p>
+                </div>
+                <label style="display: inline" for="gravatar">Include your Gravatar on your page?</label>
+                <input style ="margin-bottom: 20px" type="checkbox" name="gravatar">
+            </fieldset>
+            -->
             
             <input type ="submit" value ="Join">
 
