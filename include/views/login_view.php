@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
+    <div id="pageWrapper">
+
     <?php include("header.php"); ?>
 
     <div id="logIn">
@@ -33,5 +35,7 @@
         </div>
     </div>
     <?php include "footer.php"; ?>
+
+    </div>
 </body>
 </html>

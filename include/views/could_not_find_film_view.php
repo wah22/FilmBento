@@ -7,6 +7,8 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
+    <div id="pageWrapper">
+
     <?php require_once 'header.php'; ?>
 
     <div id="couldntFind">
@@ -24,5 +26,7 @@
     </div>
 
     <?php include "footer.php"; ?>
+
+    </div>
 </body>
 </html>

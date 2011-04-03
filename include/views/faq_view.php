@@ -7,6 +7,8 @@
    <link rel="stylesheet" type="text/css" href="/css/main.css">
  </head>
  <body>
+     <div id="pageWrapper">
+
     <?php include "header.php" ?>
 
      <div id="FAQ">
@@ -21,11 +23,9 @@
             <p>It's the <a href="http://www.ubuntu.com/">Ubuntu</a> font.</p>
             <p>You can get more info <a href="http://font.ubuntu.com/">here</a> and it's on <a href="http://www.google.com/webfonts/family?family=Ubuntu&subset=latin">Google web fonts.</a>
         </article>
-     </div>
-
-
-
+    </div>
 
     <?php include "footer.php"; ?>
+    </div>
  </body>
  </html>
