@@ -121,7 +121,7 @@ class FilmModel {
     }
 
     function getRecentlyAdded($numToGet = 10) {
-        $stmt = DB::getInstance()->prepare("SELECT * FROM fr_films ORDER BY when_added ASC LIMIT $numToGet");
+        $stmt = DB::getInstance()->prepare("SELECT * FROM fr_films ORDER BY when_added DESC LIMIT $numToGet");
         $stmt->execute();
         $films = array();
         while ($row = $stmt->fetch()) {
