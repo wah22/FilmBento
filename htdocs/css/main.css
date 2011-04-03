@@ -313,6 +313,10 @@ nav li a:hover {
     margin: 150px auto 0 auto;
 }
 
+#logIn input, #logIn label {
+    margin-left: 26px;
+}
+
 #logIn input[type="submit"] {
     display: block;
     margin-top: 20px;
