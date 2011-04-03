@@ -77,7 +77,7 @@ class UserController extends Controller {
         $seens = $this->seenModel->getLastSeens($numToShowPerPage, $user, $offset);
 
         if (!count($seens)) {
-            header('Location: /?controller=UserController&user=' . $_GET['user'] . '&function=films&page=1');
+            header('Location: /'.$_GET['user'].'/films/1');
         }
 
         if ($this->seenModel->getNumFilmsSeen($user) > ($numToShowPerPage * $_GET['page'])) {

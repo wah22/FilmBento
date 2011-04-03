@@ -10,11 +10,11 @@
         <div id="user_panel">
             <ul>
                 <?php if (! LoginManager::getInstance()->userLoggedIn()) : ?>
-                <li><a href="/?controller=LoginController">Log In</a></li>
+                <li><a href="/login">Log In</a></li>
                 <?php else : ?>
                 <li><a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a></li> |
-                <li><a href="/?controller=AccountSettingsController">Account Settings</a></li> |
-                <li><a href="?controller=LoginController&function=LogOut">Log Out</a></li>
+                <li><a href="/settings">Account Settings</a></li> |
+                <li><a href="index.php?controller=LoginController&function=LogOut">Log Out</a></li>
                 <?php endif; ?>
             </ul>
         </div>

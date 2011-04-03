@@ -21,7 +21,7 @@
             </div>
 
             <div class="list">
-                <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">
+                <a href="/<?php echo $data['user']->getHandle(); ?>/films">
                     <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
                 </a>
                 <ul>
@@ -42,7 +42,7 @@
                     <?php endforeach; ?>
                 </ul>
                 <div class="viewMore">
-                    <a href="/?controller=UserController&user=<?php echo $data['user']->getHandle(); ?>&function=films&page=1">View More</a>
+                    <a href="/<?php echo $data['user']->getHandle(); ?>/films">View More</a>
                 </div>
             </div>
 

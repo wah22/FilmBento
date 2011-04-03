@@ -34,7 +34,7 @@ class User implements Linkable {
     }
 
     function getPath() {
-        return '/?controller=UserController&user=' . $this->gethandle();
+        return '/' . $this->gethandle();
     }
 
     function getList($listID) {

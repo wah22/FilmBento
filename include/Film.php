@@ -49,6 +49,6 @@ class Film implements Linkable {
     }
 
     function getPath () {
-        return '/?controller=FilmController&film=' . urlencode($this->getTitle());
+        return '/films/' . urlencode($this->getTitle());
     }
 }
