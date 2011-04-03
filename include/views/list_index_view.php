@@ -8,50 +8,52 @@
     <link rel="stylesheet" type ="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/humanity/jquery-ui.css">
 </head>
 <body>
-    <?php include ("header.php"); ?>
+    <div id="pageWrapper">
+        <?php include ("header.php"); ?>
 
-    <div id="editList">
+        <div id="editList">
 
-        <?php foreach($data['lists'] as $list) : ?>
+            <?php foreach($data['lists'] as $list) : ?>
 
-        <div class="list">
-            <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
+            <div class="list">
+                <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
 
-            <div class="body">
-                <ol>
-                    <?php for ($i = 0; $i < 10; $i++) : ?>
-                        <?php if (isset($list['films'][$i])) : ?>
-                            <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
-                                <?php echo $list['films'][$i]['title']; ?>
-                                <form method="POST" action="" class ="removeFilm">
-                                    <input type="hidden" name="controller" value="ListController">
-                                    <input type="hidden" name="function" value="removeFromList">
-                                    <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
-                                    <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
-                                    <input type="submit" value="x">
-                                </form>
-                            </li>
-                        <?php endif; ?>
-                    <?php endfor; ?>
-                </ol>
+                <div class="body">
+                    <ol>
+                        <?php for ($i = 0; $i < 10; $i++) : ?>
+                            <?php if (isset($list['films'][$i])) : ?>
+                                <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
+                                    <?php echo $list['films'][$i]['title']; ?>
+                                    <form method="POST" action="" class ="removeFilm">
+                                        <input type="hidden" name="controller" value="ListController">
+                                        <input type="hidden" name="function" value="removeFromList">
+                                        <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
+                                        <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
+                                        <input type="submit" value="x">
+                                    </form>
+                                </li>
+                            <?php endif; ?>
+                        <?php endfor; ?>
+                    </ol>
 
-                <?php if (count($list['films']) < 10) : ?>
-                    <li class="addFilm">
-                        <form method="POST" action="">
-                            <input type="hidden" name="controller" value="ListController">
-                            <input type="hidden" name="function" value="addToList">
-                            <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
-                            <input type="text" name="film" class="tags">
-                            <input type="submit" value="+">
-                        </form>
-                    </li>
-                <?php endif; ?>
+                    <?php if (count($list['films']) < 10) : ?>
+                        <li class="addFilm">
+                            <form method="POST" action="">
+                                <input type="hidden" name="controller" value="ListController">
+                                <input type="hidden" name="function" value="addToList">
+                                <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
+                                <input type="text" name="film" class="tags">
+                                <input type="submit" value="+">
+                            </form>
+                        </li>
+                    <?php endif; ?>
+                </div>
             </div>
+            <?php endforeach; ?>
         </div>
-        <?php endforeach; ?>
-    </div>
 
-    <?php include "footer.php"; ?>
+        <?php include "footer.php"; ?>
+    </div>
  </body>
  </html>
 

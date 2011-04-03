@@ -7,7 +7,7 @@ class UserModel {
 
         if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
             // save user info
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password )');
+            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00 )');
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':handle', $handle);
             $stmt->bindParam(':password', $password);
@@ -43,7 +43,8 @@ class UserModel {
         $user->setEmail($row['email']);
         $user->setHandle($row['handle']);
         $user->setPassword($row['password']);
-        
+        $user->setDOB(strtotime($row['dob']));
+
         return $user;
     }
 
@@ -52,14 +53,21 @@ class UserModel {
         $handle = $user->getHandle();
         $password = $user->getPassword();
         $id = $user->getID();
+        if ($user->getDOB()) {
+            $dob = date('Y-m-d', $user->getDOB());
+        } else {
+            $dob = false;
+        }
 
         $stmt = DB::getInstance()->prepare('UPDATE fr_users
-                                            SET email = :email, handle = :handle, password = :password
+                                            SET email = :email, handle = :handle, password = :password, dob = :dob
                                             WHERE id = :user_id');
+        
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':handle', $handle);
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':user_id', $id);
+        $stmt->bindParam(':dob', $dob);
         $stmt->execute();
     }
 

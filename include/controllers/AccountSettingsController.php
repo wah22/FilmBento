@@ -25,6 +25,18 @@ class AccountSettingsController extends PrivateController {
             }
         }
 
+        if(!empty($_POST['dob'])) {
+            $dob = date($_POST['dob']);
+
+            if ($dob != $this->user->getDOB()) {
+                $this->user->setDOB(strtotime($dob));
+                $this->userModel->save($this->user);
+            }
+        } else {
+            $this->user->setDOB(false);
+            $this->userModel->save($this->user);
+        }
+
         if(!empty($_POST['password'])) {
             $password = $_POST['password'];
 

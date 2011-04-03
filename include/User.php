@@ -7,6 +7,7 @@ class User implements Linkable {
     private $handle;
     private $lists = array();
     private $password; //md5
+    private $dob;
 
     function getID() {
         return $this->id;
@@ -59,6 +60,28 @@ class User implements Linkable {
 
     function setPassword($password) {
         $this->password = $password;
+    }
+
+    function getDOB() {
+        return $this->dob;
+    }
+
+    function setDOB($dob) {
+        if ($dob == -62169982479) {
+            $this->dob = false;
+        } else {
+            $this->dob = $dob;
+        }
+    }
+
+    function getAge() {
+        if (!$this->getDOB()) {
+            return false;
+        }
+
+        $age = date('Y', time()) - date('Y', $this->getDOB());
+        if(date("z",time()) < date("z",$this->getDOB())) $age--;
+        return $age;
     }
 
     function getGravatar() {
