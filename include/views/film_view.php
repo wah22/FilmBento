@@ -13,12 +13,20 @@
         <?php include "header.php" ?>
 
         <div id="film">
+            <div id="details">
+                <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
+                <?php if($data['user']) : ?>
+                <a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>
+                <?php endif; ?>
+            </div>
             <h1><?php echo $data['film']->getTitle(); ?></h1>
             <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
 
+
+            <center><img src="http://upload.wikimedia.org/wikipedia/en/f/f9/The_Lincoln_Lawyer_Poster.jpg" style="height: 300px;"></center>
+
             <div id="links">
                 <ul>
-                    <p>View more info on...</p>
                 <?php if ($data['film']->getMeta('wiki_link')) : ?>
                     <li>
                         <a href="<?php echo $data['film']->getMeta('wiki_link'); ?>">Wikipedia</a>
@@ -36,14 +44,13 @@
                         <a href="<?php echo $data['film']->getMeta('imdb_link'); ?>">IMDb</a>
                     </li>
                 <?php endif; ?>
-                </ul>
-            </div>
 
-            <div id="details">
-                <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
-                <?php if($data['user']) : ?>
-                <p><a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit details</a></p>
+                <?php if ($data['film']->getMeta('metacritic_link')) : ?>
+                    <li>
+                        <a href="<?php echo $data['film']->getMeta('metacritic_link'); ?>">Metacritic</a>
+                    </li>
                 <?php endif; ?>
+                </ul>
             </div>
 
             <?php if($data['user']) : ?>
@@ -92,7 +99,46 @@
                 <p><a href="<?php echo $seen['path']; ?>"><?php echo $seen['user']; ?></a></p>
                 <?php endforeach; ?>
             </div>
-         </div>
+
+            <?php if ($data['film']->getMeta('hashtag')) : ?>
+            <div id="twitter">
+                <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+                <script>
+                new TWTR.Widget({
+                  version: 2,
+                  type: 'search',
+                  search: '<?php echo "#", $data['film']->getMeta('hashtag'); ?>',
+                  interval: 6000,
+                  //title: 'What people are saying about',
+                  subject: '<?php echo '#' , $data['film']->getMeta('hashtag'); ?>',
+                  width: 'auto',
+                  height: 'auto',
+                  theme: {
+                    shell: {
+                      background: '#8ec1da',
+                      color: '#ffffff'
+                    },
+                    tweets: {
+                      background: '#ffffff',
+                      color: '#444444',
+                      links: '#1985b5'
+                    }
+                  },
+                  features: {
+                    scrollbar: false,
+                    loop: true,
+                    live: true,
+                    hashtags: true,
+                    timestamp: true,
+                    avatars: true,
+                    toptweets: true,
+                    behavior: 'default'
+                  }
+                }).render().start();
+                </script>
+             </div>
+            <?php endif; ?>
+        </div>
 
         <?php include "footer.php"; ?>
 

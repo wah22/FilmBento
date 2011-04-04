@@ -145,6 +145,14 @@ class FilmController extends Controller{
             $this->film->setMeta('imdb_link', $_POST['imdbLink']);
         }
 
+        if (!empty($_POST['metacriticLink'])) {
+            $this->film->setMeta('metacritic_link', $_POST['metacriticLink']);
+        }
+
+        if (!empty($_POST['hashtag'])) {
+            $this->film->setMeta('hashtag', $_POST['hashtag']);
+        }
+
         if (isset($_POST['submit'])) {
             $this->filmModel->save($this->film);
             header('Location:' . $this->film->getPath());

@@ -23,6 +23,12 @@
             </fieldset>
 
             <fieldset>
+                <legend>Twitter Hashtag</legend>
+                <label for="wikiLink">Hashtag</label>
+                #<input type="text" name="hashtag" value="<?php echo $data['film']->getMeta('hashtag'); ?>">
+            </fieldset>
+
+            <fieldset>
                 <legend>Links</legend>
                 <label for="wikiLink">Wikipedia Link</label>
                 <input type="text" name="wikiLink" value="<?php echo $data['film']->getMeta('wiki_link'); ?>">
@@ -30,6 +36,8 @@
                 <input type="text" name="rtLink" value="<?php echo $data['film']->getMeta('rt_link'); ?>">
                 <label for="imdbLink">IMDb Link</label>
                 <input type="text" name="imdbLink" value="<?php echo $data['film']->getMeta('imdb_link'); ?>">
+                <label for="metacriticLink">Metacritic Link</label>
+                <input type="text" name="metacriticLink" value="<?php echo $data['film']->getMeta('metacritic_link'); ?>">
             </fieldset>
             
             <input type="submit" name="submit">
