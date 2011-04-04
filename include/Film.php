@@ -7,6 +7,7 @@ class Film implements Linkable {
     private $year;
     private $seens = array();
     private $userWhoAddedId;
+    private $meta = array();
 
     function getID() {
         return $this->id;
@@ -50,5 +51,21 @@ class Film implements Linkable {
 
     function getPath () {
         return '/films/' . urlencode($this->getTitle());
+    }
+
+    function setMeta($type, $value) {
+        $this->meta[$type] = $value;
+    }
+
+    function getMeta($metaToGet) {
+        if (isset($this->meta[$metaToGet])) {
+            return $this->meta[$metaToGet];
+        } else {
+            return false;
+        }
+    }
+
+    function getAllMeta() {
+        return $this->meta;
     }
 }

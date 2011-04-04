@@ -38,6 +38,17 @@ class FilmModel {
         $film->setYear($row['year']);
         $film->setUserWhoAddedID($row['added_by_user_id']);
 
+        // load meta
+        $stmt = DB::getInstance()->prepare('SELECT type, value FROM fbo_film_meta WHERE film_id = :film_id');
+        $stmt->bindParam(':film_id', $row['id']);
+        $stmt->execute();
+
+        $meta = array();
+        while ($row = $stmt->fetch()) {
+            $film->setMeta($row['type'], $row['value']);
+        }
+
+
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE film_id = :id');
         $id = $film->getID();
         $stmt->bindParam(':id', $id);
@@ -62,6 +73,17 @@ class FilmModel {
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':year', $year);
         $stmt->execute();
+
+        // save meta
+        $stmt = DB::getInstance()->prepare('UPDATE fbo_film_meta SET value = :value
+                                            WHERE film_id = :film_id && type = :type');
+        $stmt->bindParam(':film_id', $filmID);
+
+        foreach ($film->getAllMeta() as $type=>$value) {
+            $stmt->bindParam(':type', $type);
+            $stmt->bindParam(':value', $value);
+            $stmt->execute();
+        }
     }
 
     function getAllFilms() {

@@ -7,20 +7,34 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-    <?php include("header.php"); ?>
+    <div id="pageWrapper">
 
-    <form action="" method="post">
-        <fieldset>
-            <legend>Title</legend>
-            <?php echo $data['film']->getTitle(); ?>
-        </fieldset>
-        <fieldset>
-            <label for="year">Year</label>
-            <input type="text" name="year" value="<?php echo $data['film']->getYear(); ?>">
-        </fieldset>
-        <input type="submit">
-    </form>
-    
-    <?php include "footer.php"; ?>
+        <?php include("header.php"); ?>
+
+        <form action="" method="post">
+            <fieldset>
+                <legend>Title</legend>
+                <?php echo $data['film']->getTitle(); ?>
+            </fieldset>
+            <fieldset>
+                <legend>Details</legend>
+                <label for="year">Year</label>
+                <input type="text" name="year" value="<?php echo $data['film']->getYear(); ?>">
+            </fieldset>
+
+            <fieldset>
+                <legend>Links</legend>
+                <label for="wikiLink">Wikipedia Link</label>
+                <input type="text" name="wikiLink" value="<?php echo $data['film']->getMeta('wiki_link'); ?>">
+                <label for="rtLink">Rotten Tomatoes Link</label>
+                <input type="text" name="rtLink" value="<?php echo $data['film']->getMeta('rt_link'); ?>">
+            </fieldset>
+            
+            <input type="submit" name="submit">
+        </form>
+
+        <?php include "footer.php"; ?>
+
+    </div>
 </body>
 </html>

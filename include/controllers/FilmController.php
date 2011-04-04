@@ -129,7 +129,20 @@ class FilmController extends Controller{
         if (isset($_POST['year'])) {
             $this->film->setyear($_POST['year']);
             $this->filmModel->save($this->film);
-            header ("Location:".  $this->film->getPath());
+        }
+
+        $meta = array();
+
+        if (!empty($_POST['wikiLink'])) {
+            $this->film->setMeta('wiki_link', $_POST['wikiLink']);
+        }
+
+        if (!empty($_POST['rtLink'])) {
+            $this->film->setMeta('rt_link', $_POST['rtLink']);
+        }
+
+        if (isset($_POST['submit'])) {
+            $this->filmModel->save($this->film);
         }
 
         $data = array (
