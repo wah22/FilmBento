@@ -16,6 +16,29 @@
             <h1><?php echo $data['film']->getTitle(); ?></h1>
             <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
 
+            <div id="links">
+                <ul>
+                    <p>View more info on...</p>
+                <?php if ($data['film']->getMeta('wiki_link')) : ?>
+                    <li>
+                        <a href="<?php echo $data['film']->getMeta('wiki_link'); ?>">Wikipedia</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($data['film']->getMeta('rt_link')) : ?>
+                    <li>
+                        <a href="<?php echo $data['film']->getMeta('rt_link'); ?>">Rotten Tomatoes</a>
+                    </li>
+                <?php endif; ?>
+
+                <?php if ($data['film']->getMeta('imdb_link')) : ?>
+                    <li>
+                        <a href="<?php echo $data['film']->getMeta('imdb_link'); ?>">IMDb</a>
+                    </li>
+                <?php endif; ?>
+                </ul>
+            </div>
+
             <div id="details">
                 <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
                 <?php if($data['user']) : ?>

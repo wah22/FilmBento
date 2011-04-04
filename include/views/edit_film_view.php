@@ -28,6 +28,8 @@
                 <input type="text" name="wikiLink" value="<?php echo $data['film']->getMeta('wiki_link'); ?>">
                 <label for="rtLink">Rotten Tomatoes Link</label>
                 <input type="text" name="rtLink" value="<?php echo $data['film']->getMeta('rt_link'); ?>">
+                <label for="imdbLink">IMDb Link</label>
+                <input type="text" name="imdbLink" value="<?php echo $data['film']->getMeta('imdb_link'); ?>">
             </fieldset>
             
             <input type="submit" name="submit">

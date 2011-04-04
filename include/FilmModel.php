@@ -79,10 +79,23 @@ class FilmModel {
                                             WHERE film_id = :film_id && type = :type');
         $stmt->bindParam(':film_id', $filmID);
 
+        $check = DB::getInstance()->prepare('SELECT * FROM fbo_film_meta WHERE film_id = :film_id && type = :type');
+        $check->bindParam(':film_id', $filmID);
+
         foreach ($film->getAllMeta() as $type=>$value) {
-            $stmt->bindParam(':type', $type);
-            $stmt->bindParam(':value', $value);
-            $stmt->execute();
+            $check->bindParam(':type', $type);
+            $check->execute();
+            if ($check->rowCount()) {
+                $stmt->bindParam(':type', $type);
+                $stmt->bindParam(':value', $value);
+                $stmt->execute();
+            } else {
+                $insert = DB::getInstance()->prepare('INSERT INTO fbo_film_meta VALUES (NULL, :film_id, :type, :value)');
+                $insert->bindParam(':film_id', $filmID);
+                $insert->bindParam(':type', $type);
+                $insert->bindParam(':value', $value);
+                $insert->execute();
+            }
         }
     }
 
