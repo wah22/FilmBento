@@ -23,6 +23,12 @@
             </fieldset>
 
             <fieldset>
+                <legend>Poster</legend>
+                <label for="posterLink">URL</label>
+                <input type="text" name="posterLink" value="<?php echo $data['film']->getMeta('poster_link'); ?>">
+            </fieldset>
+
+            <fieldset>
                 <legend>Twitter Hashtag</legend>
                 <label for="wikiLink">Hashtag</label>
                 #<input type="text" name="hashtag" value="<?php echo $data['film']->getMeta('hashtag'); ?>">

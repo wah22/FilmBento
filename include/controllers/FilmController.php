@@ -133,6 +133,10 @@ class FilmController extends Controller{
 
         $meta = array();
 
+        if (!empty($_POST['posterLink'])) {
+            $this->film->setMeta('poster_link', $_POST['posterLink']);
+        }
+
         if (!empty($_POST['wikiLink'])) {
             $this->film->setMeta('wiki_link', $_POST['wikiLink']);
         }

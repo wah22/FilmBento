@@ -87,12 +87,15 @@ class FilmModel {
             $check->execute();
             if ($check->rowCount()) {
                 $stmt->bindParam(':type', $type);
-                $stmt->bindParam(':value', $value);
+                $cleanValue = htmlentities($value, ENT_QUOTES, 'UTF-8');
+                $stmt->bindParam(':value', $cleanValue);
+                echo $cleanValue;
                 $stmt->execute();
             } else {
                 $insert = DB::getInstance()->prepare('INSERT INTO fbo_film_meta VALUES (NULL, :film_id, :type, :value)');
                 $insert->bindParam(':film_id', $filmID);
                 $insert->bindParam(':type', $type);
+                $cleanValue = htmlentities($cleanValue, ENT_QUOTES, 'UTF-8');
                 $insert->bindParam(':value', $value);
                 $insert->execute();
             }

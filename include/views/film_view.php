@@ -19,11 +19,13 @@
                 <a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>
                 <?php endif; ?>
             </div>
+
+            <?php if ($data['film']->getMeta('poster_link')) : ?>
+            <img src="<?php echo $data['film']->getMeta('poster_link'); ?>" style="height: 270px; position: absolute;">
+            <?php endif; ?>
+
             <h1><?php echo $data['film']->getTitle(); ?></h1>
             <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
-
-
-            <center><img src="http://upload.wikimedia.org/wikipedia/en/f/f9/The_Lincoln_Lawyer_Poster.jpg" style="height: 300px;"></center>
 
             <div id="links">
                 <ul>
@@ -125,7 +127,7 @@
                     }
                   },
                   features: {
-                    scrollbar: false,
+                    scrollbar: true,
                     loop: true,
                     live: true,
                     hashtags: true,
