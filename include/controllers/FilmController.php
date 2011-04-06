@@ -6,8 +6,7 @@ class FilmController extends Controller{
 
     function __construct() {
         $filmModel = new FilmModel();
-        $this->film = $filmModel->getFilm('title', $_GET['film']);
-
+        $this->film = $filmModel->getFilm('title', urldecode($_GET['film']));
         parent::__construct();
     }
 

@@ -22,9 +22,8 @@ class HomeController extends PrivateController {
      * if not it loads the "huh?" page
      */
     function seen () {
-        $filmModel = new FilmModel();
-
-        $film = $filmModel->getFilm('title', $_POST['film']);
+        $title = $_POST['film'];
+        $film = $this->filmModel->getFilm('title', $title);
 
         if ($film) {
             $location = $film->getPath();

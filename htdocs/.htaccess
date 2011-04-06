@@ -1,4 +1,5 @@
 RewriteEngine on
+
 RewriteRule ^lists/?$ index.php?controller=ListController
 RewriteRule ^settings/?$ index.php?controller=AccountSettingsController
 RewriteRule ^login/?$ index.php?controller=LoginController
@@ -9,4 +10,5 @@ RewriteRule ^([^/\.]+)/films/?$ index.php?controller=UserController&user=$1&func
 RewriteRule ^([^/\.]+)/films/([^/\.]+)?$ index.php?controller=UserController&user=$1&function=films&page=$2
 
 RewriteRule ^([^/\.]+)/?$ index.php?controller=UserController&user=$1
-RewriteRule ^films/([^/\.]+)/?$ index.php?controller=FilmController&film=$1
+RewriteRule ^films/([^/\.]+)/?$ index.php?controller=FilmController&film=$1 [NC,L,B,QSA,NE]
+

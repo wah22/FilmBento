@@ -41,7 +41,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
     <script>
         $(function() {
-
             $('#whatSeenForm').submit(function() {
                 if ($('#tags').val() == "") {
                     return false;

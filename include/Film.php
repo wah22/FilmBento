@@ -50,7 +50,8 @@ class Film implements Linkable {
     }
 
     function getPath () {
-        return '/films/' . urlencode($this->getTitle());
+        $path = '/films/' . urlencode($this->getTitle());
+        return $path;
     }
 
     function setMeta($type, $value) {
