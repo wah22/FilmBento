@@ -559,6 +559,12 @@ nav li a:hover {
     background-color: #F6F5F0;
 }
 
+#editList .list #removeList {
+    position: absolute;
+    right: 7px;
+    top: 1px;
+}
+
 #editList .list h1 {
     text-align: center;
     margin: 0;

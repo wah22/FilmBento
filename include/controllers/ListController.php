@@ -3,7 +3,7 @@
 /*
  * The controller for the user's "Lists" page
  */
-class ListController extends PrivateController {
+class ListController extends PrivateController implements Linkable{
 
     function __construct() {
         if (!LoginManager::getInstance()->userLoggedIn()) {
@@ -45,6 +45,14 @@ class ListController extends PrivateController {
             $data['lists'][] = $listArray;
         }
 
+        $allLists = array();
+        foreach ($this->listModel->getAllLists() as $list) {
+            if (!$this->listModel->listActive($this->user, $list)) {
+                $allLists[] = $list;
+            }
+        }
+        $data['allLists'] = $allLists;
+
         $this->view->load('list_index_view', $data);
     }
 
@@ -80,14 +88,13 @@ class ListController extends PrivateController {
 
     function addToList() {
         $film = $this->filmModel->getFilm('title', urldecode($_REQUEST['film']));
-        $user = LoginManager::getInstance()->getLoggedInUser();
 
         if (!$film) {
             $this->view->load('could_not_find_film_view');
             return;
         }
 
-        $list = $this->listModel->getList($user, $_REQUEST['list']);
+        $list = $this->listModel->getList($this->user, $_REQUEST['list']);
         $list->addEntry($film->getID());
         $this->listModel->save($list);
 
@@ -106,5 +113,26 @@ class ListController extends PrivateController {
         $this->listModel->save($list);
 
         $this->index();
+    }
+
+    function activateList() {
+        if (isset($_GET['list'])) {
+            $list = $this->listModel->getList($this->user, $_GET['list']);
+            $this->listModel->activateList($this->user, $list);
+        }
+        header ('Location:' . $this->getPath());
+    }
+
+    function deactivateList() {
+        if (isset($_GET['list'])) {
+            $list = $this->listModel->getList($this->user, $_GET['list']);
+            $this->listModel->deactivateList($this->user, $list);
+        }
+        header ('Location:' . $this->getPath());
+    }
+
+    function getPath() {
+        $path = '/lists';
+        return $path;
     }
 }

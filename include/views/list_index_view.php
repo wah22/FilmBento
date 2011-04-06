@@ -17,6 +17,7 @@
 
             <div class="list">
                 <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
+                <a id="removeList" href="/?controller=ListController&function=deactivateList&list=<?php echo $list['id']; ?>">remove</a>
 
                 <div class="body">
                     <ol>
@@ -51,6 +52,15 @@
             </div>
             <?php endforeach; ?>
         </div>
+
+        Activate another list:
+        <?php foreach ($data['allLists'] as $list) : ?>
+        <p>
+            <a href = "/?controller=ListController&function=activateList&list=<?php echo $list->getID(); ?>">
+                <?php echo $list->getName(); ?>
+            </a>
+        </p>
+        <?php endforeach; ?>
 
         <?php include "footer.php"; ?>
     </div>
