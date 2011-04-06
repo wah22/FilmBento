@@ -17,6 +17,11 @@ class UserController extends Controller {
         
         $user = $this->userModel->getUser('handle', $_GET['user']);
 
+        if (!$user) {
+            $this->view->load('could_not_find_user_view');
+            return;
+        }
+
         $seens = $this->seenModel->getLastSeens(10, $user);
 
         $seensArray = array();
