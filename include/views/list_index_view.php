@@ -86,14 +86,13 @@
             $.ajax({
                 url: url,
                 success: function(data) {
+                    $('#editList').load('/?controller=ListController .list', function () {
+                        setUpAutocomplete();
+                        setUpSortable();
+                        setUpSlideable();
+                    });
                 }
                 });
-
-            $('#editList').load('/?controller=ListController .list', function () {
-                setUpAutocomplete();
-                setUpSortable();
-                setUpSlideable();
-            });
 
             return false;
         })
