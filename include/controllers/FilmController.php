@@ -6,8 +6,6 @@ class FilmController extends Controller{
 
     function __construct() {
         $filmModel = new FilmModel();
-        echo $_GET['film'];
-        //echo urldecode($_GET['film']);
         $this->film = $filmModel->getFilm('title', $_GET['film']);
         parent::__construct();
     }
@@ -132,7 +130,9 @@ class FilmController extends Controller{
             $this->filmModel->save($this->film);
         }
 
-        $meta = array();
+        if (!empty($_POST['altTitle'])) {
+            $this->film->setMeta('alt_title', $_POST['altTitle']);
+        }
 
         if (!empty($_POST['posterLink'])) {
             $this->film->setMeta('poster_link', $_POST['posterLink']);

@@ -18,6 +18,10 @@
             </fieldset>
             <fieldset>
                 <legend>Details</legend>
+
+                <label for="altTitle">Non-English title</label>
+                <input type="text" name="altTitle" value="<?php echo $data['film']->getMeta('alt_title'); ?>">
+
                 <label for="year">Year</label>
                 <input type="text" name="year" value="<?php echo $data['film']->getYear(); ?>">
             </fieldset>
@@ -46,7 +50,7 @@
                 <input type="text" name="metacriticLink" value="<?php echo $data['film']->getMeta('metacritic_link'); ?>">
             </fieldset>
             
-            <input type="submit" name="submit">
+            <input type="submit" name="submit" value="Submit">
         </form>
 
         <?php include "footer.php"; ?>
