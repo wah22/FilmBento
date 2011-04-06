@@ -22,6 +22,7 @@ class Film implements Linkable {
     }
 
     function setTitle($title) {
+        $title = str_replace('&', 'and', $title);
         $this->title = $title;
     }
 
