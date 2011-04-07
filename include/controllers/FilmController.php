@@ -20,9 +20,9 @@ class FilmController extends Controller{
 
         if ($user && $this->seenModel->userHasSeen($user, $this->film)) {
             $seen = $this->seenModel->getSeen($user, $this->film);
-
             $data['hasSeen'] = true;
             $data['whenSeen'] = $seen->whenSeen();
+            $data['tweeview'] = $seen->getTweeview();
         } else {
             $data['hasSeen'] = false;
         }
@@ -34,8 +34,6 @@ class FilmController extends Controller{
         } else {
             $data['hasRated'] = false;
         }
-
-        $data['tweeview'] = $seen->getTweeview();
 
         $lastSeens = $this->seenModel->getFilmsLastSeens(10, $this->film);
 

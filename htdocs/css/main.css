@@ -708,7 +708,13 @@ nav li a:hover {
 }
 
 #film #rate #tweeviewShown {
-    margin-left: 3px;
+    margin-top: 20px;
+
+    background-color: white;
+
+    padding: 5px;
+
+    border: 1px dashed black;
 }
 
 
@@ -727,6 +733,11 @@ nav li a:hover {
     font-size: 10px;
     margin-left: 2px;
     float: right;
+}
+
+#film #unSee input[type="image"] {
+    vertical-align: middle;
+    width: 20px;
 }
 
 #film #links {

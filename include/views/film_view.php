@@ -67,13 +67,13 @@
 
             <?php if ($data['hasSeen']) : ?>
             <div id="rate">
-                <fieldset>
+                <fieldset id ="seen">
                     <legend>Seen</legend>
                     <?php echo $data['whenSeen']; ?>
                     <form method="post" action="" id="unSee">
                         <input type="hidden" name="function" value="unsee">
                         <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                        <input type ="submit" value="X">
+                        <input type ="image" src="/images/icons/x.png">
                    </form>
                 </fieldset>
                 <fieldset>
@@ -98,7 +98,7 @@
                     <div id="tweeview">
                         <form method="post" action="">
                             <input type="hidden" name="function" value="tweeview">
-                            <textarea name="tweeview" rows="10" maxlength="140"></textarea>
+                            <textarea name="tweeview" rows="7" maxlength="140"></textarea>
                             <input type="submit" name="submit" value="Submit">
                         </form>
                     </div>
