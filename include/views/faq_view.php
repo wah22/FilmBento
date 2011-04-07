@@ -26,7 +26,7 @@
              <article>
                 <h2>Can I contribute to FilmBento?</h2>
                 <p>Yes please.</p>
-                <p>I'd love to hear your ideas for the site's design if you're a designer.</p>
+                <p>I'd love to hear your ideas for the site's design if you're a designer. I'd really like to get a consistent look and feel going.</p>
                 <p>If my <a href ="https://github.com/kitano/FilmBento">code</a> churns your stomach, please feel free to fork me.</p>
              </article>
 

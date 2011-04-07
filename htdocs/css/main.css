@@ -916,6 +916,11 @@ footer p {
     margin-top: 10px;
 }
 
+#accountSettings img {
+    float: right;
+    margin-right: 20px;
+}
+
 #FAQ {
     padding: 10px;
 

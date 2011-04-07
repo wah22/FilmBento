@@ -17,6 +17,7 @@
             <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>
                     <legend>my credentials</legend>
+                    <img src="/images/icons/key.png" style="margin-top: 20px">
                     <p>
                         <label for="email">email</label>
                         <input type="email" value="<?php echo $data['user']->getEmail(); ?>" name="email">
@@ -25,6 +26,14 @@
                         <label for="email">password</label>
                         <input type="password" name="password">
                     </p>
+                    <input type="submit" value="Save">
+                </fieldset>
+            </form>
+
+            <form>
+                <fieldset>
+                    <legend>my details</legend>
+                    <img src="/images/icons/date_edit.png">
                     <p>
                         <label for="dob">date of birth</label>
                         <input type="text" name="dob" id="dob" value="<?php if ($data['user']->getDOB()) { echo date('m/d/Y', $data['user']->getDOB());} ?>">
@@ -36,6 +45,7 @@
             <form>
                 <fieldset>
                     <legend>my avatar</legend>
+                    <img src="/images/icons/photo_upload.png">
                     <p>FilmBento uses <a href="http://en.gravatar.com/">Gravatar</a> for avatars.</p>
                     <p>You can set or change your avatar there.</p>
                     <div class="notes">
@@ -47,6 +57,7 @@
             <form>
                 <fieldset>
                     <legend>delete my account</legend>
+                    <img src="/images/icons/user_delete_big.png">
                     <p>Wanna get rid of your FilmBento page?</p>
                     <p>You'll lose everything and stuff.</p>
                     <input type="hidden" name="controller" value="AccountSettingsController">
