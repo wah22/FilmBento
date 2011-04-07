@@ -35,6 +35,8 @@ class FilmController extends Controller{
             $data['hasRated'] = false;
         }
 
+        $data['tweeview'] = $seen->getTweeview();
+
         $lastSeens = $this->seenModel->getFilmsLastSeens(10, $this->film);
 
         $lastSeensArray = array();
@@ -102,6 +104,23 @@ class FilmController extends Controller{
 
         $seen = $this->seenModel->getSeen($user, $this->film);
         $seen->setRating($rating);
+        $this->seenModel->save($seen);
+
+        $this->index();
+    }
+
+    function tweeview () {
+        if (empty($_POST['tweeview'])) {
+            $this->index();
+            return;
+        }
+
+        $user = LoginManager::getInstance()->getLoggedInUser();
+
+        $tweeview = $_POST['tweeview'];
+
+        $seen = $this->seenModel->getSeen($user, $this->film);
+        $seen->setTweeview($tweeview);
         $this->seenModel->save($seen);
 
         $this->index();

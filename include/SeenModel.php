@@ -3,7 +3,7 @@
 class SeenModel {
 
     function getSeen($user, $film) {
-        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date
+        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
                                   FROM fr_seens
                                   WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID();
@@ -19,8 +19,9 @@ class SeenModel {
         $row = $stmt->fetch();
         $rating = $row['rating'];
         $date = $row['date'];
+        $tweeview = $row['tweeview'];
 
-        $seen = new Seen($userID, $filmID, $rating, $date);
+        $seen = new Seen($userID, $filmID, $rating, $date, $tweeview);
         return $seen;
     }
 
@@ -126,22 +127,26 @@ class SeenModel {
         $filmID = $seen->getFilmID();
         $rating = $seen->getRating();
         $date = $seen->getDate();
-        $stmt = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES (NULL, :user_id, :film_id, :rating, FROM_UNIXTIME(:date) )');
+        $tweeview = $seen->getTweeview();
+        $stmt = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES (NULL, :user_id, :film_id, :rating, :tweeview, FROM_UNIXTIME(:date) )');
         $stmt->bindParam(':user_id', $userID);
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':rating', $rating);
+        $stmt->bindParam(':tweeview', $tweeview);
         $stmt->bindParam(':date', $date);
         $stmt->execute();
     }
 
     function save($seen) {
-        $stmt = DB::getInstance()->prepare('UPDATE fr_seens SET rating = :rating WHERE user_id = :user_id && film_id = :film_id');
+        $stmt = DB::getInstance()->prepare('UPDATE fr_seens SET rating = :rating, tweeview = :tweeview WHERE user_id = :user_id && film_id = :film_id');
         $userID = $seen->getUserID();
         $filmID = $seen->getFilmID();
         $rating = $seen->getRating();
+        $tweeview = $seen->getTweeview();
         $stmt->bindParam(':user_id', $userID);
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':rating', $rating);
+        $stmt->bindParam(':tweeview', $tweeview);
         $stmt->execute();
     }
 

@@ -707,6 +707,10 @@ nav li a:hover {
     margin-top: 4px;
 }
 
+#film #rate #tweeviewShown {
+    margin-left: 3px;
+}
+
 
 #film #rate #showTweeview {
 

@@ -5,12 +5,14 @@ class Seen {
     private $filmID;
     private $rating;
     private $date;
+    private $tweeview;
 
-    function __construct( $userID, $filmID, $rating, $date ) {
+    function __construct( $userID, $filmID, $rating, $date, $tweeview = "" ) {
         $this->userID = $userID;
         $this->filmID = $filmID;
         $this->rating = $rating;
         $this->date = $date;
+        $this->tweeview = $tweeview;
     }
 
     function getUserID() {
@@ -27,6 +29,14 @@ class Seen {
 
     function setRating($rating) {
         $this->rating = $rating;
+    }
+
+    function getTweeview() {
+        return $this->tweeview;
+    }
+
+    function setTweeview($tweeview) {
+        $this->tweeview = $tweeview;
     }
 
     function getDate() {

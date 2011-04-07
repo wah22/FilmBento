@@ -80,26 +80,31 @@
                     <legend>My rating</legend>
                     <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
                     <form method="post" action="">
-                            <input type="hidden" name="function" value="rate">
-                            <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                            <input type="hidden" name="rating" value="<?php echo $i; ?>">
-                            <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
-                            <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
-                            <?php else : ?>
-                            <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
-                            <?php endif; ?>
+                        <input type="hidden" name="function" value="rate">
+                        <input type="hidden" name="rating" value="<?php echo $i; ?>">
+                        <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
+                        <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
+                        <?php else : ?>
+                        <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
+                        <?php endif; ?>
                     </form>
                     <?php endfor; ?>
                     <br>
+
+                    <?php if (empty($data['tweeview'])) : ?>
                     <a href="#" id="showTweeview">
                         <img src="/images/icons/comment_add.png">write tweeview
                     </a>
                     <div id="tweeview">
-                        <form>
-                            <textarea rows="10"></textarea>
+                        <form method="post" action="">
+                            <input type="hidden" name="function" value="tweeview">
+                            <textarea name="tweeview" rows="10" maxlength="140"></textarea>
                             <input type="submit" name="submit" value="Submit">
                         </form>
                     </div>
+                    <?php else : ?>
+                    <div id="tweeviewShown"><?php echo $data['tweeview']; ?></div>
+                    <?php endif; ?>
                 </fieldset>
             </div>
             <?php endif; ?>
