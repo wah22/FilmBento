@@ -900,6 +900,28 @@ footer p {
     margin-top: 10px;
 }
 
+#FAQ {
+    padding: 10px;
+
+    width: 600px;
+
+    position: relative;
+    margin: 0 auto 0 auto;
+}
+
 #FAQ article {
     margin-bottom: 60px;
+}
+
+#contact {
+}
+
+#contact img{
+    width: 128px;
+    margin-right: 20px;
+    vertical-align: middle;
+}
+
+#contact a:link {
+    font-size: 22px;
 }

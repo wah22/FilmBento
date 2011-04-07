@@ -1,11 +1,12 @@
 RewriteEngine on
 
-RewriteRule ^lists/?$ index.php?controller=ListController
-RewriteRule ^settings/?$ index.php?controller=AccountSettingsController
-RewriteRule ^login/?$ index.php?controller=LoginController
-RewriteRule ^join/?$ index.php?controller=JoinController
-RewriteRule ^faq/?$ index.php?controller=FAQController
-RewriteRule ^contact/?$ index.php?controller=ContactController
+RewriteRule ^lists/?$ index.php?controller=ListController [L]
+RewriteRule ^settings/?$ index.php?controller=AccountSettingsController [L]
+RewriteRule ^login/?$ index.php?controller=LoginController [L]
+RewriteRule ^join/?$ index.php?controller=JoinController [L]
+RewriteRule ^faq/?$ index.php?controller=FAQController [L]
+RewriteRule ^contact_filmbento/?$ index.php?controller=ContactController [L]
+RewriteRule ^about/?$ index.php?controller=AboutController
 
 RewriteRule ^([^/\.]+)/films/?$ index.php?controller=UserController&user=$1&function=films&page=1
 RewriteRule ^([^/\.]+)/films/([^/\.]+)?$ index.php?controller=UserController&user=$1&function=films&page=$2
