@@ -371,10 +371,14 @@ nav li a:hover {
     background-color: #F6F5F0;
 }
 
-#whatSeen #add {
+#whatSeen img {
+    vertical-align: middle;
     position: absolute;
-    bottom: 5px;
-    right: 10px;
+    botton: 4px;
+    right: 4px;
+}
+
+#whatSeen #add {
     font-size: 15px;
 }
 
@@ -396,11 +400,13 @@ nav li a:hover {
     font-size: 30px;
 }
 
-#whatSeen input[type="submit"] {
+#whatSeen input[type="image"] {
+    width: 70px;
+
     position: absolute;
 
-    top: 110px;
-    right: 26px;
+    top: 95px;
+    right: 20px;
 
     font-size: 20px;
 }

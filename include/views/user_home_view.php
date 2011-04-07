@@ -17,11 +17,11 @@
             <form method="POST" action="/" id="whatSeenForm">
                 <input type ="hidden" name="function" value="seen">
                 <input type="text" name ="film" id="tags"><br>
-                <input type="submit" value="Go" id="goButton" disabled="true">
+                <input type="image" id="goButton" disabled="true" src="/images/icons/arrow_right.png">
             </form>
 
             <div id="add">
-                 Not here? <a href="/?controller=AddFilmController">Add a film.</a>
+                 <a href="/?controller=AddFilmController"><img src="/images/icons/add.png"></a>
             </div>
         </div>
 
