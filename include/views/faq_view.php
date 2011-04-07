@@ -12,8 +12,8 @@
          <div id="FAQ">
              <article>
                  <h2>Why did you bother with this? Aren't there enough of these movie database sites already?</h2>
-                 <p>Good point. There's more than enough info available when you Google a film, with IMDb, Rotten Tomatoes, Wikipedia etc.</p>
-                 <p>But FilmBento is supposed to be more about the individual.</p>
+                 <p>Good point. There's more than enough info available when you Google a film, with IMDb, Rotten Tomatoes, Wikipedia etc. I don't like to think of FilmBento as a database.</p>
+                 <p> The aim is that FilmBento is more about the individual.</p>
                  <p>I always wished there was a site where you could display your own tastes and opinions on films, without them being washed away in a torrent of tweets or being ignored on Facebook. like a <a href="http://www.last.fm">last.fm</a> for films.</p>
                  <p>That, and I always thought it would be cool if there was an easy way to keep track of everything I've seen. Like how you used to collect your ticket stubs when you were a kid.</p>
              </article>
