@@ -90,6 +90,16 @@
                             <?php endif; ?>
                     </form>
                     <?php endfor; ?>
+                    <br>
+                    <a href="#" id="showTweeview">
+                        <img src="/images/icons/comment_add.png">write tweeview
+                    </a>
+                    <div id="tweeview">
+                        <form>
+                            <textarea rows="10"></textarea>
+                            <input type="submit" name="submit" value="Submit">
+                        </form>
+                    </div>
                 </fieldset>
             </div>
             <?php endif; ?>
@@ -141,10 +151,18 @@
              </div>
             <?php endif; ?>
         </div>
-
         <?php include "footer.php"; ?>
-
      </div>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+     <script type="text/javascript">
+         $(function() {
+            $('#tweeview').hide();
+
+            $('#showTweeview').click(function(){
+                $('#tweeview').slideToggle(230);
+            });
+         });
+     </script>
  </body>
  </html>
  

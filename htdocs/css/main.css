@@ -684,7 +684,32 @@ nav li a:hover {
 
 #film #rate input[type="image"] {
     width: 30px;
-    margin: 0;
+    margin: 0 0 10px 2px;
+}
+
+#film #rate #showTweeview {
+    font-size: 13px;
+}
+
+#film #rate #showTweeview img {
+    vertical-align: middle;
+    margin: 0 6px 0 5px;
+    height: 20px;
+}
+
+#film #rate a:hover {
+    text-decoration: none;
+}
+
+#film #rate #tweeview input[type="submit"] {
+    position: relative;
+    left: 40px;
+    margin-top: 4px;
+}
+
+
+#film #rate #showTweeview {
+
 }
 
 #film #seenIt {
