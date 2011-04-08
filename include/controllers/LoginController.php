@@ -7,7 +7,6 @@ class LoginController extends Controller {
     }
 
     function index() {
-
         $data = array(
             'errors' => array()
         );
@@ -22,7 +21,6 @@ class LoginController extends Controller {
        if (empty($_POST['identifier']) || empty($_POST['password'])) {
             $errors[] = "Please fill in both fields.";
         }
-
 
         if (!empty($_POST['identifier']) && !empty($_POST['password'])) {
             if (!LoginManager::getInstance()->logInUser($_POST['identifier'], $_POST['password'])) {

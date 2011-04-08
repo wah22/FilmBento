@@ -110,11 +110,21 @@
             <?php endif; ?>
             <?php endif; ?>
 
-            <div class="list">
+            <div class="list" id="recentlySeen">
                 <h1>Recently seen by</h1>
-                <?php foreach($data['recentlySeens'] as $seen) : ?>
-                <p><a href="<?php echo $seen['path']; ?>"><?php echo $seen['user']; ?></a></p>
-                <?php endforeach; ?>
+                <ul>
+                    <?php foreach($data['recentlySeens'] as $seen) : ?>
+                    <li>
+                        <h2><a href="<?php echo $seen['path']; ?>"><?php echo $seen['user']; ?></a></h2>
+                        <div id="stars">
+                            <?php for ($i = 0; $i < $seen['rating']; $i++) : ?>
+                            <img src="/images/stars/star_filled.png">
+                            <?php endfor; ?>
+                        </div>
+                        <p><?php echo $seen['tweeview']; ?></p>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
 
             <?php if ($data['film']->getMeta('hashtag')) : ?>

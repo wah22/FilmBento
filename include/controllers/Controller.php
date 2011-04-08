@@ -31,7 +31,7 @@ abstract class Controller {
     abstract function index();
 
     function redirectToLogIn() {
-        header("Location: /?controller=LoginController");
+        header("Location: /login");
     }
 
     function logOut() {

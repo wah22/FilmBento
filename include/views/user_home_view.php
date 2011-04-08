@@ -21,7 +21,7 @@
             </form>
 
             <div id="add">
-                 <a href="/?controller=AddFilmController"><img src="/images/icons/add.png"></a>
+                 Can't find? <a href="/?controller=AddFilmController">Add a film.</a>
             </div>
         </div>
 
