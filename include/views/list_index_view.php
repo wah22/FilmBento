@@ -17,20 +17,22 @@
 
             <div class="list">
                 <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
-                <a id="removeList" href="/?controller=ListController&function=deactivateList&list=<?php echo $list['id']; ?>">remove</a>
+                <a id="removeList" href="/?controller=ListController&function=deactivateList&list=<?php echo $list['id']; ?>">
+                    <img src="/images/icons/x.png">
+                </a>
 
                 <div class="body">
                     <ol>
                         <?php for ($i = 0; $i < 10; $i++) : ?>
                             <?php if (isset($list['films'][$i])) : ?>
                                 <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
-                                    <?php echo $list['films'][$i]['title']; ?>
+                                    <a href="<?php echo $list['films'][$i]['path']; ?>"><?php echo $list['films'][$i]['title']; ?></a>
                                     <form method="POST" action="" class ="removeFilm">
                                         <input type="hidden" name="controller" value="ListController">
                                         <input type="hidden" name="function" value="removeFromList">
                                         <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
                                         <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
-                                        <input type="submit" value="x">
+                                        <input type="image" src="/images/icons/x.png">
                                     </form>
                                 </li>
                             <?php endif; ?>
@@ -51,17 +53,11 @@
                 </div>
             </div>
             <?php endforeach; ?>
+            <div id="add">
+                <a href="/lists/add"><img src="/images/icons/add.png">Add a list to your profile</a>
+            </div>
         </div>
-
-        Activate another list:
-        <?php foreach ($data['allLists'] as $list) : ?>
-        <p>
-            <a href = "/?controller=ListController&function=activateList&list=<?php echo $list->getID(); ?>">
-                <?php echo $list->getName(); ?>
-            </a>
-        </p>
-        <?php endforeach; ?>
-
+        
         <?php include "footer.php"; ?>
     </div>
  </body>

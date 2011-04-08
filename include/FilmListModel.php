@@ -56,7 +56,7 @@ class FilmListModel {
         return $lists;
     }
 
-    function getLists($user, $getUnactive = false) {
+    function getLists($user) {
         $userID = $user->getID();
 
         $stmt = DB::getInstance()->prepare('SELECT fbo_lists.id as id, fbo_lists.name as name

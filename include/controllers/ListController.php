@@ -32,7 +32,8 @@ class ListController extends PrivateController implements Linkable{
                 $film = $this->filmModel->getFilm('id', $entry);
                 $filmArray = array(
                     'id' => $film->getID(),
-                    'title' => $film->getTitle()
+                    'title' => $film->getTitle(),
+                    'path' =>$film->getPath()
                 );
                 $filmsArray[] = $filmArray;
             }
