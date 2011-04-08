@@ -121,7 +121,9 @@
                             <img src="/images/stars/star_filled.png">
                             <?php endfor; ?>
                         </div>
+                        <?php if (!empty($seen['tweeview'])) : ?>
                         <p><?php echo $seen['tweeview']; ?></p>
+                        <?php endif; ?>
                     </li>
                     <?php endforeach; ?>
                 </ul>

@@ -44,7 +44,7 @@ class FilmController extends Controller{
                 'user' => $user->getHandle(),
                 'path' => $user->getPath(),
                 'rating' =>$lastSeen->getRating(),
-                'tweeview' => $seen->getTweeview()
+                'tweeview' => $lastSeen->getTweeview()
             );
             $lastSeensArray[] = $lastSeenArray;
         }

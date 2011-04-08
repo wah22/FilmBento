@@ -62,7 +62,7 @@ class SeenModel {
     }
 
     function getFilmsLastSeens ($numToGet, $film) {
-        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date
+        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
                                           FROM fr_seens
                                           WHERE film_id = :film_id
                                           ORDER BY date DESC
@@ -78,8 +78,9 @@ class SeenModel {
         while ($row = $stmt->fetch()) {
             $userID = $row['user_id'];
             $rating = $row['rating'];
+            $tweeview = $row['tweeview'];
             $date = $row['date'];
-            $seen = new Seen($userID, $filmID, $rating, $date);
+            $seen = new Seen($userID, $filmID, $rating, $date, $tweeview);
             $seens[] = $seen;
         }
         return $seens;
