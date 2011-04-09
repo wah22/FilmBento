@@ -39,7 +39,7 @@ legend {
 fieldset {
     margin: 20px auto 0 auto;
 
-    padding: 0px 0 10px 10px;
+    padding: 10px 10px 10px 10px;
 
     border-radius: 3px;
     -moz-border-radius: 3px;
@@ -52,11 +52,6 @@ fieldset .notes {
     color: gray;
     margin: 6px 0 6px 0;
     padding: 0;
-}
-
-fieldset {
-    width: 500px;
-    padding-top: 0;
 }
 
 label{
@@ -359,9 +354,9 @@ nav li a:hover {
 }
 
 #logIn {
-    width: 305px;
     position: relative;
     margin: 10px auto 0 auto;
+    width: 260px;
 }
 
 #logIn input, #logIn label {
@@ -708,17 +703,29 @@ nav li a:hover {
 
 #film {
     margin-top: 10px;
+    min-height: 500px
+}
+
+#film #top {
+    min-height: 100px;
+}
+
+#film #top #poster {
+    position: absolute;
+    width: 30%;
 }
 
 #film h1, #film h2{
+    position: relative;
+    left: 10%;
     text-align: center;
     margin: 0;
     
 }
 
 #film #twitter {
-    width: 400px;
-    margin: 0 auto 0 auto;
+    width: 53%;
+    margin: 0 0 0 32%;
 }
 
 #film #details {
@@ -732,60 +739,77 @@ nav li a:hover {
     margin: 0;
 }
 
-#film #rate {
-    width: 180px;
-    height: 82px;
+#film #seen legend, #film #rate legend {
+    font-size: 15px;
+}
+
+#film #userPanel {
+    width: 68%;
+    position: relative;
+    left: 32%;
+    margin: 0 0 20px 0;
+}
+
+#film #seen {
+    width: 23%;
     position: absolute;
-    top: 160px;
-    right: 0px;
+    right: 0;
+    top: 0px;
+    margin: 0;
 }
 
-#film #rate fieldset {
-    padding: 7px;
-}
-
-#film #rate fieldset legend{
-    font-size: 14px;
+#film #rate {
+    width: 65%;
+    position: relative;
+    margin-left: 0;
 }
 
 #film #rate input[type="image"] {
     width: 30px;
-    margin: 0 0 10px 2px;
+    margin: 0 0 0px 2px;
 }
 
 #film #rate #showTweeview {
     font-size: 13px;
+    position: absolute;
+    top: 10px;
+    right: 20px;
 }
 
 #film #rate #showTweeview img {
-    vertical-align: middle;
-    margin: 0 6px 0 5px;
-    height: 20px;
 }
 
 #film #rate a:hover {
     text-decoration: none;
 }
 
+#film #rate textarea {
+    width: 98%;
+}
+
 #film #rate #tweeview input[type="submit"] {
-    position: relative;
-    left: 40px;
     margin-top: 4px;
+    margin-bottom: 0;
 }
 
 #film #rate #tweeviewShown {
-    margin-top: 20px;
+    margin: 20px 10px 10px 10px;
 
     background-color: white;
 
     padding: 5px;
 
     border: 1px dashed black;
+
+    display: block;
 }
 
+#film #rate img {
+    width: 20px;
+}
 
-#film #rate #showTweeview {
-
+#film #rate #rating {
+    height: 20px;
 }
 
 #film #seenIt {
@@ -794,20 +818,19 @@ nav li a:hover {
     top: 180px;
 }
 
-#film #unSee, #film #unSee input {
-    display: inline;
-    font-size: 10px;
-    margin-left: 2px;
-    float: right;
+#film #unSee {
+    position: absolute;
+    top: -16px;
+    right: 10px;
 }
 
 #film #unSee input[type="image"] {
-    vertical-align: middle;
-    width: 20px;
+    width: 15px;
 }
 
 #film #links {
     position: relative;
+    left: 10%;
     margin: 10px auto 0 auto;
     text-align: center;
 }
@@ -818,18 +841,10 @@ nav li a:hover {
     margin-right: 20px;
 }
 
-#film #links img {
-}
-
-#film #links p {
-}
-
 #film .list {
-    width: 360px;
+    width: 540px;
 
-    position: relative;
-
-    margin: 50px auto 50px auto;
+    margin-bottom: 20px;
 
     padding: 20px;
     padding-top: 10px;
@@ -846,9 +861,11 @@ nav li a:hover {
 #film #recentlySeen{
     padding-left: 10px;
     padding-right: 10px;
+    width: 65%;
+    margin: 0 0 20px 32%;
 }
 
-#film #recentlySeen h2{
+#film #recentlySeen h3{
     text-align: left;
     margin: 10px 0 10px 0;
     font-size: 15px;
@@ -857,7 +874,7 @@ nav li a:hover {
 #film #recentlySeen #stars{
     position: absolute;
     top: 10px;
-    right: 6px;
+    right: 10px;
 }
 
 #film #recentlySeen #stars img{
