@@ -41,7 +41,8 @@ class ListController extends PrivateController implements Linkable{
             $listArray = array(
                 'id' => $list->getID(),
                 'name' => $list->getName(),
-                'films' => $filmsArray
+                'films' => $filmsArray,
+                'maxEntries' => $list->getMaxEntries()
             );
             $data['lists'][] = $listArray;
         }

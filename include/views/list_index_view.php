@@ -23,7 +23,7 @@
 
                 <div class="body">
                     <ol>
-                        <?php for ($i = 0; $i < 10; $i++) : ?>
+                        <?php for ($i = 0; $i < $list['maxEntries']; $i++) : ?>
                             <?php if (isset($list['films'][$i])) : ?>
                                 <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
                                     <a href="<?php echo $list['films'][$i]['path']; ?>"><?php echo $list['films'][$i]['title']; ?></a>
@@ -39,7 +39,7 @@
                         <?php endfor; ?>
                     </ol>
 
-                    <?php if (count($list['films']) < 10) : ?>
+                    <?php if (count($list['films']) < $list['maxEntries']) : ?>
                         <li class="addFilm">
                             <form method="POST" action="">
                                 <input type="hidden" name="controller" value="ListController">
@@ -53,8 +53,11 @@
                 </div>
             </div>
             <?php endforeach; ?>
-            <div id="add">
+            <div class="add">
                 <a href="/lists/add"><img src="/images/icons/add.png">Add a list to your profile</a>
+            </div>
+            <div class="add">
+                <a href="/lists/create"><img src="/images/icons/list_add.png">Create a new list</a>
             </div>
         </div>
         

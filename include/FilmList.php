@@ -6,11 +6,17 @@ class FilmList {
     private $userID;
     private $name;
     private $entries = array();
+    private $maxEntries;
 
-    function __construct($userID, $id, $name) {
+    function __construct($userID = 0, $id = 0, $name= "", $maxEntries = 10) {
         $this->userID= $userID;
         $this->id = $id;
         $this->name = $name;
+        $this->maxEntries = $maxEntries;
+    }
+
+    function setID($id) {
+        $this->id = $id;
     }
 
     function getID() {
@@ -21,6 +27,9 @@ class FilmList {
         return $this->userID;
     }
 
+    function setName($name) {
+        $this->name = $name;
+    }
 
     function getName() {
         return $this->name;
@@ -37,6 +46,14 @@ class FilmList {
             }
         }
         $this->entries[] = $newEntry;
+    }
+
+    function setMaxEntries($maxEntries) {
+        $this->maxEntries = $maxEntries;
+    }
+
+    function getMaxEntries() {
+        return $this->maxEntries;
     }
 
     function remove($filmID) {

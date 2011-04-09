@@ -21,10 +21,23 @@ class FilmListModel {
         $row = $stmt->fetch();
 
         $list = new FilmList($userID, $row['id'], $row['name']);
+        $list->setMaxEntries($row['max_entries']);
 
         while ($row = $entryStmt->fetch()) {
             $list->addEntry($row['film_id']);
         }
+        return $list;
+    }
+
+    function getListByName($name) {
+        $get = DB::getInstance()->prepare('SELECT * FROM fbo_lists WHERE name = :name');
+        $get->bindParam(':name', $name);
+        $get->execute();
+
+        $row = $get->fetch();
+        $list = new FilmList();
+        $list->setID($row['id']);
+        $list->setName($row['name']);
         return $list;
     }
 
@@ -59,7 +72,7 @@ class FilmListModel {
     function getLists($user) {
         $userID = $user->getID();
 
-        $stmt = DB::getInstance()->prepare('SELECT fbo_lists.id as id, fbo_lists.name as name
+        $stmt = DB::getInstance()->prepare('SELECT fbo_lists.id as id, fbo_lists.name as name, fbo_lists.max_entries as max_entries
                                           FROM fbo_lists, fbo_user_active_lists
                                           WHERE fbo_lists.id = fbo_user_active_lists.list_id
                                                 && fbo_user_active_lists.user_id = :user_id
@@ -74,6 +87,7 @@ class FilmListModel {
         $lists = array();
         while ($row = $stmt->fetch()) {
             $list = new FilmList($userID, $row['id'], $row['name']);
+            $list->setMaxEntries($row['max_entries']);
 
             $entryStmt->bindParam('list_id', $row['id']);
 
@@ -159,5 +173,16 @@ class FilmListModel {
         $deleteEntries->bindParam(':user_id', $userID);
         $deleteEntries->bindParam(':list_id', $listID);
         $deleteEntries->execute();
+    }
+
+    function create($name, $maxEntries) {
+        $insert = DB::getInstance()->prepare('INSERT into fbo_lists
+                                              VALUES( NULL, :name, :max_entries)');
+        $insert->bindParam(':name', $name);
+        $insert->bindParam(':max_entries', $maxEntries);
+        $insert->execute();
+
+        $list = $this->getListByName($name);
+        return $list;
     }
 }

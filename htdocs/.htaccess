@@ -2,6 +2,7 @@ RewriteEngine on
 
 RewriteRule ^lists/?$ index.php?controller=ListController [L]
 RewriteRule ^lists/add/?$ index.php?controller=AddListController [L]
+RewriteRule ^lists/create/?$ index.php?controller=CreateListController [L]
 RewriteRule ^settings/?$ index.php?controller=AccountSettingsController [L]
 RewriteRule ^login/?$ index.php?controller=LoginController [L]
 RewriteRule ^join/?$ index.php?controller=JoinController [L]
