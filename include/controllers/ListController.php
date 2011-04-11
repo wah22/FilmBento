@@ -58,6 +58,28 @@ class ListController extends PrivateController implements Linkable{
         $this->view->load('list_index_view', $data);
     }
 
+    function add() {
+        $allLists = array();
+        foreach ($this->listModel->getAllLists() as $list) {
+            if (!$this->listModel->listActive($this->user, $list)) {
+                $allLists[] = $list;
+            }
+        }
+        $data['lists'] = $allLists;
+
+        $this->view->load('add_list_view', $data);
+    }
+
+    function create() {
+        if(isset($_POST['submit']) && !empty($_POST['name'])) {
+            $list = $this->listModel->create($_POST['name'], $_POST['maxEntries']);
+            $this->listModel->activateList($this->user, $list);
+            $this->index();
+            return;
+        }
+        $this->view->load('create_list_view');
+    }
+
     function edit() {
         if (!isset($_GET['list'])) {
             header('Location: /');

@@ -1,17 +1,14 @@
 <!DOCTYPE html>
- <html lang="en">
- <head>
-   <meta charset="utf-8">
-   <title></title>
-   <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" type="text/css" href="/css/main.css">
-   <link rel="stylesheet" type="text/css" href="/css/film.css">
+<html lang="en">
+<head>
+    <title></title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/css/film.css">
  </head>
  <body>
      <div id="pageWrapper">
-
-        <?php include "header.php" ?>
-
+        <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="film">
             <div id="top">
                 <?php if ($data['film']->getMeta('poster_link')) : ?>
@@ -74,7 +71,7 @@
                         <form method="post" action="" id="unSee">
                             <input type="hidden" name="function" value="unsee">
                             <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                            <input type ="image" src="/images/icons/x.png">
+                            <input type ="submit" value="X">
                        </form>
                     </fieldset>
                     <fieldset id="rate">
@@ -96,7 +93,7 @@
                         <?php if (empty($data['tweeview'])) : ?>
                         <p>
                             <a href="#" id="showTweeview">
-                                <img src="/images/icons/comment_add.png">write tweeview
+                                write tweeview
                             </a>
                         </p>
                         <div id="tweeview">
@@ -114,7 +111,6 @@
                 <?php endif; ?>
                 <?php endif; ?>
             </div>
-
             <div class="list" id="recentlySeen">
                 <h1>Recently seen by</h1>
                 <ul>
@@ -123,7 +119,7 @@
                         <h3><a href="<?php echo $seen['path']; ?>"><?php echo $seen['user']; ?></a></h3>
                         <div id="stars">
                             <?php for ($i = 0; $i < $seen['rating']; $i++) : ?>
-                            <img src="/images/stars/star_filled.png">
+                            <img src="/images/stars/star_filled.png" alt ="X">
                             <?php endfor; ?>
                         </div>
                         <?php if (!empty($seen['tweeview'])) : ?>
@@ -133,11 +129,10 @@
                     <?php endforeach; ?>
                 </ul>
             </div>
-
             <?php if ($data['film']->getMeta('hashtag')) : ?>
             <div id="twitter">
-                <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-                <script>
+                <script src="http://widgets.twimg.com/j/2/widget.js" type="text/javascript"></script>
+                <script type="text/javascript">
                 new TWTR.Widget({
                   version: 2,
                   type: 'search',
@@ -175,7 +170,7 @@
         </div>
         <?php include "footer.php"; ?>
      </div>
-     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
      <script type="text/javascript">
          $(function() {
             $('#tweeview').hide();

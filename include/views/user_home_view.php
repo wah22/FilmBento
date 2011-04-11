@@ -2,29 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Filmbento/Home</title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type ="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/humanity/jquery-ui.css">
  </head>
  <body>
     <div id="pageWrapper">
-        <?php include("header.php"); ?>
-
+        <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="whatSeen">
             <h1>what have you seen?</h1>
-
-            <form method="POST" action="/" id="whatSeenForm">
+            <form method="POST" action="">
                 <input type ="hidden" name="function" value="seen">
-                <input type="text" name ="film" id="tags"><br>
-                <input type="image" id="goButton" disabled="true" src="/images/icons/arrow_right.png">
+                <input type="text" name ="film" id="tags">
+                <input type="submit" id="goButton" disabled="true" value="Go">
             </form>
-
             <div id="add">
                  Can't find? <a href="/?controller=AddFilmController">Add a film.</a>
             </div>
         </div>
-
         <div class="list">
             <h2>Recently Added</h2>
             <ul>
@@ -33,8 +29,7 @@
                 <?php endforeach; ?>
             </ul>
         </div>
-
-        <?php include "footer.php"; ?>
+        <?php include ROOT_PATH . "/include/views/footer.php"; ?>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
