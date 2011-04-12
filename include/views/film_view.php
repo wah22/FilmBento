@@ -110,15 +110,17 @@
                     </form>
                     <?php endif; ?>
                     <?php if ($data['hasSeen']) : ?>
-                        <fieldset id ="seen">
-                            <legend>Seen</legend>
-                            <?php echo $data['whenSeen']; ?>
-                            <form method="post" action="" id="unSee">
-                                <input type="hidden" name="function" value="unsee">
-                                <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                                <input type ="submit" value="X">
-                           </form>
-                        </fieldset>
+                        <div id ="seen">
+                            <fieldset>
+                                <legend>Seen</legend>
+                                <?php echo $data['whenSeen']; ?>
+                                <form method="post" action="" id="unSee">
+                                    <input type="hidden" name="function" value="unsee">
+                                    <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+                                    <input type ="submit" value="X">
+                               </form>
+                            </fieldset>
+                        </div>
                         <fieldset id="rate">
                             <legend>My rating</legend>
                             <div id="rating">

@@ -61,6 +61,23 @@ class SeenModel {
         return $numSeen;
     }
 
+    function getPercentFilmsSeen($user) {
+        $countFilms = DB::getInstance()->prepare('SELECT * FROM fbo_films');
+        $countFilms->execute();
+        $numFilms = $countFilms->rowCount();
+
+        $id = $user->getID();
+        $stmt = DB::getInstance()->prepare('SELECT *
+                                  FROM fr_seens
+                                  WHERE user_id = :user_id');
+        $stmt->bindParam(':user_id', $id);
+        $stmt->execute();
+        $numSeen = $stmt->rowCount();
+
+        $percent = (int)(($numSeen/$numFilms) * (100/1));
+        return $percent;
+    }
+
     function getFilmsLastSeens ($numToGet, $film) {
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
                                           FROM fr_seens

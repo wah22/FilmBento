@@ -16,12 +16,13 @@
                 <input type="text" name="name">
                 <label for="maxEntries">Max number of entries on the list</label>
                 <select name="maxEntries">
-                    <?php for ($i = 3; $i < 10; $i++) : ?>
-                    <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
-                    <?php endfor; ?>
-                    <?php for ($i = 1; $i <= 10; $i++) : ?>
+                    <option value="3">3</option>
+                    <option value="5">5</option>
+                    <?php for ($i = 1; $i <= 5; $i++) : ?>
                     <option value="<?php echo $i*10; ?>"><?php echo $i*10; ?></option>
                     <?php endfor; ?>
+                    <option value="100">100</option>
+                    <option value="0">Unlimited</option>
                 </select>
                 <input type="submit" name="submit" value="Create">
             </fieldset>

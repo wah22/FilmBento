@@ -16,6 +16,8 @@ class UserController extends Controller {
         }
         
         $user = $this->userModel->getUser('handle', $_GET['user']);
+        $percent = $this->seenModel->getPercentFilmsSeen($user);
+        $numFilmsSeen = $this->seenModel->getNumFilmsSeen($user);
 
         if (!$user) {
             $this->view->load('could_not_find_user_view');
@@ -59,6 +61,8 @@ class UserController extends Controller {
 
         $data = array ( 'user' => $user,
                         'seens' => $seensArray,
+                        'numSeen' => $numFilmsSeen,
+                        'percentSeen' => $percent,
                         'lists' => $listsOutput
                 );
         

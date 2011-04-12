@@ -34,7 +34,7 @@
                             <?php endif; ?>
                         <?php endfor; ?>
                     </ol>
-                    <?php if (count($list['films']) < $list['maxEntries']) : ?>
+                    <?php if (count($list['films']) < $list['maxEntries'] || $list['maxEntries'] == 0) : ?>
                         <li class="addFilm">
                             <form method="POST" action="">
                                 <input type="hidden" name="function" value="addToList">
@@ -75,7 +75,7 @@
                 $.ajax({
                     url: url,
                     success: function(data) {
-                        $('#editList').load('/?controller=ListController .list', function () {
+                        $('#editList').load('/?controller=ListController #editList', function () {
                             setUpAutocomplete();
                             setUpSortable();
                             setUpSlideable();
@@ -96,7 +96,7 @@
 
                         }});
 
-                $('#editList').load('/?controller=ListController .list', function () {
+                $('#editList').load('/?controller=ListController #editList', function () {
                     setUpAutocomplete();
                     setUpSortable();
                     setUpSlideable();

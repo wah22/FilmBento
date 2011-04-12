@@ -436,31 +436,35 @@ nav li a:hover {
 #userProfile {
     width: 640px;
     position: relative;
-    margin: 0 auto 0 auto;
+    margin: 10px auto 0 auto;
 }
 
 #userProfile #info {
     width: 100%;
-    height: 200px;
+    height: 100px;
+
+    border: 1px solid black;
 
     position: relative;
-    margin: 0 auto 40px auto;
+    margin: 0 auto 10px auto;
     padding: 0;
 }
 
 #userProfile #info p{
-    margin: 10px;
+    margin: 5px;
 }
 
 
 #userProfile #info img {
     float: left;
     margin-right: 20px;
+    height: 100px;
 }
 
-#userProfile h1 {
+#userProfile #info h1 {
     text-align: center;
     text-decoration: none;
+    margin: 0;
 }
 
 #userProfile .list, #userProfile .userList {
@@ -468,7 +472,7 @@ nav li a:hover {
 
     position: relative;
 
-    margin: 0px auto 40px auto;
+    margin: 0px auto 10px auto;
 
     padding: 20px;
     padding-top: 0px;
@@ -612,7 +616,7 @@ nav li a:hover {
 
 #editList .list h1 A:link {text-decoration: none; color: black;}
 #editList .list h1 A:visited {text-decoration: none; color: black;}
-#editList .list h1 A:hover {text-decoration: underline; color: blue;}
+#editList .list h1 A:hover {text-decoration: none; color: black;}
 
 #editList .list ol {
     padding: 0px;
@@ -663,8 +667,9 @@ nav li a:hover {
     padding: 20px;
 }
 
-#editList .addFilm input[type="image"] {
-    vertical-align: top;
+#editList .addFilm input {
+    position: relative;
+    bottom: 6px;
 }
 
 #editList .addFilm input[type="text"] {
@@ -772,8 +777,20 @@ nav li a:hover {
     margin: 0;
 }
 
+#film #seen fieldset {
+    margin: 0;
+}
+
+#film #unSee {
+    display: inline;
+    position: absolute;
+    top: 12px;
+    right: 10px;
+}
+
+
 #film #rate {
-    width: 40%;
+    width: 60%;
     margin: 0;
 }
 
@@ -821,12 +838,6 @@ nav li a:hover {
 #film #seenIt {
     position: absolute;
     right: 0;
-}
-
-#film #unSee {
-    position: absolute;
-    top: -16px;
-    right: 15px;
 }
 
 #film .list {

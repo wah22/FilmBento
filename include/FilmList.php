@@ -45,7 +45,9 @@ class FilmList {
                 return;
             }
         }
-        $this->entries[] = $newEntry;
+        if (count($this->entries > $this->maxEntries)) {
+             $this->entries[] = $newEntry;
+        }
     }
 
     function setMaxEntries($maxEntries) {

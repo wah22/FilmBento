@@ -122,8 +122,6 @@ class ListController extends PrivateController implements Linkable{
         $list->addEntry($film->getID());
         $this->listModel->save($list);
 
-        print_r($list);
-
         $this->index();
     }
 

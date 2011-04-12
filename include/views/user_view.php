@@ -16,7 +16,8 @@
                 <img src="<?php echo $data['user']->getGravatar(); ?>">
                 <h1><?php echo $data['user']->getHandle(); ?></h1>
                 <?php if ($data['user']->getAge()) : ?>
-                <p>Age: <?php echo $data['user']->getAge(); ?></p>
+                <p><?php echo $data['user']->getAge(); ?></p>
+                <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
                 <?php endif; ?>
             </div>
 
@@ -42,7 +43,9 @@
                     <?php endforeach; ?>
                 </ul>
                 <div class="viewMore">
+                    <?php if ($data['numSeen'] > 10) : ?>
                     <a href="/<?php echo $data['user']->getHandle(); ?>/films">View More</a>
+                    <?php endif; ?>
                 </div>
             </div>
 

@@ -2,7 +2,7 @@
 
 class FilmModel {
     function create($film) {
-        $stmt = DB::getInstance()->prepare('INSERT INTO fr_films VALUES (NULL, :title, :year, :added_by_user_id, NOW())');
+        $stmt = DB::getInstance()->prepare('INSERT INTO fbo_films VALUES (NULL, :title, :year, :added_by_user_id, NOW())');
         $title = $film->getTitle();
         $year = $film->getYear();
         $addedID = $film->getUserWhoAddedID();
@@ -19,9 +19,9 @@ class FilmModel {
             if ($value == 0) {
                 return false;
             }
-            $stmt = DB::getInstance()->prepare('SELECT * FROM fr_films WHERE id = :value');
+            $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE id = :value');
         } else if ($by == 'title') {
-            $stmt = DB::getInstance()->prepare('SELECT * FROM fr_films WHERE title = :value');
+            $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value');
         } else {
             throw new Exception('Paramaters must be id or title');
         }
@@ -68,7 +68,7 @@ class FilmModel {
     function save($film) {
         $filmID = $film->getID();
         $year = $film->getYear();
-        $stmt = DB::getInstance()->prepare('UPDATE fr_films SET year = :year
+        $stmt = DB::getInstance()->prepare('UPDATE fbo_films SET year = :year
                                             WHERE id = :film_id');
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':year', $year);
@@ -89,7 +89,6 @@ class FilmModel {
                 $stmt->bindParam(':type', $type);
                 $cleanValue = htmlentities($value, ENT_QUOTES, 'UTF-8');
                 $stmt->bindParam(':value', $cleanValue);
-                echo $cleanValue;
                 $stmt->execute();
             } else {
                 $insert = DB::getInstance()->prepare('INSERT INTO fbo_film_meta VALUES (NULL, :film_id, :type, :value)');
@@ -105,7 +104,7 @@ class FilmModel {
     function getAllFilms() {
         $films = array();
 
-        $stmt = DB::getInstance()->prepare('SELECT id FROM fr_films');
+        $stmt = DB::getInstance()->prepare('SELECT id FROM fbo_films');
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $films[] = $this->getFilm('id', $row['id']);
@@ -116,7 +115,7 @@ class FilmModel {
 
     function filmExists($film) {
         $title = $film->getTitle();
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fr_films WHERE title = :title ');
+        $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :title ');
         $stmt->bindParam(':title', $title);
         $stmt->execute();
         if ($stmt->rowCount()) {
@@ -130,7 +129,7 @@ class FilmModel {
      * returns an array of $films matching a query
      */
     function search($query) {
-        $search = DB::getInstance()->prepare('SELECT id FROM fr_films WHERE title LIKE :query ORDER BY title');
+        $search = DB::getInstance()->prepare('SELECT id FROM fbo_films WHERE title LIKE :query ORDER BY title');
         $q = "%$query%";
         $search->bindParam(':query', $q);
         $search->execute();
@@ -143,8 +142,8 @@ class FilmModel {
     }
 
     function searchSeens($userID, $query) {
-        $search = DB::getInstance()->prepare('SELECT film_id FROM fr_seens, fr_films
-                                            WHERE fr_seens.film_id = fr_films.id && fr_films.title LIKE :query && user_id = :user_id
+        $search = DB::getInstance()->prepare('SELECT film_id FROM fr_seens, fbo_films
+                                            WHERE fr_seens.film_id = fbo_films.id && fbo_films.title LIKE :query && user_id = :user_id
                                             ORDER BY title');
         $q = "%$query%";
         $search->bindParam(':query', $q);
@@ -159,7 +158,7 @@ class FilmModel {
     }
 
     function getRecentlyAdded($numToGet = 10) {
-        $stmt = DB::getInstance()->prepare("SELECT * FROM fr_films ORDER BY when_added DESC LIMIT $numToGet");
+        $stmt = DB::getInstance()->prepare("SELECT * FROM fbo_films ORDER BY when_added DESC LIMIT $numToGet");
         $stmt->execute();
         $films = array();
         while ($row = $stmt->fetch()) {
