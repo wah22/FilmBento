@@ -11,7 +11,6 @@
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="film">
             <div id="leftColumn">
-                &nbsp;
                 <ul>
                     <li>
                         <?php if ($data['film']->getMeta('poster_link')) : ?>
@@ -97,8 +96,10 @@
                     <a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>
                     <?php endif; ?>
                 </div>
-                <h1><?php echo $data['film']->getTitle(); ?></h1>
-                <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
+                <hgroup id="title">
+                    <h1><?php echo $data['film']->getTitle(); ?></h1>
+                    <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
+                </hgroup>
                 <div id="userPanel">
                     <?php if($data['user']) : ?>
                     <?php if (!$data['hasSeen']) : ?>
@@ -147,7 +148,7 @@
                                 </form>
                             </div>
                             <?php else : ?>
-                            <div id="tweeviewShown"><?php echo $data['tweeview']; ?></div>
+                            <div id="tweeviewShown">"<?php echo $data['tweeview']; ?>"</div>
                             <?php endif; ?>
                         </fieldset>
                     <?php endif; ?>
@@ -165,7 +166,7 @@
                                 <?php endfor; ?>
                             </div>
                             <?php if (!empty($seen['tweeview'])) : ?>
-                            <p><?php echo $seen['tweeview']; ?></p>
+                            <p>"<?php echo $seen['tweeview']; ?>"</p>
                             <?php endif; ?>
                         </li>
                         <?php endforeach; ?>
