@@ -19,7 +19,7 @@
                 </a>
                 <div class="body">
                     <ol>
-                        <?php for ($i = 0; $i < $list['maxEntries']; $i++) : ?>
+                        <?php for ($i = 0; isset($list['films'][$i]); $i++) : ?>
                             <?php if (isset($list['films'][$i])) : ?>
                                 <li id="recordsArray_<?php echo $list['films'][$i]['id']; ?>">
                                     <a href="<?php echo $list['films'][$i]['path']; ?>"><?php echo $list['films'][$i]['title']; ?></a>
