@@ -30,16 +30,24 @@ class JoinController extends Controller {
         }
 
         if (! empty($_POST['email'])) {
-            $userModel = new UserModel();
-            if ($userModel->getUser('email', $_POST['email'])) {
+            if ($this->userModel->getUser('email', $_POST['email'])) {
                 $errors[] = "That email address is already associated with an account!";
             }
         }
 
          if (! empty($_POST['handle'])) {
-            $userModel = new UserModel();
-            if ($userModel->getUser('handle', $_POST['handle'])) {
+             $handle = $_POST['handle'];
+             if ($this->userModel->getUser('handle', $handle)) {
                 $errors[] = "Sorry, that handle has already been taken.";
+            }
+            if(strlen($handle) < 3) {
+                $errors[] = "Your name must be at least three characters long.";
+            }
+            if(strlen($handle) > 64) {
+                $errors[] = "Your name must be less than 64 characters long.";
+            }
+            if (!preg_match('/^[a-zA-Z0-9]+$/',$handle)) {
+                $errors[] = "Your chosen name contains invalid characters.";
             }
         }
 
@@ -47,8 +55,7 @@ class JoinController extends Controller {
             $data['errors'] = $errors;
             $this->view->load('join_view', $data);
         } else {
-            $userModel = new UserModel();
-            $userModel->create($_POST['email'], $_POST['handle'], $_POST['password']);
+            $this->userModel->create($_POST['email'], $_POST['handle'], $_POST['password']);
 
             LoginManager::getInstance()->logInUser($_POST['handle'], $_POST['password']);
 

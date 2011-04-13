@@ -1,20 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title></title>
+    <title>FilmBento/Join</title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
     <div id="pageWrapper">
-
-         <?php include ("header.php"); ?>
-
+        <?php include ("header.php"); ?>
         <div id="join">
-
             <h1>Create a page</h1>
-
             <form method="post" action="">
                 <fieldset>
                     <label for="email">your email address</label>
@@ -23,7 +18,6 @@
                         <p>Your email address will be kept Top Secret.</p>
                     </div>
                 </fieldset>
-
                 <fieldset>
                     <p>
                         <label for="password">choose a password</label>
@@ -35,16 +29,14 @@
                         <input type="password" name="password2">
                     </p>
                 </fieldset>
-
                 <fieldset>
                     <label for="handle">your name</label>
                     <input type="text" name="handle">
                     <div class="notes">
-                        <p>This is the name that will appear in your url.</p>
-                        <p>It can be anything u like.</p>
+                        <p>This is the name that will appear in your URL. (http://www.filmbento.com/you)</p>
+                        <p>It can be 3-64 lowercase letters or numbers, with no punctuation or spaces.</p>
                     </div>
                 </fieldset>
-
                 <!--
                 <fieldset>
                     <div class="notes">
@@ -54,9 +46,7 @@
                     <input style ="margin-bottom: 20px" type="checkbox" name="gravatar">
                 </fieldset>
                 -->
-
                 <input type ="submit" value ="Join">
-
                 <input type="hidden" name="controller" value="JoinController">
                 <input type="hidden" name="function" value="submit">
             </form>
