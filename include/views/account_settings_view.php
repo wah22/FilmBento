@@ -39,7 +39,7 @@
                     </div>
                 </fieldset>
             </form>
-            <form>
+            <form action="" method="post">
                 <fieldset>
                     <legend>delete my account</legend>
                     <p>Wanna get rid of your FilmBento page?</p>

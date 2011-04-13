@@ -14,7 +14,7 @@ abstract class PrivateController extends Controller {
 
     function __construct () {
         if (!LoginManager::getInstance()->userLoggedIn()) {
-            header ("Location: /?controller=LoginController");
+            header ("Location: /login");
         } else {
             $this->user = LoginManager::getInstance()->getLoggedInUser();
         }

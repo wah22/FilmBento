@@ -6,13 +6,15 @@
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
-    <?php include("header.php"); ?>
+    <div id="pageWrapper">
+        <?php include("header.php"); ?>
 
-    <div id="bai">   
-        <p>Bye.</p>
-        <img src="images/tosh_bai.jpg">
+        <div id="bai">
+            <p>Bye.</p>
+            <img src="images/tosh_bai.jpg">
+        </div>
+
+        <?php include "footer.php"; ?>
     </div>
-    
-    <?php include "footer.php"; ?>
 </body>
 </html>
