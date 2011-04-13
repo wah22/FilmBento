@@ -190,7 +190,7 @@
             });
 
             $('#seenIt').live('click', function() {
-
+                alert('clicked');
                 var filmID = $(this).parent().find('input[name=film]').val();
 
                 $.post("", { controller: "FilmController", "function": "seen", "film": filmID }, function(page) {
@@ -198,30 +198,41 @@
                     $('#userPanel').html(userPanel);
                 } );
                 return false;
-            })
+            });
 
             $('#unSeeButton').live('click', function(event) {
                 event.preventDefault();
                 if (confirm("Are you sure you want to unsee <?php echo $data['film']->getTitle(); ?>?")) {
-                var filmID = $(this).parent().find('input[name=film]').val();
+                    var filmID = $(this).parent().find('input[name=film]').val();
 
-                $.post("", { controller: "FilmController", "function": "unSee", "film": filmID }, function(page) {
-                    var userPanel = $(page).find('#userPanel');
-                    $('#userPanel').html(userPanel);
-                } );
-                return false;
+                    $.post("", { controller: "FilmController", "function": "unSee", "film": filmID }, function(page) {
+                        var userPanel = $(page).find('#userPanel');
+                        $('#userPanel').html(userPanel);
+                    } );
+                    return false;
                 };
-            })
+            });
 
-            $('.rateStar').live('click', function() {
+            $('.rateStar').live('click', function(event) {
+                event.preventDefault();
+
+                var currentRating = <?php echo $data['rating']; ?>;
+
                 var rating  = $(this).find('input[name=rating]').val();
+
+                if (currentRating != 0) {
+                    if (!confirm("Are you sure you want to change your rating?")) {
+                        return false;
+                    }
+                }
 
                 $.post("", { controller: "FilmController", "function": "rate", "rating": rating }, function(page) {
                     var userPanel = $(page).find('#userPanel');
                     $('#userPanel').html(userPanel);
-                } );
+                });
+                
                 return false;
-            })
+            });
 
          });
      </script>

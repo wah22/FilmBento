@@ -33,6 +33,7 @@ class FilmController extends Controller{
             $data['rating'] = $rating;
         } else {
             $data['hasRated'] = false;
+            $data['rating'] = 0;
         }
 
         $lastSeens = $this->seenModel->getFilmsLastSeens(10, $this->film);

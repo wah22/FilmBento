@@ -66,5 +66,17 @@
 
         <?php include "footer.php"; ?>
     </div>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('#userProfile li').hover(
+            function() {
+               $(this).css('background-color', 'white');
+            },
+            function() {
+               $(this).css('background-color', '#F6F5F0');
+            });
+        });
+    </script>
 </body>
 </html>
