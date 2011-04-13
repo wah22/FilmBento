@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>FilmBento / <?php echo $data['film']->getTitle(); ?></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
@@ -117,7 +118,7 @@
                                 <form method="post" action="" id="unSee">
                                     <input type="hidden" name="function" value="unsee">
                                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                                    <input type ="submit" value="X">
+                                    <input type ="submit" value="X" id="unSeeButton">
                                </form>
                             </fieldset>
                         </div>
@@ -125,7 +126,7 @@
                             <legend>My rating</legend>
                             <div id="rating">
                                 <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
-                                <form method="post" action="">
+                                <form method="post" action="" class="rateStar">
                                     <input type="hidden" name="function" value="rate">
                                     <input type="hidden" name="rating" value="<?php echo $i; ?>">
                                     <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
@@ -150,7 +151,7 @@
                                 </form>
                             </div>
                             <?php else : ?>
-                            <div id="tweeviewShown">"<?php echo $data['tweeview']; ?>"</div>
+                            <blockquote id="tweeviewShown">&ldquo;<?php echo $data['tweeview']; ?>&rdquo;</blockquote>
                             <?php endif; ?>
                         </fieldset>
                     <?php endif; ?>
@@ -187,6 +188,41 @@
                 $('#tweeview').slideToggle(230);
                 return false;
             });
+
+            $('#seenIt').live('click', function() {
+
+                var filmID = $(this).parent().find('input[name=film]').val();
+
+                $.post("", { controller: "FilmController", "function": "seen", "film": filmID }, function(page) {
+                    var userPanel = $(page).find('#userPanel');
+                    $('#userPanel').html(userPanel);
+                } );
+                return false;
+            })
+
+            $('#unSeeButton').live('click', function(event) {
+                event.preventDefault();
+                if (confirm("Are you sure you want to unsee <?php echo $data['film']->getTitle(); ?>?")) {
+                var filmID = $(this).parent().find('input[name=film]').val();
+
+                $.post("", { controller: "FilmController", "function": "unSee", "film": filmID }, function(page) {
+                    var userPanel = $(page).find('#userPanel');
+                    $('#userPanel').html(userPanel);
+                } );
+                return false;
+                };
+            })
+
+            $('.rateStar').live('click', function() {
+                var rating  = $(this).find('input[name=rating]').val();
+
+                $.post("", { controller: "FilmController", "function": "rate", "rating": rating }, function(page) {
+                    var userPanel = $(page).find('#userPanel');
+                    $('#userPanel').html(userPanel);
+                } );
+                return false;
+            })
+
          });
      </script>
  </body>
