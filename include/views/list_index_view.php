@@ -111,16 +111,19 @@
             $(".tags").each(function(){
                 var list_id = $(this).parent().find('input[name=list]').val();
 
-                var url = "/?controller=API&function=userList&user=1&list=1";
+                var url = "/?controller=API&function=userList&user=1&list=" + list_id;
+
+                var onList = [];
 
                 $.getJSON(url, function(data) {
-                    var onList = [];
                     $.each(data, function(i, item) {
                         onList.push(item);
                     });
                 });
 
                 $(this).autocomplete({
+                    minLength: 3,
+
                     source: function(req, add){
                         var term = req.term;
 
@@ -129,8 +132,12 @@
                         $.getJSON(url, function(data) {
                               var suggestions = [];
                               $.each(data, function(i,item) {
-
-                                suggestions.push(item);
+                                  for (x in onList) {
+                                      if (item == onList[x]) {
+                                          return;
+                                      }
+                                  }
+                                  suggestions.push(item);
                              });
                              add(suggestions);
                         })

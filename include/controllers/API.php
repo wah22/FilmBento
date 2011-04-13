@@ -39,12 +39,12 @@ class API extends Controller {
         
         $user = $userModel->getUser('id', $_GET['user']);
 
-        $list = $user->getList($_GET['list']);
+        $list = $this->listModel->getList($user, $_GET['list']);
 
         $films = array();
 
-        foreach ($list->getSeens() as $seen) {
-            $film = $seen->getFilm();
+        foreach ($list->getEntries() as $filmID) {
+            $film = $this->filmModel->getFilm('id', $filmID);
             $title = $film->getTitle();
             $films[] = $title;
         }
