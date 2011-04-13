@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Filmbento/Home</title>
+    <title>Filmbento / Home</title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
     <link rel="stylesheet" type ="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/themes/humanity/jquery-ui.css">
- </head>
- <body>
+</head>
+<body>
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="whatSeen">

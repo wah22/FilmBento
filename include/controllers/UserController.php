@@ -14,15 +14,16 @@ class UserController extends Controller {
         if( empty($_GET['user']) ) {
             header('Location: /');
         }
-        
+
         $user = $this->userModel->getUser('handle', $_GET['user']);
-        $percent = $this->seenModel->getPercentFilmsSeen($user);
-        $numFilmsSeen = $this->seenModel->getNumFilmsSeen($user);
 
         if (!$user) {
             $this->view->load('could_not_find_user_view');
             return;
         }
+
+        $percent = $this->seenModel->getPercentFilmsSeen($user);
+        $numFilmsSeen = $this->seenModel->getNumFilmsSeen($user);
 
         $seens = $this->seenModel->getLastSeens(10, $user);
 

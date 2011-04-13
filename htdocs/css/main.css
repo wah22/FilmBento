@@ -365,16 +365,25 @@ nav li a:hover {
 #logIn {
     position: relative;
     margin: 10px auto 0 auto;
-    width: 260px;
+    width: 300px;
 }
 
 #logIn input, #logIn label {
-    margin-left: 1px;
+    display: block;
+    margin: 0 auto 0 auto;
+    width: 200px;
 }
 
 #logIn input[type="submit"] {
     display: block;
     margin: 5px auto 5px auto;
+}
+
+#logIn #forgotPassword {
+    position: relative;
+    text-align: right;
+    padding-right: 2px;
+    font-size: 12px;
 }
 
 #logIn #errors, #errors {

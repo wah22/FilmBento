@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-   <meta charset="utf-8">
-    <title></title>
-   <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+    <title>FilmBento / Reset Password</title>
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
 </head>
 <body>
@@ -19,7 +18,7 @@
             <legend>Reset my password</legend>
             <label for="email">My email address</label>
             <input type="email" name="email">
-            <input type="submit">
+            <input type="submit" value="Submit">
         </fieldset>
     </form>
     <?php if (isset($data['errors'])) : ?>
