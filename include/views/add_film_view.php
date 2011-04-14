@@ -30,21 +30,8 @@
                         <p>Please make sure the info you enter is correct.</p>
                         <p>Google it if you have to.</p>
                     </div>
+                    <button class="big button"><span class="check icon"></span>Add</button>
                 </fieldset>
-
-                <fieldset id="links">
-                    <legend>Optional Info</legend>
-                    <p>
-                        <label for="wikiLink">Wikipedia Link</label>
-                        <input type="text" name="wikiLink">
-                    </p>
-                    <p>
-                        <label for="rtLink">Rotten Tomatoes Link</label>
-                        <input type="text" name="rtLink">
-                    </p>
-                </fieldset>
-                    <input type="submit" value="Add">
-                </p>
             </form>
         </div>
 

@@ -7,17 +7,13 @@
                 <h3>beta</h3>
             </hgroup>
         </a>
-        <div id="user_panel">
-            <ul>
-                <?php if (LoginManager::getInstance()->userLoggedIn()) : ?>
-                <li><a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a></li> |
-                <li><a href="/settings">Account Settings</a></li> |
-                <li><a href="/?controller=LoginController&function=LogOut">Log Out</a></li>
-                <?php else : ?>
-                <li><a href="/login">Log In</a></li>
-                <?php endif; ?>
-            </ul>
-        </div>
+    </div>
+    <div id="user_panel">
+            <?php if (LoginManager::getInstance()->userLoggedIn()) : ?>
+            <a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>" class="left pill primary button"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a><a href="/settings" class="middle pill button">Account Settings</a><a href="/?controller=LoginController&function=LogOut" class="right negative pill button">Log Out</a>
+            <?php else : ?>
+            <a href="/login"  class="pill button">Log In</a>
+            <?php endif; ?>
     </div>
 </header>
 <?php include ROOT_PATH . '/include/views/navbar.php'; ?>

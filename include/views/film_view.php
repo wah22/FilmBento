@@ -221,7 +221,7 @@
                 var rating  = $(this).find('input[name=rating]').val();
 
                 if (currentRating != 0) {
-                    if (!confirm("Are you sure you want to change your rating?")) {
+                    if (!confirm("Are you sure you want to change your rating of <?php echo $data['film']->getTitle(); ?> to " + rating + " stars?")) {
                         return false;
                     }
                 }
