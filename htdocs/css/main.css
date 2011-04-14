@@ -620,7 +620,7 @@ nav li a:hover {
     left:40px;
 
     width: 500px;
-    height: 40px;
+    height: 28px;
     padding: 10px 10px 0px 10px;
     margin: 0px 0px 10px 0px;
     background-color: white;
@@ -650,13 +650,15 @@ nav li a:hover {
     padding: 20px;
 }
 
-#editList .addFilm input {
+#editList .addFilm button {
+    display: inline;
     position: relative;
-    bottom: 6px;
+    bottom: 1px;
 }
 
 #editList .addFilm input[type="text"] {
-    width: 450px;
+    height: 25px;
+    width: 430px;
 }
 
 #editList .addFilm input[type="submit"] {

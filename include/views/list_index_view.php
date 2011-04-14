@@ -27,19 +27,19 @@
                                         <input type="hidden" name="function" value="removeFromList">
                                         <input type="hidden" name="film" value="<?php echo $list['films'][$i]['id']; ?>">
                                         <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
-                                        <input type="submit" value="X">
+                                        <button class="negative button"><span class="cross icon"></span>remove</button>
                                     </form>
                                 </li>
                             <?php endif; ?>
                         <?php endfor; ?>
                     </ol>
                     <?php if (count($list['films']) < $list['maxEntries'] || $list['maxEntries'] == 0) : ?>
-                        <li class="addFilm">
+                        <li class="addFilm" style="height: 48px;">
                             <form method="POST" action="">
                                 <input type="hidden" name="function" value="addToList">
                                 <input type="hidden" name="list" value="<?php echo $list['id']; ?>">
                                 <input type="text" name="film" class="tags">
-                                <input type="submit" value="+">
+                                <button class="button"><span class="plus icon"></span>add</button>
                             </form>
                         </li>
                     <?php endif; ?>
