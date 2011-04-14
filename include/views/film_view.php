@@ -190,7 +190,6 @@
             });
 
             $('#seenIt').live('click', function() {
-                alert('clicked');
                 var filmID = $(this).parent().find('input[name=film]').val();
 
                 $.post("", { controller: "FilmController", "function": "seen", "film": filmID }, function(page) {
