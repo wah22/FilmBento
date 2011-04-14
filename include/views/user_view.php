@@ -15,8 +15,8 @@
                 <h1><?php echo $data['user']->getHandle(); ?></h1>
                 <?php if ($data['user']->getAge()) : ?>
                 <p><?php echo $data['user']->getAge(); ?></p>
-                <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
                 <?php endif; ?>
+                <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
             </div>
 
             <div class="list">
