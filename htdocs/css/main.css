@@ -753,7 +753,7 @@ nav li a:hover {
 }
 
 #film #seen {
-    width: 35%;
+    width: 45%;
     position: absolute;
     right: 0px;
     top: 0px;
@@ -765,15 +765,14 @@ nav li a:hover {
 }
 
 #film #unSee {
-    display: inline;
     position: absolute;
-    top: 12px;
+    top: 18px;
     right: 10px;
 }
 
 
 #film #rate {
-    width: 60%;
+    width: 49%;
     margin: 0;
 }
 

@@ -118,7 +118,7 @@
                                 <form method="post" action="" id="unSee">
                                     <input type="hidden" name="function" value="unsee">
                                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                                    <input type ="submit" value="X" id="unSeeButton">
+                                    <button class="negative button" id="unSeeButton"><span class="cross icon"></span>unsee</button>
                                </form>
                             </fieldset>
                         </div>
