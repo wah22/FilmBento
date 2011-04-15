@@ -116,7 +116,7 @@
                                 <legend>Seen</legend>
                                 <?php echo $data['whenSeen']; ?>
                                 <form method="post" action="" id="unSee">
-                                    <input type="hidden" name="function" value="unsee">
+                                    <input type="hidden" name="function" value="un-see">
                                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
                                     <button class="negative button" id="unSeeButton"><span class="cross icon"></span>unsee</button>
                                </form>
@@ -201,7 +201,7 @@
 
             $('#unSeeButton').live('click', function(event) {
                 event.preventDefault();
-                if (confirm("Are you sure you want to unsee <?php echo $data['film']->getTitle(); ?>?")) {
+                if (confirm("Are you sure you want to un-see <?php echo $data['film']->getTitle(); ?>?")) {
                     var filmID = $(this).parent().find('input[name=film]').val();
 
                     $.post("", { controller: "FilmController", "function": "unSee", "film": filmID }, function(page) {
