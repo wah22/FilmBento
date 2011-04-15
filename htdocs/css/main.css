@@ -690,6 +690,10 @@ nav li a:hover {
     margin-top: 10px;
 }
 
+#film hgroup {
+    width: 80%;
+}
+
 #film #leftColumn {
     margin: 0;
     min-width: 30%;
