@@ -21,7 +21,7 @@
                     <input type="submit" value="Save">
                 </fieldset>
             </form>
-            <form>
+            <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>
                     <legend>my details</legend>
                     <label for="dob">date of birth</label>
@@ -39,7 +39,7 @@
                     </div>
                 </fieldset>
             </form>
-            <form action="" method="post">
+            <form method="post" action="">
                 <fieldset>
                     <legend>delete my account</legend>
                     <p>Wanna get rid of your FilmBento page?</p>
@@ -56,7 +56,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.10/jquery-ui.min.js"></script>
     <script>
         $(function() {
-		$("#dob").datepicker({ changeYear: true, yearRange: '1900:+0' });
+		$("#dob").datepicker({ changeMonth: true, changeYear: true, yearRange: '1900:+0' });
 	});
     </script>
 </body>
