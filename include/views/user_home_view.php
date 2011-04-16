@@ -21,7 +21,21 @@
             </div>
         </div>
         <div class="list">
-            <h2>Recently Added</h2>
+            <h2>Recently Seen</h2>
+            <ul>
+                <?php foreach($data['recentlySeens'] as $seen) : ?>
+                <li>
+                    <a href="<?php echo $seen['user']->getPath(); ?>"><?php echo $seen['user']->getHandle(); ?></a> saw
+                    <a href="<?php echo $seen['film']->getpath(); ?>"><?php echo $seen['film']->getTitle(); ?></a>
+                    <?php if ($seen['seen']->getRating()) : ?>
+                    and rated it <?php echo $seen['seen']->getRating(); ?> stars.
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+        <div class="list">
+            <h2>Recently Added - have you seen?</h2>
             <ul>
                 <?php foreach ($data['recentlyAddedFilms'] as $film) : ?>
                 <li><a href="<?php echo $film->getPath(); ?>"><?php echo $film->getTitle(); ?></a></li>

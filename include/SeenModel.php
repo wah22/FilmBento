@@ -4,7 +4,7 @@ class SeenModel {
 
     function getSeen($user, $film) {
         $stmt = DB::getInstance()->prepare('SELECT film_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
-                                  FROM fr_seens
+                                  FROM fbo_seens
                                   WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID();
         $filmID = $film->getID();
@@ -27,7 +27,7 @@ class SeenModel {
 
     function getLastSeens ($numToGet, $user, $offset = 0) {
         $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date
-                                          FROM fr_seens
+                                          FROM fbo_seens
                                           WHERE user_id = :user_id
                                           ORDER BY date DESC
                                           LIMIT :offset, :num_to_get');
@@ -52,7 +52,7 @@ class SeenModel {
     function getNumFilmsSeen($user) {
         $id = $user->getID();
         $stmt = DB::getInstance()->prepare('SELECT *
-                                  FROM fr_seens
+                                  FROM fbo_seens
                                   WHERE user_id = :user_id');
         $stmt->bindParam(':user_id', $id);
         $stmt->execute();
@@ -68,7 +68,7 @@ class SeenModel {
 
         $id = $user->getID();
         $stmt = DB::getInstance()->prepare('SELECT *
-                                  FROM fr_seens
+                                  FROM fbo_seens
                                   WHERE user_id = :user_id');
         $stmt->bindParam(':user_id', $id);
         $stmt->execute();
@@ -80,7 +80,7 @@ class SeenModel {
 
     function getFilmsLastSeens ($numToGet, $film) {
         $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
-                                          FROM fr_seens
+                                          FROM fbo_seens
                                           WHERE film_id = :film_id
                                           ORDER BY date DESC
                                           LIMIT :num_to_get');
@@ -104,7 +104,7 @@ class SeenModel {
     }
 
     function userHasSeen($user, $film) {
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
+        $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_seens WHERE user_id = :user_id && film_id = :film_id');
 
         $userID = $user->getID();
         $filmID = $film->getID();
@@ -121,7 +121,7 @@ class SeenModel {
     }
 
     function userHasRated($user, $film) {
-        $stmt = DB::getInstance()->prepare('SELECT rating FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
+        $stmt = DB::getInstance()->prepare('SELECT rating FROM fbo_seens WHERE user_id = :user_id && film_id = :film_id');
         $userID = $user->getID();
         $filmID = $film->getID();
         $stmt->bindParam(':user_id', $userID);
@@ -146,7 +146,7 @@ class SeenModel {
         $rating = $seen->getRating();
         $date = $seen->getDate();
         $tweeview = $seen->getTweeview();
-        $stmt = DB::getInstance()->prepare('INSERT INTO fr_seens VALUES (NULL, :user_id, :film_id, :rating, :tweeview, FROM_UNIXTIME(:date) )');
+        $stmt = DB::getInstance()->prepare('INSERT INTO fbo_seens VALUES (NULL, :user_id, :film_id, :rating, :tweeview, FROM_UNIXTIME(:date) )');
         $stmt->bindParam(':user_id', $userID);
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':rating', $rating);
@@ -156,7 +156,7 @@ class SeenModel {
     }
 
     function save($seen) {
-        $stmt = DB::getInstance()->prepare('UPDATE fr_seens SET rating = :rating, tweeview = :tweeview WHERE user_id = :user_id && film_id = :film_id');
+        $stmt = DB::getInstance()->prepare('UPDATE fbo_seens SET rating = :rating, tweeview = :tweeview WHERE user_id = :user_id && film_id = :film_id');
         $userID = $seen->getUserID();
         $filmID = $seen->getFilmID();
         $rating = $seen->getRating();
@@ -169,11 +169,29 @@ class SeenModel {
     }
 
     function delete($seen) {
-        $stmt = DB::getInstance()->prepare('DELETE FROM fr_seens WHERE user_id = :user_id && film_id = :film_id');
+        $stmt = DB::getInstance()->prepare('DELETE FROM fbo_seens WHERE user_id = :user_id && film_id = :film_id');
         $userID = $seen->getUserID();
         $filmID = $seen->getFilmID();
         $stmt->bindParam(':user_id', $userID);
         $stmt->bindParam(':film_id', $filmID);
         $stmt->execute();
+    }
+
+    function getRecentSeens($numToGet = 10) {
+        $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens ORDER BY date desc');
+        $get->execute();
+        $seens = array();
+
+        while ($row = $get->fetch()) {
+            $userID = $row['user_id'];
+            $filmID = $row['film_id'];
+            $rating = $row['rating'];
+            $tweeview = $row['tweeview'];
+            $date = $row['date'];
+            $seen = new Seen($userID, $filmID, $rating, $date, $tweeview);
+            $seens[] = $seen;
+        }
+
+        return $seens;
     }
 }

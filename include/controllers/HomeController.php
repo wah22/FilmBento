@@ -13,6 +13,19 @@ class HomeController extends PrivateController {
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
         $data['recentlyAddedFilms'] = $this->filmModel->getRecentlyAdded(10);
+
+        $recentSeensOutput = array();
+        $recentSeens = $this->seenModel->getRecentSeens();
+        foreach ($recentSeens as $seen) {
+            $recentSeensOutput[] = array(
+                'user' => $this->userModel->getUser('id', $seen->getUserID()),
+                'film' => $this->filmModel->getFilm('id', $seen->getFilmID()),
+                'seen' => $seen
+            );
+        }
+
+        $data['recentlySeens'] = $recentSeensOutput;
+
         $this->view->load('user_home_view', $data);
     }
 

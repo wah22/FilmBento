@@ -49,7 +49,7 @@ class FilmModel {
         }
 
 
-        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fr_seens WHERE film_id = :id');
+        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fbo_seens WHERE film_id = :id');
         $id = $film->getID();
         $stmt->bindParam(':id', $id);
         $stmt->execute();
@@ -142,8 +142,8 @@ class FilmModel {
     }
 
     function searchSeens($userID, $query) {
-        $search = DB::getInstance()->prepare('SELECT film_id FROM fr_seens, fbo_films
-                                            WHERE fr_seens.film_id = fbo_films.id && fbo_films.title LIKE :query && user_id = :user_id
+        $search = DB::getInstance()->prepare('SELECT film_id FROM fbo_seens, fbo_films
+                                            WHERE fbo_seens.film_id = fbo_films.id && fbo_films.title LIKE :query && user_id = :user_id
                                             ORDER BY title');
         $q = "%$query%";
         $search->bindParam(':query', $q);
