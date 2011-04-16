@@ -180,11 +180,13 @@ class FilmListModel {
         $deleteEntries->execute();
     }
 
-    function create($name, $maxEntries) {
+    function create($name, $maxEntries, $description, $createdByID) {
         $insert = DB::getInstance()->prepare('INSERT into fbo_lists
-                                              VALUES( NULL, :name, :max_entries)');
+                                              VALUES( NULL, :name, :max_entries, :description, :created_by)');
         $insert->bindParam(':name', $name);
         $insert->bindParam(':max_entries', $maxEntries);
+        $insert->bindParam(':description', $description);
+        $insert->bindParam(':created_by', $createdByID);
         $insert->execute();
 
         $list = $this->getListByName($name);

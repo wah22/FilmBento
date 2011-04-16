@@ -6,12 +6,6 @@
 class ListController extends PrivateController implements Linkable{
 
     function __construct() {
-        if (!LoginManager::getInstance()->userLoggedIn()) {
-            $this->redirectToLogin();
-        }
-        
-        $this->user = LoginManager::getInstance()->getLoggedInUser();
-
         parent::__construct();
     }
 
@@ -68,7 +62,7 @@ class ListController extends PrivateController implements Linkable{
 
     function create() {
         if(isset($_POST['submit']) && !empty($_POST['name'])) {
-            $list = $this->listModel->create($_POST['name'], $_POST['maxEntries']);
+            $list = $this->listModel->create($_POST['name'], $_POST['maxEntries'], $_POST['description'], $this->user->getID());
             $this->listModel->activateList($this->user, $list);
             $this->index();
             return;

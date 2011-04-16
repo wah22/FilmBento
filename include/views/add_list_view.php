@@ -9,7 +9,7 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="addList">
-            <a id="goBack" href="/lists/">< back to my lists</a>
+            <a id="goBack" href="/lists/">< my lists</a>
             <h1> Add a List to your profile page</h1>
             <ul>
                 <?php foreach ($data['lists'] as $list) : ?>

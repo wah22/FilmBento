@@ -9,7 +9,7 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <h1>Create a New List</h1>
-        <form method="post" action="">
+        <form method="post" action="/?controller=ListController&function=create">
             <fieldset>
                 <label for="name">list name</label>
                 <input type="text" name="name">
@@ -23,6 +23,8 @@
                     <option value="100">100</option>
                     <option value="0">Unlimited</option>
                 </select>
+                <label for="description">Description</label>
+                <input type="text" name="description">
                 <input type="submit" name="submit" value="Create">
             </fieldset>
         </form>
