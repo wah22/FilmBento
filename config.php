@@ -8,5 +8,5 @@ $db_name = 'fbo';
 $db_username = 'root';
 $db_password = 'password';
 
-$testing = true;
+$testing = false;
 
