@@ -94,7 +94,7 @@ class FilmModel {
                 $insert = DB::getInstance()->prepare('INSERT INTO fbo_film_meta VALUES (NULL, :film_id, :type, :value)');
                 $insert->bindParam(':film_id', $filmID);
                 $insert->bindParam(':type', $type);
-                $cleanValue = htmlentities($cleanValue, ENT_QUOTES, 'UTF-8');
+                $cleanValue = htmlentities($value, ENT_QUOTES, 'UTF-8');
                 $insert->bindParam(':value', $value);
                 $insert->execute();
             }
