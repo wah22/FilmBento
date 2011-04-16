@@ -25,6 +25,11 @@ img {
 
 h1 {
     text-align: center;
+    font-size: 20px;
+}
+
+h2 {
+    font-size: 15px;
 }
 
 p {
@@ -38,7 +43,7 @@ ul {
 
 legend {
     font-weight: bold;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 fieldset {
@@ -91,6 +96,10 @@ input[type="submit"] {
     display: block;
 }
 
+#goBack{
+    position: absolute;
+}
+
 label {
     margin: 10px 10px 0 0;
 
@@ -123,13 +132,13 @@ input[type="submit"][disabled] {
 }
 
 
-#header, nav {
+#header {
     border-style: solid;
     border-width: 1px;
     border-top: 0;
     border-right: 0;
     border-left:0;
-    margin: 0;
+    margin: 0 0 15px 0;
     padding: 0;
 }
 
@@ -145,15 +154,10 @@ nav A:link {text-decoration: underline; color: #D45500;}
 nav A:visited {text-decoration: underline; color: #D45500;}
 nav A:hover {text-decoration: underline; color: #488CFF;}
 
-#header {
-    height: 70px;
-    margin-top: 0;
-    padding-top: 0px;
-}
-
 #header hgroup {
     position: relative;
     top: 5px;
+    height: 70px;
 }
 
 #header h1 {
@@ -212,10 +216,12 @@ nav A:hover {text-decoration: underline; color: #488CFF;}
 
 
 nav {
-    font-size: 20px;
+    font-size: 15px;
     width: 100%;
     display: block;
-    margin-bottom: 10px;
+    padding: 0;
+    margin: 0;
+    border-top: 1px solid black;
 }
 
 nav ul {
@@ -420,18 +426,18 @@ nav li a:hover {
 #userProfile {
     width: 640px;
     position: relative;
-    margin: 10px auto 0 auto;
+    margin: 0 auto 0 auto;
 }
 
 #userProfile #info {
-    width: 100%;
+    width: 98%;
     height: 100px;
 
     border: 1px solid black;
 
     position: relative;
     margin: 0 auto 10px auto;
-    padding: 0;
+    padding: 1%;
 }
 
 #userProfile #info p{
@@ -446,9 +452,10 @@ nav li a:hover {
 }
 
 #userProfile #info h1 {
-    text-align: center;
+    text-align: left;
     text-decoration: none;
     margin: 0;
+    font-size: 20px;
 }
 
 #userProfile .list, #userProfile .userList {
@@ -475,7 +482,8 @@ nav li a:hover {
 #userProfile .list .viewMore {
     position: absolute;
     right: 23px;
-    bottom: 10px;
+    bottom: 5px;
+    font-size: 12px;
 }
 
 #userProfile .list .viewMore a:visited,
@@ -669,26 +677,31 @@ nav li a:hover {
 }
 
 
-#editList .add {
-        background-color: #F6F5F0;
-        border: 1px solid black;
-        padding: 2px;
-        margin-bottom: 5px;
+#editList {
+    display: block;
+    margin-bottom: 5px;
 }
 
 #editList .add img{
     margin-right: 6px;
 }
 
-#editList a:link,  #editList a:visited{
+#editList .list a:link,  #editList .list a:visited{
     color: black;
+}
+
+#editList #options {
+    text-align: right;
+}
+
+#editList #options a{
+    text-align: right;
 }
 
 #film {
     min-height: 500px;
     overflow: hidden;
     width: 100%;
-    margin-top: 10px;
 }
 
 #film hgroup {
@@ -697,8 +710,8 @@ nav li a:hover {
 
 #film #leftColumn {
     margin: 0;
-    min-width: 30%;
-    width: 30%;
+    min-width: 25%;
+    width: 25%;
     float: left;
     padding: 0;
 }
@@ -727,14 +740,19 @@ nav li a:hover {
 
 #film #mainColumn {
     min-height: 100px;
-    width: 68%;
+    width: 73%;
     float: left;
     margin: 0 0 0 2%;
 }
 
+#film #title{
+    text-align: center;
+    position: relative;
+    right: 10%;
+}
+
 #film #title h1, #film #title h2 {
-    margin: 0 0 0 5%;
-    text-align: left;
+    margin: 0;
 }
 
 #film #details {
@@ -1019,24 +1037,40 @@ footer p {
 #addList ul {
     width: 600px;
     list-style-type: none;
+    position: relative;
+    margin: 0 auto 0 auto;
 }
 
 #addList li {
     background-color: white;
     border: 1px solid black;
     margin: 0 0 15px 0;
+    padding: 1% 1% 2% 1%;
 }
 
 #addList li h2{
     color: black;
     font-weight: bold;
     font-size: 18px;
-    margin: 3px 0 0 3px;
+    margin: 3px 0 0 0;
+    display: inline;
+    margin: 0 10px 0 0;
 }
 
-#addList li a{
+#addList li #createdBy {
+    display: inline;
+    font-size: 10px;
+    margin: 0;
+}
+
+#addList li #add{
     float: right;
-    margin: 3px 10px 0 0;
+}
+
+#addList li p {
+    font-size: 12px;
+    padding: 0;
+    margin: 5px 0 5px 0;
 }
 
 a.button, button { display: inline-block; padding: 6px 5px 5px 5px; font-family: 'lucida grande', tahoma, verdana, arial, sans-serif; font-size: 12px; color: #3C3C3D; text-shadow: 1px 1px 0 #FFFFFF; background: #ECECEC url('../images/css3buttons_backgrounds.png') 0 0 no-repeat; white-space: nowrap; overflow: visible; cursor: pointer; text-decoration: none; border: 1px solid #CACACA; -webkit-border-radius: 2px; -moz-border-radius: 2px; border-radius: 2px; outline: none; position: relative; zoom: 1; line-height: 1.11; *display: inline; *vertical-align: middle; }

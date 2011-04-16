@@ -7,6 +7,7 @@
                 <h3>beta</h3>
             </hgroup>
         </a>
+        <?php include ROOT_PATH . '/include/views/navbar.php'; ?>
     </div>
     <div id="user_panel">
             <?php if (LoginManager::getInstance()->userLoggedIn()) : ?>
@@ -16,4 +17,3 @@
             <?php endif; ?>
     </div>
 </header>
-<?php include ROOT_PATH . '/include/views/navbar.php'; ?>

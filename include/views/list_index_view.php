@@ -10,6 +10,11 @@
     <div id="pageWrapper">
         <?php include ("header.php"); ?>
         <div id="editList">
+            <a id="goBack" href="<?php echo $data['user']->getPath(); ?>">< my profile</a>
+            <div id="options">
+                <a href="/lists/add" class="button"><span class="plus icon"></span>Add a list to your profile</a>
+                <a href="/lists/create" class="button"><span class="pen icon"></span>Create a new list</a>
+            </div>
             <?php foreach($data['lists'] as $list) : ?>
             <div class="list">
                 <h1><a href ="#"><?php echo $list['name']; ?></a></h1>
@@ -46,12 +51,6 @@
                 </div>
             </div>
             <?php endforeach; ?>
-            <div class="add">
-                <a href="/lists/add">Add a list to your profile</a>
-            </div>
-            <div class="add">
-                <a href="/lists/create">Create a new list</a>
-            </div>
         </div>   
         <?php include ROOT_PATH . '/include/views/footer.php'; ?>
     </div>
@@ -109,8 +108,9 @@
 
             $(".tags").each(function(){
                 var list_id = $(this).parent().find('input[name=list]').val();
+                var user_id = <?php echo $data['user']->getID(); ?>;
 
-                var url = "/?controller=API&function=userList&user=1&list=" + list_id;
+                var url = "/?controller=API&function=userList&user=" + user_id + "&list=" + list_id;
 
                 var onList = [];
 

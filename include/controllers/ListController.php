@@ -47,14 +47,6 @@ class ListController extends PrivateController implements Linkable{
             $data['lists'][] = $listArray;
         }
 
-        $allLists = array();
-        foreach ($this->listModel->getAllLists() as $list) {
-            if (!$this->listModel->listActive($this->user, $list)) {
-                $allLists[] = $list;
-            }
-        }
-        $data['allLists'] = $allLists;
-
         $this->view->load('list_index_view', $data);
     }
 
@@ -62,7 +54,11 @@ class ListController extends PrivateController implements Linkable{
         $allLists = array();
         foreach ($this->listModel->getAllLists() as $list) {
             if (!$this->listModel->listActive($this->user, $list)) {
-                $allLists[] = $list;
+                $user = $this->userModel->getUser('id', $list->getCreatedByID());
+                $allLists[] = array(
+                    'list' => $list,
+                    'createdBy' => $user
+                );
             }
         }
         $data['lists'] = $allLists;
@@ -78,28 +74,6 @@ class ListController extends PrivateController implements Linkable{
             return;
         }
         $this->view->load('create_list_view');
-    }
-
-    function edit() {
-        if (!isset($_GET['list'])) {
-            header('Location: /');
-        }
-
-        $data = array();
-
-        $data['user'] = $this->user;
-        $data['list'] = $this->user->getList($_GET['list']);
-
-        $data['films'] = array();
-        $filmModel = new FilmModel();
-        $films = $filmModel->getAllFilms();
-        foreach ($films as $film) {
-            if (! $data['list']->hasFilm($film) && $this->user->hasSeen($film)) {
-                $data['films'][] = $film->getTitle();
-            }
-        }
-
-        $this->view->load('list_edit_view', $data);
     }
 
     function sort() {

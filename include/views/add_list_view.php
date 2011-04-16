@@ -9,17 +9,20 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="addList">
-
+            <a id="goBack" href="/lists/">< back to my lists</a>
+            <h1> Add a List to your profile page</h1>
             <ul>
                 <?php foreach ($data['lists'] as $list) : ?>
                 <li>
-                    <a href = "/?controller=ListController&function=activateList&list=<?php echo $list->getID(); ?>">Add</a>
-                    <h2><?php echo $list->getName(); ?><h2>
-                    <p><?php //echo $list->getDescription(); ?></p>
+                    <div id="add"><a href = "/?controller=ListController&function=activateList&list=<?php echo $list['list']->getID(); ?>" class="button"><span class="plus icon"></span>Add this list to my profile</a></div>
+                    <h2><?php echo $list['list']->getName(); ?></h2>
+                    <div id="createdBy">Created by <a href="<?php echo $list['createdBy']->getPath(); ?>"><?php echo $list['createdBy']->getHandle(); ?></a></div>
+                    <?php if ($list['list']->getDescription()) : ?>
+                    <p><?php echo $list['list']->getDescription(); ?></p>
+                    <?php endif; ?>
                 </li>
                 <?php endforeach; ?>
             </ul>
-
         </div>
         <?php include ROOT_PATH . '/include/views/footer.php'; ?>
     </div>

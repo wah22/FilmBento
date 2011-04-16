@@ -7,6 +7,8 @@ class FilmList {
     private $name;
     private $entries = array();
     private $maxEntries;
+    private $createdByID;
+    private $description;
 
     function __construct($userID = 0, $id = 0, $name= "", $maxEntries = 10) {
         $this->userID= $userID;
@@ -89,5 +91,21 @@ class FilmList {
             }
         }
         return false;
+    }
+
+    function setCreatedByID($id) {
+        $this->createdByID = $id;
+    }
+
+    function getCreatedByID() {
+        return $this->createdByID;
+    }
+
+    function setDescription($description) {
+        $this->description = $description;
+    }
+
+    function getDescription() {
+        return $this->description;
     }
 }

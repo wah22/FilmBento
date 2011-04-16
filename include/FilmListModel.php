@@ -22,6 +22,8 @@ class FilmListModel {
 
         $list = new FilmList($userID, $row['id'], $row['name']);
         $list->setMaxEntries($row['max_entries']);
+        $list->setCreatedByID($row['created_by']);
+        $list->setDescription($row['description']);
 
         while ($row = $entryStmt->fetch()) {
             $list->addEntry($row['film_id']);
@@ -64,6 +66,9 @@ class FilmListModel {
         $lists = array();
         while ($row = $stmt->fetch()) {
             $list = new FilmList(0, $row['id'], $row['name']);
+            $list->setMaxEntries($row['max_entries']);
+            $list->setCreatedByID($row['created_by']);
+            $list->setDescription($row['description']);
             $lists[] = $list;
         }
         return $lists;
