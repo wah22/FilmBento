@@ -49,7 +49,7 @@
                 <input type="text" name="metacriticLink" value="<?php echo $data['film']->getMeta('metacritic_link'); ?>">
             </fieldset>
             
-            <input type="submit" name="submit" value="Submit">
+            <input type="submit" name="submit" value="Save">
         </form>
 
         <?php include "footer.php"; ?>

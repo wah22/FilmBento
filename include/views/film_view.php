@@ -196,6 +196,7 @@
                     var userPanel = $(page).find('#userPanel');
                     $('#userPanel').html(userPanel);
                 } );
+
                 return false;
             });
 
