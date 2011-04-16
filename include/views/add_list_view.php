@@ -10,6 +10,9 @@
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="addList">
             <a id="goBack" href="/lists/">< my lists</a>
+            <div id="options">
+                <a href="/lists/create" class="button"><span class="pen icon"></span>Create a new list</a>
+            </div>
             <h1> Add a List to your profile page</h1>
             <ul>
                 <?php foreach ($data['lists'] as $list) : ?>

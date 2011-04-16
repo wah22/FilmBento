@@ -690,11 +690,11 @@ nav li a:hover {
     color: black;
 }
 
-#editList #options {
+#options {
     text-align: right;
 }
 
-#editList #options a{
+#options a{
     text-align: right;
 }
 

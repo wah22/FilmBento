@@ -13,7 +13,6 @@
             <a id="goBack" href="<?php echo $data['user']->getPath(); ?>">< my profile</a>
             <div id="options">
                 <a href="/lists/add" class="button"><span class="plus icon"></span>Add a list to your profile</a>
-                <a href="/lists/create" class="button"><span class="pen icon"></span>Create a new list</a>
             </div>
             <?php foreach($data['lists'] as $list) : ?>
             <div class="list">

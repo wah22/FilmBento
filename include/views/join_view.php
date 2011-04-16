@@ -10,7 +10,7 @@
         <?php include ("header.php"); ?>
         <div id="join">
             <h1>Create a page</h1>
-            <form method="post" action="">
+            <form method="post" action="" autocomplete="off">
                 <fieldset>
                     <label for="email">your email address</label>
                     <input type="email" name="email">
