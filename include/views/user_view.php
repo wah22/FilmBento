@@ -19,6 +19,7 @@
                 <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
             </div>
 
+            <?php if($data['seens']) : ?>
             <div class="list">
                 <a href="/<?php echo $data['user']->getHandle(); ?>/films">
                     <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
@@ -46,6 +47,7 @@
                     <?php endif; ?>
                 </div>
             </div>
+            <?php endif; ?>
 
 
             <?php foreach ($data['lists'] as $list) : ?>

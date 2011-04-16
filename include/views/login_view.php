@@ -24,7 +24,7 @@
                 </fieldset>
             </form>
             <div id="forgotPassword">
-                <a href="/?controller=LoginController&function=forgotPassword">Forgot my password</a>
+                <a href="/forgotPassword">Forgot my password</a>
             </div>
 
             <div id="errors">

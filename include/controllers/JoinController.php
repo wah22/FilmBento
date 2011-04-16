@@ -57,6 +57,20 @@ class JoinController extends Controller {
         } else {
             $this->userModel->create($_POST['email'], $_POST['handle'], $_POST['password']);
 
+            //send confirm email
+            $headers = "From: FilmBento <admin@filmbento.com>";
+
+            $user=$this->userModel->getUser('email', $_POST['email']);
+
+            $handle = $user->getHandle();
+            $email = $user->getEmail();
+            $message = "A new user has joined FilmBento.\nUsername: $handle\nEmail: $email";
+
+            if (!mail('filmbento@gmail.com', 'A new user has signed up', $message, $headers ) )
+            {
+                die('There was an error sending the reset password email. Please contact filmbento@gmail.com');
+            }
+
             LoginManager::getInstance()->logInUser($_POST['handle'], $_POST['password']);
 
             header("Location:/");

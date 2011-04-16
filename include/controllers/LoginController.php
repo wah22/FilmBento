@@ -53,10 +53,10 @@ class LoginController extends Controller {
 
                 $this->userModel->save($user);
 
-                $headers = "From: no-reply@filmbento.com";
+                $headers = "From: FilmBento <admin@filmbento.com>";
                 if (!mail($_POST['email'], 'FilmBento password reset',"Hi, this is an automatically generated email from FilmBento.\nForgot your password?\nIt's been reset to $newPassword", $headers ) )
                 {
-                    die('error sending email');
+                    die('There was an error sending the reset password email. Please contact filmbento@gmail.com');
                 }
 
                 $data['reset'] = true;
