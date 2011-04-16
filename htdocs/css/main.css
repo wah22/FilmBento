@@ -331,10 +331,11 @@ nav li a:hover {
     width: 300px;
 }
 
-#logIn input, #logIn label {
+#logIn input[type="text"], #logIn input[type="password"], #logIn label {
     display: block;
     margin: 0 auto 0 auto;
     width: 200px;
+    padding: 0;
 }
 
 #logIn input[type="submit"] {
