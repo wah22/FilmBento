@@ -78,12 +78,20 @@ class SeenModel {
         return $percent;
     }
 
-    function getFilmsLastSeens ($numToGet, $film) {
-        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
-                                          FROM fbo_seens
-                                          WHERE film_id = :film_id
-                                          ORDER BY date DESC
-                                          LIMIT :num_to_get');
+    function getFilmsLastSeens ($numToGet, $film, $mustHaveTweeview = false) {
+        if (!$mustHaveTweeview) {
+            $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
+                                              FROM fbo_seens
+                                              WHERE film_id = :film_id
+                                              ORDER BY date DESC
+                                              LIMIT :num_to_get');
+        } else {
+            $stmt = DB::getInstance()->prepare('SELECT user_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
+                                  FROM fbo_seens
+                                  WHERE film_id = :film_id && tweeview != ""
+                                  ORDER BY date DESC
+                                  LIMIT :num_to_get');
+        }
         $filmID = $film->getID();
         $stmt->bindParam(':film_id', $filmID);
 
@@ -193,5 +201,24 @@ class SeenModel {
         }
 
         return $seens;
+    }
+
+    function getAverageRating($film) {
+        $filmID = $film->getID();
+        $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens
+                                           WHERE film_id = :film_id');
+        $get->bindParam('film_id', $filmID);
+        $get->execute();
+
+        $ratings = array();
+        while ($row = $get->fetch()) {
+            if ($row['rating']) {
+                $ratings[] = $row['rating'];
+            }
+        }
+
+        $averageRating = array_sum($ratings)/count($ratings);
+
+        return $averageRating;
     }
 }

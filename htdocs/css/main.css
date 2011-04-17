@@ -419,6 +419,34 @@ nav li a:hover {
     font-size: 20px;
 }
 
+#haveYouSeen ul {
+    list-style-type: none;
+    position: relative;
+    margin: 0 auto 0 auto;
+    min-height: 200px;
+}
+
+#haveYouSeen li {
+    float: left;
+    width: 33%;
+    height: 100%;
+}
+
+#haveYouSeen li .star {
+    width: 20px;
+}
+
+#haveYouSeen li .poster {
+    float: left;
+    width: 100px;
+    margin: 0 10px 0 0;
+}
+
+#haveYouSeen li .tweeview {
+    font-style: italic;
+}
+
+
 #userProfile .list, #userProfile .userList {
     background-color: #F6F5F0;
 }

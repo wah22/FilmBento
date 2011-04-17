@@ -20,6 +20,29 @@
                  Can't find? <a href="/?controller=AddFilmController">Add a film.</a>
             </div>
         </div>
+        <div id="haveYouSeen">
+            <h2>Recently Added - have you seen?</h2>
+            <ul>
+                <?php foreach ($data['recentlyAddedFilms'] as $film) : ?>
+                <li>
+                    <img class="poster" src="<?php echo $film['film']->getMeta('poster_link'); ?>">
+                    <a href="<?php echo $film['film']->getPath(); ?>"><?php echo $film['film']->getTitle(); ?></a>
+                    <p>
+                    <?php for($i = 0; $i < $film['averageRating']; $i++ ) : ?>
+                    <img class="star" src="/images/stars/star_filled.png">
+                    <?php endfor; ?>
+                    </p>
+                    <?php if (!empty($film['recentSeens'])) : ?>
+                    <?php foreach ($film['recentSeens'] as $seen) : ?>
+                    <div class="tweeview">
+                        <?php echo $seen->getTweeview(); ?>
+                    </div>
+                    <?php endforeach; ?>
+                    <?php endif; ?>
+                </li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
         <div class="list">
             <h2>Recently Seen</h2>
             <ul>
@@ -31,14 +54,6 @@
                     and rated it <?php echo $seen['seen']->getRating(); ?> stars.
                     <?php endif; ?>
                 </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <div class="list">
-            <h2>Recently Added - have you seen?</h2>
-            <ul>
-                <?php foreach ($data['recentlyAddedFilms'] as $film) : ?>
-                <li><a href="<?php echo $film->getPath(); ?>"><?php echo $film->getTitle(); ?></a></li>
                 <?php endforeach; ?>
             </ul>
         </div>

@@ -12,7 +12,17 @@ class HomeController extends PrivateController {
     function index() {
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
-        $data['recentlyAddedFilms'] = $this->filmModel->getRecentlyAdded(10);
+
+        $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(3);
+        $recentlyAddedFilmsOutput = array();
+        foreach ($recentlyAddedFilms as $film) {
+            $recentlyAddedFilmsOutput[] = array(
+                'film' => $film,
+                'averageRating' => $this->seenModel->getAverageRating($film),
+                'recentSeens' => $this->seenModel->getFilmsLastSeens(3, $film, 'withTweeview')
+            );
+        }
+        $data['recentlyAddedFilms'] = $recentlyAddedFilmsOutput;
 
         $recentSeensOutput = array();
         $recentSeens = $this->seenModel->getRecentSeens();
