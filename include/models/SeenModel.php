@@ -217,7 +217,11 @@ class SeenModel {
             }
         }
 
-        $averageRating = array_sum($ratings)/count($ratings);
+        if (array_sum($ratings)) {
+            $averageRating = array_sum($ratings)/count($ratings);
+        } else {
+            $averageRating = 0;
+        }
 
         return $averageRating;
     }
