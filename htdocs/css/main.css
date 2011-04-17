@@ -999,10 +999,11 @@ footer p {
 #addFilm fieldset {
     width: 600px;
     position: relative;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 0 auto;
 
     margin-bottom: 20px;
+
+    text-align: center;
 }
 
 #addFilm label {
@@ -1014,17 +1015,13 @@ footer p {
     display: block;
     position: relative;
     margin: 0 auto 0 auto;
+    text-align: left;
 }
 
 #addFilm input[type="text"]{
     height: 25px;
     font-size: 20px;
-}
-
-#addFilm button{
-    position: absolute;
-    right: 30px;
-    bottom: 10px;
+    margin: 0 auto 10px auto;
 }
 
 #bai {

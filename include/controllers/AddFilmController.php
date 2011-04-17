@@ -23,29 +23,58 @@ class AddFilmController extends PrivateController {
     }
 
     function addFilm() {
-        if (empty($_POST['title']) || empty($_POST['year'])) {
+        if (!isset ($_POST['submit'])) {
             $this->index();
             return;
         }
 
-        $film = $this->filmModel->getFilm('title', $_POST['title']);
+        $errors = array();
 
-        if ($film) {
-            if ($film->getYear() == $_POST['year']) {
-                $location = $film->getPath();
-                header("Location: $location");
-            }
+        if (empty($_POST['title']) ||
+            empty($_POST['year']) ||
+            empty($_POST['poster_url']) ||
+            empty($_POST['hashtag']) ||
+            empty($_POST['wiki_link']) ||
+            empty($_POST['rt_link']) ||
+            empty($_POST['imdb_link']) ||
+            empty($_POST['metacritic_link']) ) {
+            $errors[] = "Please fill out all fields";
         }
 
-        $film = new Film();
-        $film->setTitle($_POST['title']);
-        $film->setYear($_POST['year']);
-        $film->setUserWhoAddedID($this->user->getID());
+        if (empty($errors)) {
+            $film = $this->filmModel->getFilm('title', $_POST['title']);
 
-        $this->filmModel->create($film);
+            if ($film) {
+                if ($film->getYear() == $_POST['year']) {
+                    $location = $film->getPath();
+                    header("Location: $location");
+                }
+            }
 
-        $location = "Location: " . $film->getPath();
+            $film = new Film();
+            $film->setTitle($_POST['title']);
+            $film->setYear($_POST['year']);
+            $film->setUserWhoAddedID($this->user->getID());
 
-        header($location);
+            $this->filmModel->create($film);
+
+            $film = $this->filmModel->getFilm('title', $_POST['title']);
+
+            $film->setMeta('poster_link', $_POST['poster_url']);
+            $film->setMeta('hashtag', $_POST['hashtag']);
+            $film->setMeta('wiki_link', $_POST['wiki_link']);
+            $film->setMeta('rt_link', $_POST['rt_link']);
+            $film->setMeta('imdb_link', $_POST['imdb_link']);
+            $film->setMeta('metacritic_link', $_POST['metacritic_link']);
+            
+            $this->filmModel->save($film);
+
+            $location = "Location: " . $film->getPath();
+
+            header($location);
+        } else {
+            $data['errors'] = $errors;
+            $this->view->load('add_film_view', $data);
+        }
     }
 }
