@@ -14,6 +14,9 @@
             <div id="options">
                 <a href="/lists/add" class="button"><span class="plus icon"></span>Add a list to your profile</a>
             </div>
+            <?php if (empty($data['lists'])) : ?>
+            <div id="noListsActivated">You haven't activated any lists yet</div>
+            <?php endif; ?>
             <?php foreach($data['lists'] as $list) : ?>
             <div class="list">
                 <h1><a href ="#"><?php echo $list['name']; ?></a></h1>

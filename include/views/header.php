@@ -13,7 +13,7 @@
             <?php if (LoginManager::getInstance()->userLoggedIn()) : ?>
             <a href="<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>" class="left pill primary button"><?php echo LoginManager::getInstance()->getLoggedInUser()->gethandle(); ?></a><a href="/settings" class="middle pill button">Account Settings</a><a href="/?controller=LoginController&function=LogOut" class="right negative pill button">Log Out</a>
             <?php else : ?>
-            <a href="/login"  class="pill button">Log In</a>
+            <a href="<?php echo BASE_URL; ?>/login"  class="pill button">Log In</a>
             <?php endif; ?>
     </div>
 </header>

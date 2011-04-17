@@ -51,7 +51,7 @@ class Film implements Linkable {
     }
 
     function getPath () {
-        $path = '/films/' . urlencode($this->getTitle());
+        $path = BASE_URL . '/films/' . urlencode($this->getTitle());
         return $path;
     }
 

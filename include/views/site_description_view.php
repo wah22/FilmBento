@@ -17,7 +17,7 @@
             <div id ="front-image">
                 <img src ="/images/tosh.jpg" alt = "Tosh">
                 <span style ="font-size:80px; font-weight: bold;">Seen it?</span><br>
-                <a href ="/join" id ="joinUp">join up</a>
+                <a href ="<?php echo BASE_URL; ?>/join" id ="joinUp">join up</a>
             </div>
         </div>
         <?php include "footer.php"; ?>

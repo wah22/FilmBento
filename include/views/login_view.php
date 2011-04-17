@@ -24,7 +24,7 @@
                 </fieldset>
             </form>
             <div id="forgotPassword">
-                <a href="/forgotPassword">Forgot my password</a>
+                <a href="<?php echo BASE_URL; ?>/forgotPassword">Forgot my password</a>
             </div>
 
             <div id="errors">

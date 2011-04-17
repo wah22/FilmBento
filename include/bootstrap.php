@@ -3,6 +3,7 @@
 require_once('../config.php');
 
 define('ROOT_PATH', $root_path);
+define('BASE_URL', $base_url);
 
 define('DB_HOST', $db_host);
 define('DB_NAME', $db_name);

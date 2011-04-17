@@ -722,6 +722,10 @@ nav li a:hover {
     color: black;
 }
 
+#editList #noListsActivated {
+    text-align: center;
+}
+
 #options {
     text-align: right;
 }
