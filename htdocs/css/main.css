@@ -428,8 +428,9 @@ nav li a:hover {
 
 #haveYouSeen li {
     float: left;
-    width: 33%;
+    width: 30%;
     height: 100%;
+    margin: 0 3% 0 0;
 }
 
 #haveYouSeen li .star {
@@ -446,6 +447,9 @@ nav li a:hover {
     font-style: italic;
 }
 
+#haveYouSeen li .signature {
+    text-align: right;
+}
 
 #userProfile .list, #userProfile .userList {
     background-color: #F6F5F0;

@@ -16,10 +16,19 @@ class HomeController extends PrivateController {
         $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(3);
         $recentlyAddedFilmsOutput = array();
         foreach ($recentlyAddedFilms as $film) {
+            $recentSeensOP = array();
+            $recentSeens = $this->seenModel->getFilmsLastSeens(1, $film, 'hasTweeview');
+            foreach($recentSeens as $seen) {
+                $recentSeensOP[] = array(
+                    'seen' => $seen,
+                    'user' => $this->userModel->getuser('id', $seen->getUserID())
+                            );
+            }
+
             $recentlyAddedFilmsOutput[] = array(
                 'film' => $film,
                 'averageRating' => $this->seenModel->getAverageRating($film),
-                'recentSeens' => $this->seenModel->getFilmsLastSeens(3, $film, 'withTweeview')
+                'recentSeens' => $recentSeensOP
             );
         }
         $data['recentlyAddedFilms'] = $recentlyAddedFilmsOutput;

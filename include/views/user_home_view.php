@@ -35,7 +35,10 @@
                     <?php if (!empty($film['recentSeens'])) : ?>
                     <?php foreach ($film['recentSeens'] as $seen) : ?>
                     <div class="tweeview">
-                        <?php echo $seen->getTweeview(); ?>
+                        &ldquo;<?php echo $seen['seen']->getTweeview(); ?>&rdquo;
+                        <div class="signature">
+                            <a href="<?php echo $seen['user']->getPath(); ?>">- <?php echo $seen['user']->getHandle(); ?></a>
+                        </div>
                     </div>
                     <?php endforeach; ?>
                     <?php endif; ?>
