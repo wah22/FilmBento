@@ -7,4 +7,4 @@ $shellOutput = shell_exec($command);
 //return execute status;
 echo $shellOutput; 
 
-echo 'Pulled,';
+echo 'Successfully pulled';
