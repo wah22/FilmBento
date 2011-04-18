@@ -991,10 +991,6 @@ footer p {
 #addFilm h1 {
 }
 
-#addFilm {
-    text-align: center;
-}
-
 #addFilm h2 {
     margin: 0;
     padding: 0;
@@ -1006,6 +1002,7 @@ footer p {
     margin: 0 auto 0 auto;
 
     margin-bottom: 20px;
+    text-align: center;
 }
 
 #addFilm label {
