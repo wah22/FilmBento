@@ -366,6 +366,12 @@ nav li a:hover {
     font-size: 15px;
 }
 
+#logIn #notAMember {
+    font-size: 12px;
+    text-align:center;
+    margin: 20px 0 0 0;
+}
+
 #whatSeen {
     width: 600px;
     height: 170px;

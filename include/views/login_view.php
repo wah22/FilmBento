@@ -32,6 +32,10 @@
                     <?php echo $error; ?><br>
                 <?php endforeach; ?>
             </div>
+
+            <div id="notAMember">
+                Not a member yet? <a href="<?php echo BASE_URL; ?>/join">Join up</a>.
+            </div>
         </div>
         <?php include "footer.php"; ?>
     </div>
