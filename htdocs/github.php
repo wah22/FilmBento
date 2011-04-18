@@ -2,7 +2,9 @@
 
 $command = 'git pull';
 // Execute the shell command
-$shellOutput = shell_exec($command.' > /dev/null; echo $?');
+$shellOutput = shell_exec($command);
    
 //return execute status;
-echo trim($shellOutput); 
+echo $shellOutput; 
+
+echo 'Pulled,';
