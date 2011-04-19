@@ -124,58 +124,60 @@
                     <?php endif; ?>
                 </div>
                 <?php if($data['user']) : ?>
-                <?php if (!$data['hasSeen']) : ?>
-                <form method="post" action="">
-                    <input type="hidden" name="function" value="seen">
-                    <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                    <input type ="submit" value="Seen it" id="seenIt">
-                </form>
-                <?php endif; ?>
-                <?php if ($data['hasSeen']) : ?>
-                    <div id ="seen">
+                    <?php if (!$data['hasSeen']) : ?>
+                    <form method="post" action="">
+                        <input type="hidden" name="function" value="seen">
+                        <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+                        <input type ="submit" value="Seen it" id="seenIt" class="seenIt">
+                    </form>
+                    <?php endif; ?>
+                    <?php if ($data['hasSeen']) : ?>
+                        <div id ="seen">
+                            <fieldset>
+                                <legend>Seen</legend>
+                                <?php echo $data['whenSeen']; ?>
+                                <form method="post" action="" id="unSee">
+                                    <input type="hidden" name="function" value="un-see">
+                                    <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
+                                    <button class="negative button" id="unSeeButton"><span class="cross icon"></span>unsee</button>
+                               </form>
+                            </fieldset>
+                        </div>
+                        <fieldset id="rate">
+                            <legend>My Rating</legend>
+                            <div id="rating">
+                                <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
+                                <form method="post" action="" class="rateStar">
+                                    <input type="hidden" name="function" value="rate">
+                                    <input type="hidden" name="rating" value="<?php echo $i; ?>">
+                                    <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
+                                    <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
+                                    <?php else : ?>
+                                    <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
+                                    <?php endif; ?>
+                                </form>
+                                <?php endfor; ?>
+                            </div>
+                        </fieldset>
+                    <?php endif; ?>
+                    <?php if ($data['hasRated']) : ?>
+                    <div id="tweeview">
                         <fieldset>
-                            <legend>Seen</legend>
-                            <?php echo $data['whenSeen']; ?>
-                            <form method="post" action="" id="unSee">
-                                <input type="hidden" name="function" value="un-see">
-                                <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                                <button class="negative button" id="unSeeButton"><span class="cross icon"></span>unsee</button>
-                           </form>
+                            <legend>My Tweeview</legend>
+                            <?php if (empty($data['tweeview'])) : ?>
+                            <form method="post" action="">
+                                <input type="hidden" name="function" value="tweeview">
+                                <textarea name="tweeview" rows="3" maxlength="140"></textarea>
+                                <input type="submit" name="submit" value="Submit">
+                            </form>
+                            <?php else : ?>
+                            <?php echo $data['tweeview']; ?>
+                            <?php endif; ?>
                         </fieldset>
                     </div>
-                    <fieldset id="rate">
-                        <legend>My Rating</legend>
-                        <div id="rating">
-                            <?php for( $i = 1; $i <= 5 ; $i++ ) : ?>
-                            <form method="post" action="" class="rateStar">
-                                <input type="hidden" name="function" value="rate">
-                                <input type="hidden" name="rating" value="<?php echo $i; ?>">
-                                <?php if ($data['hasRated'] && $i <= $data['rating']) : ?>
-                                <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_filled.png" style="float:left">
-                                <?php else : ?>
-                                <input type="image" name="rating" value="<?php echo $i; ?>" src="/images/stars/star_empty.png" style="float:left">
-                                <?php endif; ?>
-                            </form>
-                            <?php endfor; ?>
-                        </div>
-                    </fieldset>
-                <?php endif; ?>
-                <?php endif; ?>
-                <?php if ($data['hasRated']) : ?>
-                <div id="tweeview">
-                    <fieldset>
-                        <legend>My Tweeview</legend>
-                        <?php if (empty($data['tweeview'])) : ?>
-                        <form method="post" action="">
-                            <input type="hidden" name="function" value="tweeview">
-                            <textarea name="tweeview" rows="3" maxlength="140"></textarea>
-                            <input type="submit" name="submit" value="Submit">
-                        </form>
-                        <?php else : ?>
-                        <?php echo $data['tweeview']; ?>
-                        <?php endif; ?>
-                    </fieldset>
-                </div>
+                    <?php endif; ?>
+                <?php else : ?>
+                <a href="<?php echo BASE_URL; ?>/login"><input type="submit" value="Seen it" class="seenIt"></a>
                 <?php endif; ?>
             </div>
         </div>

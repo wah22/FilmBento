@@ -866,9 +866,10 @@ nav li a:hover {
     height: 20px;
 }
 
-#film #seenIt {
-    position: absolute;
-    right: 0;
+#film .seenIt {
+    position: relative;
+    left: 50px;
+    top: 25px;
 }
 
 #film .list {
