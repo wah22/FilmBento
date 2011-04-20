@@ -986,30 +986,31 @@ footer p {
 }
 
 #addFilm fieldset {
-    width: 600px;
-    position: relative;
-    margin: 0 auto 0 auto;
-
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-#addFilm label {
-    display: block;
-}
-
-#addFilm input[type="text"], #addFilm label {
-    width: 300px;
-    display: block;
     position: relative;
     margin: 0 auto 0 auto;
     text-align: left;
+    margin-bottom: 20px;
+}
+
+#addFilm #year {
+    width: 80px;
+}
+
+#addFilm #poster_url {
+    width: 90%;
+}
+
+#addFilm #links input[type="text"]{
+    width: 90%;
 }
 
 #addFilm input[type="text"]{
     height: 25px;
     font-size: 20px;
-    margin: 0 auto 10px auto;
+}
+
+#addFilm {
+    text-align: center;
 }
 
 #bai {

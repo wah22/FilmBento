@@ -120,7 +120,7 @@
                 <div id="details">
                     <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
                     <?php if($data['user']) : ?>
-                    <a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>
+                    <!--<a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>-->
                     <?php endif; ?>
                 </div>
                 <?php if($data['user']) : ?>
@@ -139,7 +139,7 @@
                                 <form method="post" action="" id="unSee">
                                     <input type="hidden" name="function" value="un-see">
                                     <input type="hidden" name="film" value="<?php echo $data['film']->getID(); ?>">
-                                    <button class="negative button" id="unSeeButton"><span class="cross icon"></span>unsee</button>
+                                    <button class="negative button" id="unSeeButton"><span class="cross icon"></span></button>
                                </form>
                             </fieldset>
                         </div>

@@ -13,6 +13,10 @@
         <div id="addFilm">
             <h1>Add a Film</h1>
 
+            <div class="notes">
+                All fields are required. Please ensure the data entered is correct.
+            </div>
+
             <form method="POST" action="">
                 <fieldset>
                     <legend>Details</legend>
@@ -28,10 +32,10 @@
                     <input id="poster_url" name="poster_url" type="text">
 
                     <label for="hashtag">Hashtag</label>
-                    <input id="hashtag" name="hashtag" type="text">
+                    <span style="font-size: 27px">#</span><input id="hashtag" name="hashtag" type="text">
                 </fieldset>
 
-                <fieldset>
+                <fieldset id="links">
                     <legend>External URLs</legend>
                     <label for="wiki_link">Wikipedia</label>
                     <input id="wiki_link" name="wiki_link" type="text">
@@ -46,9 +50,6 @@
                     <input id="metacritic_link" name="metacritic_link" type="text">
                 </fieldset>
 
-                <div class="notes">
-                    <p>Please make sure the info you enter is correct.</p>
-                </div>
                 <?php if (!empty($data['errors'])) : ?>
                 <div id="errors">
                     <?php foreach($data['errors'] as $error) : ?>
@@ -56,7 +57,7 @@
                     <?php endforeach; ?>
                 </div>
                 <?php endif; ?>
-                <button name="submit" class="big button"><span class="check icon"></span>Add</button>
+                <button id="submit" name="submit" class="big button"><span class="check icon"></span>Add</button>
             </form>
         </div>
 
