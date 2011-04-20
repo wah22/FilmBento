@@ -12,7 +12,8 @@ class FilmController extends Controller{
 
     function index() {
         $data = array(
-            'film' => $this->film
+            'film' => $this->film,
+            'averageRating' => $this->seenModel->getAverageRating($this->film)
         );
 
         $user = LoginManager::getInstance()->getLoggedInUser();

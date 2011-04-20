@@ -91,10 +91,18 @@
             </div>
 
             <div id="mainColumn">
-                <hgroup id="title">
-                    <h1><?php echo $data['film']->getTitle(); ?></h1>
-                    <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
-                </hgroup>
+                <div id=title>
+                    <hgroup>
+                        <h1><?php echo $data['film']->getTitle(); ?></h1>
+                        <h2>(<?php echo $data['film']->getyear(); ?>)</h2>
+                    </hgroup>
+                    <div id="averageRating">
+                            <?php for($i = 0; $i < $data['averageRating']; $i++) : ?>
+                            <img src="/images/stars/star_filled.png" alt ="X">
+                            <?php endfor; ?>
+                    </div>
+                </div>
+                
 
                 <div class="list" id="recentlySeen">
                     <h1>Recently seen by</h1>

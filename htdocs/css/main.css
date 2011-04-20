@@ -909,10 +909,19 @@ nav li a:hover {
     font-style: italic;
 }
 
+#film .list li {
+    min-height: 60px;
+}
+
 #film .list li #avatar  {
     width: 60px;
+    height: 60px;
     float: left;
     margin: 0 20px 0 0;
+}
+
+#film #averageRating img {
+    width: 30px;
 }
 
 #couldntFind #uh-oh {
