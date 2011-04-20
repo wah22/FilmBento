@@ -185,6 +185,13 @@ class SeenModel {
         $stmt->execute();
     }
 
+    function deleteAllUsersSeens ($user) {
+        $userID = $user->getID();
+        $delete = DB::getInstance()->prepare('DELETE FROM fbo_seens WHERE user_id = :user_id');
+        $delete->bindParam(':user_id', $userID);
+        $delete->execute();
+    }
+
     function getRecentSeens($numToGet = 10) {
         $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens ORDER BY date desc');
         $get->execute();
