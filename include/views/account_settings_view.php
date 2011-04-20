@@ -13,25 +13,25 @@
         <div id="accountSettings">
             <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>
-                    <legend>my credentials</legend>
-                        <label for="email">email</label>
+                    <legend>My Credentials</legend>
+                        <label for="email">Email</label>
                         <input type="email" value="<?php echo $data['user']->getEmail(); ?>" name="email">
-                        <label for="email">password</label>
+                        <label for="email">Password</label>
                         <input type="password" name="password">
                     <input type="submit" value="Save">
                 </fieldset>
             </form>
             <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>
-                    <legend>my details</legend>
-                    <label for="dob">date of birth</label>
+                    <legend>My Details</legend>
+                    <label for="dob">Date of Birth</label>
                     <input type="text" name="dob" id="dob" value="<?php if ($data['user']->getDOB()) { echo date('m/d/Y', $data['user']->getDOB());} ?>">
                     <input type="submit" value="Save">
                 </fieldset>
             </form>
             <form>
                 <fieldset>
-                    <legend>my avatar</legend>
+                    <legend>My Avatar</legend>
                     <p>FilmBento uses <a href="http://en.gravatar.com/">Gravatar</a> for avatars.</p>
                     <p>You can set or change your avatar there.</p>
                     <div class="notes">
@@ -41,12 +41,12 @@
             </form>
             <form method="post" action="">
                 <fieldset>
-                    <legend>delete my account</legend>
+                    <legend>Delete my Account</legend>
                     <p>Wanna get rid of your FilmBento page?</p>
-                    <p>You'll lose everything and stuff.</p>
+                    <p>You'll lose everything.</p>
                     <input type="hidden" name="controller" value="AccountSettingsController">
                     <input type="hidden" name="function" value="deleteAccount">
-                    <input type="submit" value ="Delete Account">
+                    <button id="submit" class="button negative"><span class="cross icon"></span>Delete Account</button>
                 </fieldset>
             </form>
         </div>

@@ -21,16 +21,17 @@
 
                     <input type="hidden" name="controller" value="LoginController">
                     <input type="hidden" name="function" value="login">
+
+                    <div id="errors">
+                        <?php foreach ($data['errors'] as $error) : ?>
+                            <?php echo $error; ?><br>
+                        <?php endforeach; ?>
+                    </div>
+
                 </fieldset>
             </form>
             <div id="forgotPassword">
                 <a href="<?php echo BASE_URL; ?>/forgotPassword">Forgot my password</a>
-            </div>
-
-            <div id="errors">
-                <?php foreach ($data['errors'] as $error) : ?>
-                    <?php echo $error; ?><br>
-                <?php endforeach; ?>
             </div>
 
             <div id="notAMember">

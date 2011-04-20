@@ -24,7 +24,7 @@ class LoginController extends Controller {
 
         if (!empty($_POST['identifier']) && !empty($_POST['password'])) {
             if (!LoginManager::getInstance()->logInUser($_POST['identifier'], $_POST['password'])) {
-                $errors[] = "Wrong username or password.";
+                $errors[] = "Woops, wrong details. Try again.";
             }
         }
 
