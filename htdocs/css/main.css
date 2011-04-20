@@ -810,10 +810,6 @@ nav li a:hover {
     font-size: 15px;
 }
 
-#film #seen {
-
-}
-
 #film #seen fieldset {
     margin: 0;
 }
@@ -911,6 +907,12 @@ nav li a:hover {
     padding: 10px;
 
     font-style: italic;
+}
+
+#film .list li #avatar  {
+    width: 60px;
+    float: left;
+    margin: 0 20px 0 0;
 }
 
 #couldntFind #uh-oh {

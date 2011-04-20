@@ -11,7 +11,7 @@
 
         <div id="userProfile">
             <div id="info">
-                <img src="<?php echo $data['user']->getGravatar(); ?>">
+                <img src="<?php echo $data['user']->getAvatar(); ?>">
                 <h1><?php echo $data['user']->getHandle(); ?></h1>
                 <?php if ($data['user']->getAge()) : ?>
                 <p><?php echo $data['user']->getAge(); ?></p>

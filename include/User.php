@@ -84,7 +84,7 @@ class User implements Linkable {
         return $age;
     }
 
-    function getGravatar() {
+    function getAvatar() {
         $hash = md5( strtolower( trim( $this->getEmail() ) ) );
         $default = "mm"; //mystery man
         $url = "http://www.gravatar.com/avatar/$hash?s=200&d=$default";

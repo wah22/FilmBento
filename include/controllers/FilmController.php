@@ -42,8 +42,7 @@ class FilmController extends Controller{
         foreach ($lastSeens as $lastSeen) {
             $user = $this->userModel->getUser('id', $lastSeen->getUserID());
             $lastSeenArray = array(
-                'user' => $user->getHandle(),
-                'path' => $user->getPath(),
+                'user' => $user,
                 'rating' =>$lastSeen->getRating(),
                 'tweeview' => $lastSeen->getTweeview()
             );
