@@ -117,7 +117,7 @@
                                 <?php endfor; ?>
                             </div>
                             <?php if (!empty($seen['tweeview'])) : ?>
-                            <p>"<?php echo $seen['tweeview']; ?>"</p>
+                            <p>&ldquo;<?php echo $seen['tweeview']; ?>&rdquo;</p>
                             <?php endif; ?>
                         </li>
                         <?php endforeach; ?>
@@ -171,7 +171,7 @@
                             </div>
                         </fieldset>
                     <?php endif; ?>
-                    <?php if ($data['hasRated']) : ?>
+                    <?php if ($data['hasSeen']) : ?>
                     <div id="tweeview">
                         <fieldset>
                             <legend>My Tweeview</legend>
@@ -182,7 +182,7 @@
                                 <input type="submit" name="submit" value="Submit">
                             </form>
                             <?php else : ?>
-                            <?php echo $data['tweeview']; ?>
+                            &ldquo;<?php echo $data['tweeview']; ?>&rdquo;
                             <?php endif; ?>
                         </fieldset>
                     </div>

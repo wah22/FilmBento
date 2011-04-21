@@ -120,7 +120,7 @@ input[type="submit"] {
     -webkit-border-radius: 5px;
 
     box-shadow: 2px 2px 2px #EAEAEA;
-    -moz-box-shadow: 1px 1px 1px #EAEAEA;
+    -moz-box-shadow: 2px 2px 2px #EAEAEA;
     -webkit-box-shadow: 2px 2px 2px #EAEAEA;
 
     cursor: pointer;
@@ -133,13 +133,11 @@ input[type="submit"][disabled] {
 
 
 #header {
-    border-style: solid;
-    border-width: 1px;
-    border-top: 0;
-    border-right: 0;
-    border-left:0;
     margin: 0 0 15px 0;
     padding: 0;
+    box-shadow: 0px 2px 3px #EAEAEA;
+    -moz-box-shadow: 0px 5px 3px #EAEAEA;
+    -webkit-box-shadow: 0px 5px 3px #EAEAEA;
 }
 
 A:link {text-decoration: none; color: #488CFF;}
