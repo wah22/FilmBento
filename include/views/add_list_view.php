@@ -19,7 +19,7 @@
                 <li>
                     <div id="add"><a href = "/?controller=ListController&function=activateList&list=<?php echo $list['list']->getID(); ?>" class="button"><span class="plus icon"></span>Add this list to my profile</a></div>
                     <h2><?php echo $list['list']->getName(); ?></h2>
-                    <?php if ($data['createdBy']) : ?>
+                    <?php if ($list['createdBy']) : ?>
                     <div id="createdBy">Created by <a href="<?php echo $list['createdBy']->getPath(); ?>"><?php echo $list['createdBy']->getHandle(); ?></a></div>
                     <?php endif; ?>
                     <?php if ($list['list']->getDescription()) : ?>

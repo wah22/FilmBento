@@ -10,6 +10,13 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <h1>Manage My Account</h1>
+        <?php if (!empty($data['errors'])) : ?>
+        <div id="errors">
+            <?php foreach ($data['errors'] as $error) : ?>
+            <p><?php echo $error; ?></p>
+            <?php endforeach; ?>
+        </div>
+        <?php endif; ?>
         <div id="accountSettings">
             <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>

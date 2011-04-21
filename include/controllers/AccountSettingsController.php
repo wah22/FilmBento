@@ -15,13 +15,15 @@ class AccountSettingsController extends PrivateController {
     }
 
     function save() {
-        if(!empty($_POST['email'])) {
+        $errors = array();
+        if(!empty($_POST['email']) && $_POST['email'] != $this->user->getEmail()) {
             $email = $_POST['email'];
 
-            if ($email != $this->user->getEmail()) {
+            if (!$this->userModel->getUser('email',$email)) {
                 $this->user->setEmail($email);
-
                 $this->userModel->save($this->user);
+            } else {
+                $errors[] = "That email address is already associated with an account.";
             }
         }
 
@@ -48,8 +50,9 @@ class AccountSettingsController extends PrivateController {
                 LoginManager::getInstance()->LogInUser($this->user->gethandle(), $password);
             }
         }
-
-        $this->index();
+        $data['user'] = $this->user;
+        $data['errors'] = $errors;
+        $this->view->load('account_settings_view', $data);
     }
 
     function deleteAccount() {
