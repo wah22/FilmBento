@@ -23,24 +23,28 @@
                             <ul>
                                 <?php if ($data['film']->getMeta('wiki_link')) : ?>
                                 <li>
+                                    <img src="<?php echo BASE_URL; ?>/images/logos/wiki_logo.svg">
                                     <a href="<?php echo $data['film']->getMeta('wiki_link'); ?>">Wikipedia</a>
                                 </li>
                                 <?php endif; ?>
 
                                 <?php if ($data['film']->getMeta('rt_link')) : ?>
                                 <li>
+                                    <img src="<?php echo BASE_URL; ?>/images/logos/rt_logo.png">
                                     <a href="<?php echo $data['film']->getMeta('rt_link'); ?>">Rotten Tomatoes</a>
                                 </li>
                                 <?php endif; ?>
 
                                 <?php if ($data['film']->getMeta('imdb_link')) : ?>
                                 <li>
+                                    <img src="<?php echo BASE_URL; ?>/images/logos/imdb_logo.png">
                                     <a href="<?php echo $data['film']->getMeta('imdb_link'); ?>">IMDb</a>
                                 </li>
                                 <?php endif; ?>
 
                                 <?php if ($data['film']->getMeta('metacritic_link')) : ?>
                                 <li>
+                                    <img src="<?php echo BASE_URL; ?>/images/logos/metacritic_logo.png">
                                     <a href="<?php echo $data['film']->getMeta('metacritic_link'); ?>">Metacritic</a>
                                 </li>
                                 <?php endif; ?>

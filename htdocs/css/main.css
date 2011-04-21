@@ -156,6 +156,7 @@ nav A:hover {text-decoration: underline; color: #488CFF;}
     position: relative;
     top: 5px;
     height: 70px;
+    margin: 0 0 0 10px;
 }
 
 #header h1 {
@@ -232,9 +233,7 @@ nav li {
     position: relative;
 
     width: 200px;
-    margin: 0;
-    margin-right: 80px;
-    
+    margin: 5px 70px 5px 10px;
     text-align: center;
     display: inline;
 }
@@ -442,9 +441,14 @@ nav li a:hover {
 }
 
 #haveYouSeen li .poster {
+    border: 1px solid gray;
+    padding: 5px;
     float: left;
     width: 100px;
     margin: 0 10px 0 0;
+    border-radius: 3px;
+    -moz-border-radius: 3px;
+    -webkit-border-radius: 3px;
 }
 
 #haveYouSeen li .tweeview {
@@ -769,6 +773,13 @@ nav li a:hover {
 #film #leftColumn #links li {
     margin: 0;
     list-style-type: none;
+    height: 40px;
+}
+
+#film #leftColumn #links img {
+    margin: 0 10px 0 0;
+    height: 100%;
+    vertical-align: middle;
 }
 
 #film #leftColumn #twitter {
