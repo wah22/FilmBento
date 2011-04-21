@@ -193,7 +193,8 @@ class SeenModel {
     }
 
     function getRecentSeens($numToGet = 10) {
-        $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens ORDER BY date desc');
+        $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens ORDER BY date desc LIMIT :num_to_get');
+        $get->bindParam(':num_to_get', $numToGet, PDO::PARAM_INT);
         $get->execute();
         $seens = array();
 

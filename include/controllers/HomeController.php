@@ -34,7 +34,7 @@ class HomeController extends PrivateController {
         $data['recentlyAddedFilms'] = $recentlyAddedFilmsOutput;
 
         $recentSeensOutput = array();
-        $recentSeens = $this->seenModel->getRecentSeens();
+        $recentSeens = $this->seenModel->getRecentSeens(10);
         foreach ($recentSeens as $seen) {
             $recentSeensOutput[] = array(
                 'user' => $this->userModel->getUser('id', $seen->getUserID()),
