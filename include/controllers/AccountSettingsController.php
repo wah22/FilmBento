@@ -50,6 +50,19 @@ class AccountSettingsController extends PrivateController {
                 LoginManager::getInstance()->LogInUser($this->user->gethandle(), $password);
             }
         }
+
+        if ($_POST['location'] != $this->user->getLocation()) {
+            $location = $_POST['location'];
+            $this->user->setLocation($location);
+            $this->userModel->save($this->user);
+        }
+
+        if ($_POST['sex'] != $this->user->getSex()) {
+            $sex = $_POST['sex'];
+            $this->user->setSex($sex);
+            $this->userModel->save($this->user);
+        }
+
         $data['user'] = $this->user;
         $data['errors'] = $errors;
         $this->view->load('account_settings_view', $data);

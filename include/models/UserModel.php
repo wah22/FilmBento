@@ -44,6 +44,8 @@ class UserModel {
         $user->setHandle($row['handle']);
         $user->setPassword($row['password']);
         $user->setDOB(strtotime($row['dob']));
+        $user->setSex($row['sex']);
+        $user->setLocation($row['location']);
 
         return $user;
     }
@@ -53,6 +55,9 @@ class UserModel {
         $handle = $user->getHandle();
         $password = $user->getPassword();
         $id = $user->getID();
+        $location = $user->getLocation();
+        $sex = $user->getSex();
+
         if ($user->getDOB()) {
             $dob = date('Y-m-d', $user->getDOB());
         } else {
@@ -60,7 +65,7 @@ class UserModel {
         }
 
         $stmt = DB::getInstance()->prepare('UPDATE fr_users
-                                            SET email = :email, handle = :handle, password = :password, dob = :dob
+                                            SET email = :email, handle = :handle, password = :password, dob = :dob, sex = :sex, location = :location
                                             WHERE id = :user_id');
         
         $stmt->bindParam(':email', $email);
@@ -68,6 +73,8 @@ class UserModel {
         $stmt->bindParam(':password', $password);
         $stmt->bindParam(':user_id', $id);
         $stmt->bindParam(':dob', $dob);
+        $stmt->bindParam(':location', $location);
+        $stmt->bindParam(':sex', $sex);
         $stmt->execute();
     }
 

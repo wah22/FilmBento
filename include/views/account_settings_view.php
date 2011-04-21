@@ -31,8 +31,16 @@
             <form method="post" action="/?controller=AccountSettingsController&function=save">
                 <fieldset>
                     <legend>My Details</legend>
+                    <label for=sex>Sex</label>
+                    <select name=sex>
+                    <option value=0>Not defined</option>
+                    <option value=2 <?php if ($data['user']->getSex() == 2) echo "selected"; ?>>Male</option> 
+                    <option value=1 <?php if ($data['user']->getSex() == 1) echo "selected"; ?>>Female</option>
+                    </select>
                     <label for="dob">Date of Birth</label>
                     <input type="text" name="dob" id="dob" value="<?php if ($data['user']->getDOB()) { echo date('m/d/Y', $data['user']->getDOB());} ?>">
+                    <label for="location">Location</label>
+                    <input type="text" name="location" id="location" value="<?php if ($data['user']->getLocation()) { echo $data['user']->getLocation();} ?>">
                     <input type="submit" value="Save">
                 </fieldset>
             </form>
@@ -42,7 +50,7 @@
                     <p>FilmBento uses <a href="http://en.gravatar.com/">Gravatar</a> for avatars.</p>
                     <p>You can set or change your avatar there.</p>
                     <div class="notes">
-                        <p>Currently using <?php echo $data['user']->getEmail(); ?></p>
+                        <p>Currently using: <b><?php echo $data['user']->getEmail(); ?></b></p>
                     </div>
                 </fieldset>
             </form>

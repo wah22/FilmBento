@@ -14,7 +14,13 @@
                 <img src="<?php echo $data['user']->getAvatar(); ?>">
                 <h1><?php echo $data['user']->getHandle(); ?></h1>
                 <?php if ($data['user']->getAge()) : ?>
-                <p><?php echo $data['user']->getAge(); ?></p>
+                <?php echo $data['user']->getAge(); ?>
+                <?php endif; ?>
+                <?php if ($data['user']->getSex()) : ?>
+                <?php if ($data['user']->getSex() == 2)echo "Male"; else echo "Female"; ?>
+                <?php endif; ?>
+                <?php if ($data['user']->getLocation()) : ?>
+                <?php echo $data['user']->getLocation(); ?>
                 <?php endif; ?>
                 <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
             </div>

@@ -7,7 +7,9 @@ class User implements Linkable {
     private $handle;
     private $lists = array();
     private $password; //md5
+    private $sex;
     private $dob;
+    private $location;
 
     function getID() {
         return $this->id;
@@ -36,6 +38,23 @@ class User implements Linkable {
     function getPath() {
         return BASE_URL . '/' . $this->gethandle();
     }
+
+    function setSex($sex) {
+        $this->sex = $sex;
+    }
+
+    function getSex() {
+        return $this->sex;
+    }
+
+    function setLocation($location) {
+        $this->location = $location;
+    }
+
+    function getLocation() {
+        return $this->location;
+    }
+
 
     function getList($listID) {
         foreach ($this->lists as $list) {
