@@ -22,6 +22,9 @@
                 <?php if ($data['user']->getLocation()) : ?>
                 <?php echo $data['user']->getLocation(); ?>
                 <?php endif; ?>
+                <?php if ($data['user']->getTwitter()) : ?>
+                <a href="http://twitter.com/#!/<?php echo $data['user']->getTwitter(); ?>">@<?php echo $data['user']->getTwitter(); ?></a>
+                <?php endif; ?>
                 <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
             </div>
 

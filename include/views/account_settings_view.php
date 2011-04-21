@@ -43,6 +43,12 @@
                     <input type="text" name="location" id="location" value="<?php if ($data['user']->getLocation()) { echo $data['user']->getLocation();} ?>">
                     <input type="submit" value="Save">
                 </fieldset>
+                <fieldset>
+                    <legend>My Links</legend> 
+                    <label for=twitter>Twitter</label>
+                    <span style="font-size: 20px">@ </span><input type="text" name="twitter" id="twitter" value="<?php if ($data['user']->getTwitter()) { echo $data['user']->getTwitter();} ?>">
+                    <input type="submit" value="save">
+                </fieldset>
             </form>
             <form>
                 <fieldset>

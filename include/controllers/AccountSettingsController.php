@@ -63,6 +63,12 @@ class AccountSettingsController extends PrivateController {
             $this->userModel->save($this->user);
         }
 
+        if ($_POST['twitter'] != $this->user->getTwitter()) {
+            $twitter = $_POST['twitter'];
+            $this->user->setTwitter($twitter);
+            $this->userModel->save($this->user);
+        }
+
         $data['user'] = $this->user;
         $data['errors'] = $errors;
         $this->view->load('account_settings_view', $data);

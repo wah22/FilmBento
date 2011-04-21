@@ -10,6 +10,7 @@ class User implements Linkable {
     private $sex;
     private $dob;
     private $location;
+    private $twitter;
 
     function getID() {
         return $this->id;
@@ -55,6 +56,13 @@ class User implements Linkable {
         return $this->location;
     }
 
+    function setTwitter($twitter) {
+        $this->twitter = $twitter;
+    }
+
+    function getTwitter() {
+        return $this->twitter;
+    }
 
     function getList($listID) {
         foreach ($this->lists as $list) {

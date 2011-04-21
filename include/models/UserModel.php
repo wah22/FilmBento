@@ -46,6 +46,7 @@ class UserModel {
         $user->setDOB(strtotime($row['dob']));
         $user->setSex($row['sex']);
         $user->setLocation($row['location']);
+        $user->setTwitter($row['twitter']);
 
         return $user;
     }
@@ -57,6 +58,7 @@ class UserModel {
         $id = $user->getID();
         $location = $user->getLocation();
         $sex = $user->getSex();
+        $twitter = $user->getTwitter();
 
         if ($user->getDOB()) {
             $dob = date('Y-m-d', $user->getDOB());
@@ -65,7 +67,7 @@ class UserModel {
         }
 
         $stmt = DB::getInstance()->prepare('UPDATE fr_users
-                                            SET email = :email, handle = :handle, password = :password, dob = :dob, sex = :sex, location = :location
+                                            SET email = :email, handle = :handle, password = :password, dob = :dob, sex = :sex, location = :location, twitter = :twitter
                                             WHERE id = :user_id');
         
         $stmt->bindParam(':email', $email);
@@ -75,6 +77,7 @@ class UserModel {
         $stmt->bindParam(':dob', $dob);
         $stmt->bindParam(':location', $location);
         $stmt->bindParam(':sex', $sex);
+        $stmt->bindParam(':twitter', $twitter);
         $stmt->execute();
     }
 
