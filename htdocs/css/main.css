@@ -900,9 +900,6 @@ nav li a:hover {
 }
 
 #film #recentlySeen #stars{
-    position: absolute;
-    top: 30px;
-    right: 10px;
 }
 
 #film #recentlySeen #stars img{
