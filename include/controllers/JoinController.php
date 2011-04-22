@@ -66,10 +66,7 @@ class JoinController extends Controller {
             $email = $user->getEmail();
             $message = "A new user has joined FilmBento.\nUsername: $handle\nEmail: $email";
 
-            if (!mail('filmbento@gmail.com', 'A new user has signed up', $message, $headers ) )
-            {
-                die('There was an error sending the reset password email. Please contact filmbento@gmail.com');
-            }
+            mail('filmbento@gmail.com', 'A new user has signed up', $message, $headers );
 
             LoginManager::getInstance()->logInUser($_POST['handle'], $_POST['password']);
 
