@@ -576,6 +576,7 @@ nav li a:hover {
     text-align: center;
 }
 
+#userProfile .list li, #userProfile .userList li, #film .list li {
     list-style-type: none;
     border: 1px solid black;
     border-bottom: 0;
@@ -900,6 +901,11 @@ nav li a:hover {
 }
 
 #film #recentlySeen #stars{
+	position: absolute;
+
+	top: 30px;
+
+	right: 10px;
 }
 
 #film #recentlySeen #stars img{
