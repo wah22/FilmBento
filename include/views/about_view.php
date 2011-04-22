@@ -10,7 +10,7 @@
         <?php include("header.php"); ?>
         <div id="about">
             <h1>About</h1>
-            Coming soon, bitch.
+            Coming soon.
         </div>
         <?php include "footer.php"; ?>
     </div>
