@@ -7,7 +7,7 @@ class UserModel {
 
         if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
             // save user info
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00 )');
+            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00, "", 00, "" )');
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':handle', $handle);
             $stmt->bindParam(':password', $password);
