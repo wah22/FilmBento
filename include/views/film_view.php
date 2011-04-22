@@ -131,7 +131,7 @@
                     <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
                     <?php endif; ?>
                     <?php if($data['user']) : ?> 
-                    <a href="/?controller=FilmController&film=<?php echo urlencode($data['film']->getTitle()); ?>&function=edit">edit/add details</a>
+                    <a href="/?controller=FilmController&film=<?php echo $data['film']->getTitle(), "_" , $data['film']->getYear(); ?>&function=edit">edit/add details</a>
                     <?php endif; ?>
                 </div>
                 <?php if($data['user']) : ?>

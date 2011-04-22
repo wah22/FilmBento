@@ -6,7 +6,14 @@ class FilmController extends Controller{
 
     function __construct() {
         $filmModel = new FilmModel();
-        $this->film = $filmModel->getFilm('title', $_GET['film']);
+        $requestedFilm = $_GET['film'];
+        if (preg_match('/_([\d]{4})$/', $requestedFilm)) {
+            $year = substr($requestedFilm, -4);
+            $requestedFilm = preg_replace('/_([\d]{4})$/', ' ', $requestedFilm);
+            $this->film = $filmModel->getFilm('title', $requestedFilm, $year);
+        } else {
+            $this->film = $filmModel->getFilm('title', $requestedFilm);
+        }
         parent::__construct();
     }
 

@@ -12,7 +12,7 @@ class FilmModel {
         $stmt->execute();
     }
 
-    function getFilm($by, $value) {
+    function getFilm($by, $value, $year = 0) {
         $film = new Film();
         
         if ($by == 'id') {
@@ -21,7 +21,12 @@ class FilmModel {
             }
             $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE id = :value');
         } else if ($by == 'title') {
-            $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value');
+            if (!$year) {
+                $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value');
+            } else {
+                $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value && year = :year');
+                $stmt->bindParam(':year', $year);
+            }
         } else {
             throw new Exception('Paramaters must be id or title');
         }

@@ -44,21 +44,24 @@ class AddFilmController extends PrivateController {
         if (empty($errors)) {
             $film = $this->filmModel->getFilm('title', $_POST['title']);
 
+            $title = $_POST['title'];
+            $year = $_POST['year'];
+            
             if ($film) {
                 if ($film->getYear() == $_POST['year']) {
                     $location = $film->getPath();
                     header("Location: $location");
-                }
+                } 
             }
 
             $film = new Film();
-            $film->setTitle($_POST['title']);
-            $film->setYear($_POST['year']);
+            $film->setTitle($title);
+            $film->setYear($year);
             $film->setUserWhoAddedID($this->user->getID());
 
             $this->filmModel->create($film);
 
-            $film = $this->filmModel->getFilm('title', $_POST['title']);
+            $film = $this->filmModel->getFilm('title', $title);
 
             $film->setMeta('poster_link', $_POST['poster_url']);
             $film->setMeta('hashtag', $_POST['hashtag']);

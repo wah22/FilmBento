@@ -51,19 +51,19 @@ class AccountSettingsController extends PrivateController {
             }
         }
 
-        if ($_POST['location'] != $this->user->getLocation()) {
+        if (!empty($_POST['location']) && $_POST['location'] != $this->user->getLocation()) {
             $location = $_POST['location'];
             $this->user->setLocation($location);
             $this->userModel->save($this->user);
         }
 
-        if ($_POST['sex'] != $this->user->getSex()) {
+        if (!empty($_POST['sex']) && $_POST['sex'] != $this->user->getSex()) {
             $sex = $_POST['sex'];
             $this->user->setSex($sex);
             $this->userModel->save($this->user);
         }
 
-        if ($_POST['twitter'] != $this->user->getTwitter()) {
+        if (!empty($_POST['twitter']) && $_POST['twitter'] != $this->user->getTwitter()) {
             $twitter = $_POST['twitter'];
             $this->user->setTwitter($twitter);
             $this->userModel->save($this->user);

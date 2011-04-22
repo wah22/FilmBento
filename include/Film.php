@@ -18,6 +18,9 @@ class Film implements Linkable {
     }
     
     function getTitle() {
+        if (preg_match('(\d{4}$)', $this->title)) {
+            return '';
+        }
         return $this->title;
     }
 
@@ -51,7 +54,7 @@ class Film implements Linkable {
     }
 
     function getPath () {
-        $path = BASE_URL . '/films/' . urlencode($this->getTitle());
+        $path = BASE_URL . '/films/' . urlencode($this->getTitle()) . "_" . $this->getYear();
         return $path;
     }
 
