@@ -338,7 +338,7 @@ nav li a:hover {
     display: block;
     margin: 0 auto 0 auto;
     width: 200px;
-    padding: 0;
+    padding: 5px;
 }
 
 #logIn input[type="submit"] {
