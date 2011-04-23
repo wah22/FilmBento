@@ -55,6 +55,7 @@
             </form>
             <form>
                 <fieldset>
+                    <img src="<?php echo $data['user']->getAvatar(); ?>">
                     <legend>My Avatar</legend>
                     <p>FilmBento uses <a href="http://en.gravatar.com/">Gravatar</a> for avatars.</p>
                     <p>You can set or change your avatar there.</p>

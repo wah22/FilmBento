@@ -31,14 +31,8 @@ class AddFilmController extends PrivateController {
         $errors = array();
 
         if (empty($_POST['title']) ||
-            empty($_POST['year']) ||
-            empty($_POST['poster_url']) ||
-            empty($_POST['hashtag']) ||
-            empty($_POST['wiki_link']) ||
-            empty($_POST['rt_link']) ||
-            empty($_POST['imdb_link']) ||
-            empty($_POST['metacritic_link']) ) {
-            $errors[] = "Please fill out all fields";
+            empty($_POST['year'])) {
+            $errors[] = "Please fill out required fields";
         }
 
         if (empty($errors)) {

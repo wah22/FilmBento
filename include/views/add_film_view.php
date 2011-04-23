@@ -13,19 +13,15 @@
         <div id="addFilm">
             <h1>Add a Film</h1>
 
-            <div class="notes">
-                All fields are required. Please ensure the data entered is correct.
-            </div>
-
             <form method="POST" action="">
                 <fieldset>
                     <legend>Details</legend>
                     <input type="hidden" name="function" value="addFilm">
                     
-                    <label for="title">Title</label>
+                    <label for="title">Title *</label>
                     <input id="title" name="title" type="text">
 
-                    <label for="year">Year</label>
+                    <label for="year">Year *</label>
                     <input id="year" name="year" type="text">
 
                     <label for="poster_url">Poster URL</label>
