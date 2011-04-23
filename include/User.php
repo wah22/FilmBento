@@ -53,7 +53,9 @@ class User implements Linkable {
     }
 
     function getLocation() {
-        return $this->location;
+        $location = $this->location;
+        $cleanLocation = htmlentities($location, ENT_QUOTES, "UTF-8");
+        return $cleanLocation;
     }
 
     function setTwitter($twitter) {
