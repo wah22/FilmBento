@@ -64,7 +64,8 @@ class UserController extends Controller {
                         'seens' => $seensArray,
                         'numSeen' => $numFilmsSeen,
                         'percentSeen' => $percent,
-                        'lists' => $listsOutput
+                        'lists' => $listsOutput,
+                        'positivity' => $this->seenModel->getPositivity($user)
                 );
         
         $this->view->load('user_view', $data);

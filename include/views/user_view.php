@@ -26,6 +26,7 @@
                 <a href="http://twitter.com/#!/<?php echo $data['user']->getTwitter(); ?>">@<?php echo $data['user']->getTwitter(); ?></a>
                 <?php endif; ?>
                 <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
+                <p>Positivity Rating: <?php echo $data['positivity']; ?>%</p>
             </div>
 
             <?php if($data['seens']) : ?>

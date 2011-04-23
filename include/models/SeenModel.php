@@ -233,4 +233,20 @@ class SeenModel {
 
         return $averageRating;
     }
+
+    function getPositivity($user) {
+        $userID = $user->getID();
+        $get = DB::getInstance()->prepare('SELECT rating FROM fbo_seens WHERE user_id = :user_id && rating > 0');
+        $get->bindParam(':user_id', $userID);
+        $get->execute();
+        $ratings = array();
+        while ($row = $get->fetch()) {
+            $ratings[] = $row['rating'];
+        }
+        $numRated = count($ratings);
+        $totalOfRatings = array_sum($ratings);
+        $averageRating = $totalOfRatings/$numRated;
+        $percent = (int)(($averageRating/5) * (100/1));
+        return $percent;
+    }
 }
