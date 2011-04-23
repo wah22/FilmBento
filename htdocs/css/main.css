@@ -470,13 +470,13 @@ nav li a:hover {
 
 #userProfile #info {
     height: 100px;
-    width: 33%;
+    width: 28%;
     float: left;
 
     border: 1px solid black;
 
     position: relative;
-    margin: 0 0 10px 10px;
+    margin: 0 0 10px 0;
     padding: 1%;
 }
 
@@ -501,19 +501,18 @@ nav li a:hover {
 
 #userProfile .list {
     float: right;
-    width: 58%;
-    margin: 0 10px 1 0;
-    margin: 0 10px 10px 0;
+    width: 64%;
+    margin: 0 0 10px 0;
 }
 
 #userProfile .userList {
-    float: left;
-    width: 48%;
-    margin: 0 10px 10px 10px;
+    float: right;
+    width: 64%;
+    margin: 0 0 10px 10px;
     border: 1px solid black;
 }
 
-#userProfile .list {
+#userProfile .list, #userProfile .userList {
 
     padding: 20px;
     padding-top: 0px;
@@ -766,8 +765,7 @@ nav li a:hover {
 
 #film #leftColumn {
     margin: 0;
-    min-width: 25%;
-    width: 23%;
+    width: 25%;
     float: left;
     padding: 0;
 }
@@ -808,8 +806,8 @@ nav li a:hover {
 }
 
 #film #rightColumn {
-    width: 180px;
-    float: left;
+    width: 200px;
+    float: right;
 }
 
 #film #title {
