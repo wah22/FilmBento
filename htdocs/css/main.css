@@ -7,7 +7,7 @@ body {
 }
 
 #pageWrapper {
-    width: 800px;
+    width: 1120px;
     min-height: 300px;
     position: relative;
     margin: 0 auto 0 auto;
@@ -464,19 +464,19 @@ nav li a:hover {
 }
 
 #userProfile {
-    width: 640px;
     position: relative;
     margin: 0 auto 0 auto;
 }
 
 #userProfile #info {
-    width: 98%;
     height: 100px;
+    width: 33%;
+    float: left;
 
     border: 1px solid black;
 
     position: relative;
-    margin: 0 auto 10px auto;
+    margin: 0 0 10px 10px;
     padding: 1%;
 }
 
@@ -499,12 +499,21 @@ nav li a:hover {
     font-size: 20px;
 }
 
-#userProfile .list, #userProfile .userList {
-    width: 600px;
+#userProfile .list {
+    float: right;
+    width: 58%;
+    margin: 0 10px 1 0;
+    margin: 0 10px 10px 0;
+}
 
-    position: relative;
+#userProfile .userList {
+    float: left;
+    width: 48%;
+    margin: 0 10px 10px 10px;
+    border: 1px solid black;
+}
 
-    margin: 0px auto 10px auto;
+#userProfile .list {
 
     padding: 20px;
     padding-top: 0px;

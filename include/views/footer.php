@@ -1,3 +1,4 @@
+<div style="clear:both">
 <footer>
     <ul>
         <li><a href="<?php echo BASE_URL; ?>/faq">FAQ</a></li>
