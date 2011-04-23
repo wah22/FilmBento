@@ -36,7 +36,8 @@ class UserController extends Controller {
                 'title' => $film->getTitle(),
                 'path' => $film->getPath(),
                 'rating' => $seen->getRating(),
-                'when' => $seen->whenSeen()
+                'when' => $seen->whenSeen(),
+                'tweeview' => $seen->getTweeview()
             );
 
             $seensArray[] = $array;

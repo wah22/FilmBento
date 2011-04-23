@@ -26,7 +26,7 @@ class SeenModel {
     }
 
     function getLastSeens ($numToGet, $user, $offset = 0) {
-        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date
+        $stmt = DB::getInstance()->prepare('SELECT film_id, rating, UNIX_TIMESTAMP(date) as date, tweeview
                                           FROM fbo_seens
                                           WHERE user_id = :user_id
                                           ORDER BY date DESC
@@ -44,6 +44,7 @@ class SeenModel {
             $rating = $row['rating'];
             $date = $row['date'];
             $seen = new Seen($id, $filmID, $rating, $date);
+            $seen->setTweeview($row['tweeview']);
             $seens[] = $seen;
         }
         return $seens;

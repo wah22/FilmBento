@@ -48,6 +48,12 @@
                         </div>
 
                         <div class="whenSeen"><?php echo $seen['when']; ?></div>
+
+                        <?php if ($seen['tweeview']) : ?>
+                        <div class="tweeview">
+                            &ldquo;<?php echo $seen['tweeview']; ?>&rdquo;
+                        </div>
+                        <?php endif; ?>
                     </li>
                     <?php endforeach; ?>
                 </ul>
@@ -59,7 +65,6 @@
             </div>
             <?php endif; ?>
 
-
             <?php foreach ($data['lists'] as $list) : ?>
                 <?php if (isset($list['films'][0])) : ?>
                     <div class="userList">
@@ -68,7 +73,8 @@
                             <?php foreach ($list['films'] as $key=>$film) : ?>
                                 <li>
                                     <span class="key"><?php echo $key+1; ?></span>
-                                    <a href='<?php echo $film['path']; ?>'><?php echo $film['title']; ?></a></li>
+                                    <a href='<?php echo $film['path']; ?>'><?php echo $film['title']; ?></a>
+                                </li>
                             <?php endforeach; ?>
                         </ul>
                     </div>

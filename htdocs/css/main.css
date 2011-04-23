@@ -546,12 +546,18 @@ nav li a:hover {
 
 #userProfile .title {
     width: 300px;
+    font-weight: bold;
 }
 
 #userProfile .rating {
     position: absolute;
     left: 310px;
     top: 3px;
+}
+
+#userProfile .list li .tweeview {
+    font-style: italic;
+    margin-top: 3px;
 }
 
 #userProfile ul {
@@ -577,7 +583,7 @@ nav li a:hover {
     text-align: center;
 }
 
-#userProfile .list li, #userProfile .userList li, #film .list li {
+#userProfile .list li, #film .list li {
     list-style-type: none;
     border: 1px solid black;
     border-bottom: 0;
