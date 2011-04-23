@@ -11,7 +11,10 @@
     <?php include("header.php"); ?>
 
     <?php if (isset($data['reset'])) : ?>
-    <div id="errors"><p>An email has been sent to you with your new password.</p></div>
+    <div id="errors">
+        <p>An email has been sent to you with your new password.</p>
+        <p><a href="<?php echo BASE_URL; ?>/login">< back to login</a></p>
+    </div>
     <?php else : ?>
     <form action="" method="post">
         <fieldset>

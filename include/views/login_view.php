@@ -12,10 +12,10 @@
             <form method="POST" action="">
                 <fieldset>
                     <legend>Log In</legend>
-                    <label for="identifier">username</label>
+                    <label for="identifier">Username or Email Address</label>
                     <input type="text" name="identifier">
 
-                    <label for="password">password</label>
+                    <label for="password">Password</label>
                     <input type="password" name="password">
                     <input type="submit" value="Log in">
 

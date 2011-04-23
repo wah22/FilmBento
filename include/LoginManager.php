@@ -37,6 +37,9 @@ class LoginManager {
         if ($this->checkCredentials($handle, md5($password))) {
             $userModel = new UserModel();
             $user = $userModel->getUser('handle', $handle);
+            if (!$user) {
+                $user = $userModel->getUser('email', $handle);
+            }
             $_SESSION['loggedInUserHandle'] = $user->getHandle();
             $_SESSION['loggedInUserPassword'] = $user->getPassword();
             return true;
@@ -56,7 +59,11 @@ class LoginManager {
         if ($user && $user->getPassword() == $password) {
             return true;
         } else {
-            return false;
+            $user = $userModel->getUser('email', $handle);
+            if ($user && $user->getPassword() == $password) {
+                return true;
+            } 
         }
+        return false;
     }
 }
