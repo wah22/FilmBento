@@ -25,7 +25,12 @@
             <ul>
                 <?php foreach ($data['recentlyAddedFilms'] as $film) : ?>
                 <li>
-                    <a href="<?php echo $film['film']->getPath(); ?>"><img class="poster" src="<?php echo $film['film']->getMeta('poster_link'); ?>"><?php echo $film['film']->getTitle(); ?></a>
+                    <a href="<?php echo $film['film']->getPath(); ?>">
+                        <?php if ($film['film']->getMeta('poster_link')) : ?>
+                        <img class="poster" src="<?php echo $film['film']->getMeta('poster_link'); ?>">
+                        <?php endif; ?>
+                        <?php echo $film['film']->getTitle(); ?>
+                    </a>
                     <p>
                     <?php for($i = 0; $i < $film['averageRating']; $i++ ) : ?>
                     <img class="star" src="/images/stars/star_filled.png">
