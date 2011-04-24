@@ -370,6 +370,14 @@ nav li a:hover {
     margin: 20px 0 0 0;
 }
 
+#userHome h2 {
+    margin: 20px 0 10px 0;
+}
+
+#userHome ul {
+    list-style-type: none;
+}
+
 #whatSeen {
     width: 600px;
     height: 170px;
@@ -423,18 +431,24 @@ nav li a:hover {
     font-size: 20px;
 }
 
+#haveYouSeen h1, #recently
+
 #haveYouSeen ul {
     list-style-type: none;
     position: relative;
     margin: 0 auto 0 auto;
-    min-height: 200px;
 }
 
 #haveYouSeen li {
     float: left;
     width: 30%;
     height: 100%;
-    margin: 0 0 0 0;
+    margin: 0 1% 0 1%;
+}
+
+#haveYouSeen .title {
+    color: black;
+    font-weight: bold;
 }
 
 #haveYouSeen li .star {
@@ -479,7 +493,7 @@ nav li a:hover {
 
     position: relative;
     margin: 0 0 10px 0;
-    padding: 1%;
+    padding: 2%;
 }
 
 #userProfile #info p, #userProfile #userPanel p {
