@@ -109,8 +109,7 @@
                     <ul>
                         <?php foreach($data['recentlySeens'] as $seen) : ?>
                         <li>
-                            <img id="avatar" src="<?php echo $seen['user']->getAvatar(); ?>">
-                            <h3><a href="<?php echo $seen['user']->getPath(); ?>"><?php echo $seen['user']->getHandle(); ?></a></h3>
+                            <h3><a href="<?php echo $seen['user']->getPath(); ?>"><?php echo $seen['user']->getHandle(); ?><img id="avatar" src="<?php echo $seen['user']->getAvatar(); ?>"></a></h3>
                             <div id="stars">
                                 <?php for ($i = 0; $i < $seen['rating']; $i++) : ?>
                                 <img src="/images/stars/star_filled.png" alt ="X">

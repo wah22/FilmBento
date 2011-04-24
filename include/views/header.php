@@ -1,12 +1,10 @@
 <header>
     <div id="header">
-        <a href="/">
             <hgroup>
                 <h1>FilmBento</h1>
                 <h2>Track what you watch.</h2>
                 <h3>beta</h3>
             </hgroup>
-        </a>
         <?php include ROOT_PATH . '/include/views/navbar.php'; ?>
     </div>
     <div id="user_panel">
