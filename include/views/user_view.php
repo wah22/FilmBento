@@ -27,6 +27,7 @@
                 <?php endif; ?>
                 <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
                 <p>Positivity Rating: <?php echo $data['positivity']; ?>%</p>
+                <p>Compatibility: <?php echo $data['compatibility']; ?>%</p>
             </div>
 
             <?php if($data['seens']) : ?>
@@ -37,6 +38,7 @@
                 <ul>
                     <?php foreach ( $data['seens'] as $seen ) : ?>
                     <li>
+                        <!--<img src="<?php //echo $seen['film']->getMeta('poster_link'); ?>">-->
                         <div class="title">
                             <a href='<?php echo $seen['path']; ?>'><?php echo $seen['title']; ?></a>
                         </div>

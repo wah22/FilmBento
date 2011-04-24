@@ -245,9 +245,59 @@ class SeenModel {
             $ratings[] = $row['rating'];
         }
         $numRated = count($ratings);
+        if (!$numRated) {
+            return false;
+        }
         $totalOfRatings = array_sum($ratings);
         $averageRating = $totalOfRatings/$numRated;
         $percent = (int)(($averageRating/5) * (100/1));
+        return $percent;
+    }
+
+    function getCompatibility($user1, $user2) {
+        $user1ID = $user1->getID();
+        $user2ID = $user2->getID();
+
+        $getSeens = DB::getInstance()->prepare('SELECT * FROM fbo_seens WHERE user_id = :user_id');
+
+        $getSeens->bindParam(':user_id', $user1ID);
+        $getSeens->execute();
+        $user1Seens = array();
+        while ($row = $getSeens->fetch()) {
+            if ($row['rating']) {
+                $user1Seens[$row['film_id']] = $row['rating'];
+            }
+        }
+
+        $getSeens->bindParam(':user_id', $user2ID);
+        $getSeens->execute();
+        $user2Seens = array();
+        while ($row = $getSeens->fetch()) {
+            if ($row['rating']) {
+                $user2Seens[$row['film_id']] = $row['rating'];
+            }
+        }
+        
+        $totalDiff= array();
+        foreach ($user1Seens as $key1=>$user1Rating) {
+            foreach ($user2Seens as $key2=>$user2Rating) {
+                if ($key1 == $key2) {
+                    $diff = $user1Rating - $user2Rating;
+                    if ($diff < 0) {
+                        $diff = $diff * -1;
+                    }
+                    $diff = 5 - $diff;
+                    $totalDiff[] = $diff;
+                }
+            }
+        }
+
+        if (empty($totalDiff) ) {
+            return 0;
+        }
+
+        $average = array_sum($totalDiff) / count($totalDiff);
+        $percent = (int)(($average / 5) * (100/1));
         return $percent;
     }
 }

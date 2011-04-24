@@ -33,6 +33,7 @@ class UserController extends Controller {
             $film = $this->filmModel->getFilm('id', $seen->getFilmID());
 
             $array = array(
+                'film' => $film,
                 'title' => $film->getTitle(),
                 'path' => $film->getPath(),
                 'rating' => $seen->getRating(),
@@ -66,7 +67,8 @@ class UserController extends Controller {
                         'numSeen' => $numFilmsSeen,
                         'percentSeen' => $percent,
                         'lists' => $listsOutput,
-                        'positivity' => $this->seenModel->getPositivity($user)
+                        'positivity' => $this->seenModel->getPositivity($user),
+                        'compatibility' => $this->seenModel->getCompatibility(LoginManager::getInstance()->getLoggedInUser(), $user)
                 );
         
         $this->view->load('user_view', $data);
