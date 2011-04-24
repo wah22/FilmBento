@@ -1027,7 +1027,10 @@ footer p {
     margin: 0;
 }
 
-#addFilm h1 {
+#addFilm {
+    width: 50%;
+    position: relative;
+    margin: 0 auto 0 auto;
 }
 
 #addFilm h2 {

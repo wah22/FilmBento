@@ -8,7 +8,6 @@
 <body>
     <div id="pageWrapper">
         <?php include ("header.php"); ?>
-
             <div id="userProfile">
                 <div id="leftColumn">
                     <div id="info">
@@ -33,7 +32,7 @@
 
                     <?php if (isset($data['compatibility'])) : ?>
                     <div id="userPanel">
-                        <p>Your compatibility with <?php echo $data['user']->gethandle(); ?> is<span style="font-weight:bold; font-size: 20px;"> <?php echo $data['compatibility']; ?>%</span>.</p>
+                        <p>Your compatibility with <?php echo $data['user']->gethandle(); ?> is<span style="font-weight:bold; font-size: 20px;"> <?php echo $data['compatibility']; ?>%</span>. <span class="pie"><?php echo $data['compatibility']; ?>/100</span>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -95,6 +94,8 @@
         <?php include "footer.php"; ?>
     </div>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.peity.js" type="text/javascript"></script>
+    <script src="/scripts/jquery.peity.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function() {
             $('#userProfile li').hover(
@@ -104,6 +105,9 @@
             function() {
                $(this).css('background-color', '#F6F5F0');
             });
+
+            $("span.pie").peity("pie", {radius: 30, colours: ['#FFF4DD', '#DF890A']});
+
         });
     </script>
 </body>
