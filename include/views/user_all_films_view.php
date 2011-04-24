@@ -13,7 +13,7 @@
      <div id="userProfile">
         <h1><?php echo $data['user']->getHandle(); ?></h1>
 
-        <div class="list">
+        <div class="list" style="float: none; position: relative; margin: 0 auto 0 auto">
             <h1><?php echo $data['user']->getHandle(); ?> has seen</h1>
             <ul>
                 <?php foreach ( $data['seens'] as $seen ) : ?>

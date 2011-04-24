@@ -33,7 +33,7 @@
 
                     <?php if (isset($data['compatibility'])) : ?>
                     <div id="userPanel">
-                        <p>Your compatibility with <?php echo $data['user']->gethandle(); ?> is<span style="font-weight:bold; font-size: 20px;"> <?php echo $data['compatibility']; ?>%</span></p>
+                        <p>Your compatibility with <?php echo $data['user']->gethandle(); ?> is<span style="font-weight:bold; font-size: 20px;"> <?php echo $data['compatibility']; ?>%</span>.</p>
                     </div>
                     <?php endif; ?>
                 </div>
@@ -69,7 +69,7 @@
                 </ul>
                 <div class="viewMore">
                     <?php if ($data['numSeen'] > 10) : ?>
-                    <a href="/<?php echo $data['user']->getHandle(); ?>/films">View More</a>
+                    <a href="/<?php echo $data['user']->getHandle(); ?>/films">View More ></a>
                     <?php endif; ?>
                 </div>
             </div>

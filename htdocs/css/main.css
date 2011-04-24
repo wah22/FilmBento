@@ -80,8 +80,6 @@ input, select {
 }
 
 input[type="text"], input[type="email"], input[type="password"] {
-
-
     height: 20px;
     font-size: 17px;
     padding: 4px;
@@ -529,14 +527,12 @@ nav li a:hover {
 }
 
 #userProfile .list {
-    padding-bottom: 30px;
+    padding-bottom: 10px;
 }
 
 #userProfile .list .viewMore {
-    position: absolute;
-    right: 23px;
-    bottom: 5px;
-    font-size: 12px;
+    float: right;
+    margin: 10px 10px 0 0;
 }
 
 #userProfile .list .viewMore a:visited,
@@ -626,7 +622,6 @@ nav li a:hover {
     position: absolute;
     right: 100px;
 }
-
 
 #editList .list {
     padding:0px;
