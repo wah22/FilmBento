@@ -32,9 +32,7 @@ class Seen {
     }
 
     function getTweeview() {
-        $tweeview = $this->tweeview;
-        $cleanTweeview = htmlentities($tweeview, ENT_QUOTES, "UTF-8");
-        return $cleanTweeview;
+        return $this->tweeview;
     }
 
     function setTweeview($tweeview) {

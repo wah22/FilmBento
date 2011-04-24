@@ -860,8 +860,10 @@ nav li a:hover {
     text-decoration: none;
 }
 
-#film #rate textarea {
+textarea {
+    font-size: 15px;
     width: 98%;
+    resize: none;
 }
 
 #film #tweeview input[type="submit"] {

@@ -38,7 +38,7 @@ class UserController extends Controller {
                 'path' => $film->getPath(),
                 'rating' => $seen->getRating(),
                 'when' => $seen->whenSeen(),
-                'tweeview' => $seen->getTweeview()
+                'tweeview' => htmlentities($seen->getTweeview(), ENT_QUOTES, 'UTF-8')
             );
 
             $seensArray[] = $array;

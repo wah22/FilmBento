@@ -30,7 +30,7 @@ class FilmController extends Controller{
             $seen = $this->seenModel->getSeen($user, $this->film);
             $data['hasSeen'] = true;
             $data['whenSeen'] = $seen->whenSeen();
-            $data['tweeview'] = $seen->getTweeview();
+            $data['tweeview'] = htmlentities($seen->getTweeview(), ENT_QUOTES, 'UTF-8');
         } else {
             $data['hasSeen'] = false;
         }
@@ -52,7 +52,7 @@ class FilmController extends Controller{
             $lastSeenArray = array(
                 'user' => $user,
                 'rating' =>$lastSeen->getRating(),
-                'tweeview' => $lastSeen->getTweeview()
+                'tweeview' => htmlentities($lastSeen->getTweeview(), ENT_QUOTES, 'UTF-8')
             );
             $lastSeensArray[] = $lastSeenArray;
         }
