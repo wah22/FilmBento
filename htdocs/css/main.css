@@ -484,7 +484,7 @@ nav li a:hover {
 }
 
 #userProfile #leftColumn {
-    width: 28%;
+    width: 30%;
     float: left;
 }
 
@@ -517,13 +517,13 @@ nav li a:hover {
 
 #userProfile .list {
     float: right;
-    width: 67%;
+    width: 64%;
     margin: 0 0 10px 0;
 }
 
 #userProfile .userList {
     float: right;
-    width: 67%;
+    width: 64%;
     margin: 0 0 10px 10px;
     border: 1px solid black;
 }
