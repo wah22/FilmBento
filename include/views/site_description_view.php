@@ -12,6 +12,7 @@
             <div id=premise style="position: relative; top:10px;">
                 <p>FilmBento is a simple tool that tracks the films you watch.</p>
                 <p>Every time you see a film, you log it to your page here.</p>
+                <p>You can give it a star rating, or add a small review.</p>
                 <p>Then you share your page with your buddies, or whatever.</p>
             </div>
             <div id ="front-image">
