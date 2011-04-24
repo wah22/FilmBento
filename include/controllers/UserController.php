@@ -67,9 +67,12 @@ class UserController extends Controller {
                         'numSeen' => $numFilmsSeen,
                         'percentSeen' => $percent,
                         'lists' => $listsOutput,
-                        'positivity' => $this->seenModel->getPositivity($user),
-                        'compatibility' => $this->seenModel->getCompatibility(LoginManager::getInstance()->getLoggedInUser(), $user)
+                        'positivity' => $this->seenModel->getPositivity($user)
                 );
+
+        if ($user->getID() != LoginManager::getInstance()->getLoggedInUser()->getID() ) {
+            $data['compatibility'] = $this->seenModel->getCompatibility(LoginManager::getInstance()->getLoggedInUser(), $user);
+        }
         
         $this->view->load('user_view', $data);
     }

@@ -9,26 +9,34 @@
     <div id="pageWrapper">
         <?php include ("header.php"); ?>
 
-        <div id="userProfile">
-            <div id="info">
-                <img src="<?php echo $data['user']->getAvatar(); ?>">
-                <h1><?php echo $data['user']->getHandle(); ?></h1>
-                <?php if ($data['user']->getAge()) : ?>
-                <?php echo $data['user']->getAge(); ?>
-                <?php endif; ?>
-                <?php if ($data['user']->getSex()) : ?>
-                <?php if ($data['user']->getSex() == 2)echo "Male"; else echo "Female"; ?>
-                <?php endif; ?>
-                <?php if ($data['user']->getLocation()) : ?>
-                <?php echo $data['user']->getLocation(); ?>
-                <?php endif; ?>
-                <?php if ($data['user']->getTwitter()) : ?>
-                <a href="http://twitter.com/#!/<?php echo $data['user']->getTwitter(); ?>">@<?php echo $data['user']->getTwitter(); ?></a>
-                <?php endif; ?>
-                <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
-                <p>Positivity Rating: <?php echo $data['positivity']; ?>%</p>
-                <p>Compatibility: <?php echo $data['compatibility']; ?>%</p>
-            </div>
+            <div id="userProfile">
+                <div id="leftColumn">
+                    <div id="info">
+                        <img src="<?php echo $data['user']->getAvatar(); ?>">
+                        <h1><?php echo $data['user']->getHandle(); ?></h1>
+                        <?php if ($data['user']->getAge()) : ?>
+                        <?php echo $data['user']->getAge(); ?>
+                        <?php endif; ?>
+                        <?php if ($data['user']->getSex()) : ?>
+                        <?php if ($data['user']->getSex() == 2)echo "Male"; else echo "Female"; ?>
+                        <?php endif; ?>
+                        <?php if ($data['user']->getLocation()) : ?>
+                        <?php echo $data['user']->getLocation(); ?>
+                        <?php endif; ?>
+                        <?php if ($data['user']->getTwitter()) : ?>
+                        <a href="http://twitter.com/#!/<?php echo $data['user']->getTwitter(); ?>">@<?php echo $data['user']->getTwitter(); ?></a>
+                        <?php endif; ?>
+                        <p><?php echo $data['numSeen']; ?> films seen (<?php echo $data['percentSeen']; ?>% of all)</p>
+                        <p>Positivity Rating: <?php echo $data['positivity']; ?>%</p>
+                        <div style="clear: both;"></div>
+                    </div>
+
+                    <?php if (isset($data['compatibility'])) : ?>
+                    <div id="userPanel">
+                        <p>Your compatibility with <?php echo $data['user']->gethandle(); ?> is<span style="font-weight:bold; font-size: 20px;"> <?php echo $data['compatibility']; ?>%</span></p>
+                    </div>
+                    <?php endif; ?>
+                </div>
 
             <?php if($data['seens']) : ?>
             <div class="list">

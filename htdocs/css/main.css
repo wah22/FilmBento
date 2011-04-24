@@ -468,11 +468,12 @@ nav li a:hover {
     margin: 0 auto 0 auto;
 }
 
-#userProfile #info {
-    height: 100px;
+#userProfile #leftColumn {
     width: 28%;
     float: left;
+}
 
+#userProfile #info, #userProfile #userPanel {
     border: 1px solid black;
 
     position: relative;
@@ -480,7 +481,7 @@ nav li a:hover {
     padding: 1%;
 }
 
-#userProfile #info p{
+#userProfile #info p, #userProfile #userPanel p {
     margin: 5px;
     font-size: 12px;
 }
@@ -501,13 +502,13 @@ nav li a:hover {
 
 #userProfile .list {
     float: right;
-    width: 64%;
+    width: 67%;
     margin: 0 0 10px 0;
 }
 
 #userProfile .userList {
     float: right;
-    width: 64%;
+    width: 67%;
     margin: 0 0 10px 10px;
     border: 1px solid black;
 }
