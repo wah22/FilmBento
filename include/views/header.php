@@ -1,9 +1,11 @@
 <header>
     <div id="header">
             <hgroup>
-                <h1>FilmBento</h1>
-                <h2>Track what you watch.</h2>
-                <h3>beta</h3>
+                <a href="<?php echo BASE_URL; ?>">
+                    <h1>FilmBento</h1>
+                    <h2>Track what you watch.</h2>
+                    <h3>beta</h3>
+                </a>
             </hgroup>
         <?php include ROOT_PATH . '/include/views/navbar.php'; ?>
     </div>

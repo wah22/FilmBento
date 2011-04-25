@@ -89,11 +89,6 @@ input[type="text"], input[type="email"], input[type="password"] {
     -webkit-border-radius: 5px;
 }
 
-input[type="submit"] {
-    margin-top: 5px;
-    display: block;
-}
-
 #goBack{
     position: absolute;
 }
@@ -331,21 +326,27 @@ nav li a:hover {
 }
 
 #logIn {
+    text-align: center;
     position: relative;
     margin: 10px auto 0 auto;
     width: 300px;
 }
 
-#logIn input[type="text"], #logIn input[type="password"], #logIn label {
+#logIn input[type="text"], #logIn input[type="password"] {
     display: block;
     margin: 0 auto 0 auto;
     width: 200px;
-    padding: 5px;
+}
+
+#logIn label {
+    text-align: left;
+    margin: 5px 0 0 0;
+    width: 200px;
+    margin: 5px auto 0 auto;
 }
 
 #logIn input[type="submit"] {
-    display: block;
-    margin: 5px auto 5px auto;
+    margin: 10px auto 0 auto;
 }
 
 #logIn #forgotPassword {
@@ -1076,6 +1077,11 @@ footer p {
 }
 
 #bai img {
+}
+
+#accountSettings {
+    width: 50%;
+    margin: 0 auto 0 auto;
 }
 
 #accountSettings img {
