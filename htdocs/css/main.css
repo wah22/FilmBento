@@ -89,6 +89,11 @@ input[type="text"], input[type="email"], input[type="password"] {
     -webkit-border-radius: 5px;
 }
 
+.hash {
+    font-size: 27px;
+    margin: 0 5px 0 0;
+}
+
 #goBack{
     position: absolute;
 }
@@ -871,6 +876,15 @@ nav li a:hover {
     text-decoration: none;
 }
 
+#editFilm {
+    width: 50%;
+    margin: 0 auto 0 auto;
+}
+
+#editFilm #URLs input[type="text"], #editFilm #posterURL {
+    width: 97%;
+}
+
 textarea {
     font-size: 15px;
     width: 98%;
@@ -1052,11 +1066,11 @@ footer p {
 }
 
 #addFilm #poster_url {
-    width: 90%;
+    width: 97%;
 }
 
 #addFilm #links input[type="text"]{
-    width: 90%;
+    width: 97%;
 }
 
 #addFilm input[type="text"]{

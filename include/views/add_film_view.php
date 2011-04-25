@@ -28,7 +28,7 @@
                     <input id="poster_url" name="poster_url" type="text">
 
                     <label for="hashtag">Hashtag</label>
-                    <span style="font-size: 27px">#</span><input id="hashtag" name="hashtag" type="text">
+                    <span class="hash">#</span><input id="hashtag" name="hashtag" type="text">
                 </fieldset>
 
                 <fieldset id="links">
