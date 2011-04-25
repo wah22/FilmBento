@@ -272,11 +272,11 @@ nav li a:hover {
     margin-bottom: 40px;
     margin-left: 100px;
 
-    font-size: 18px;
+    font-size: 16px;
 }
 
 #siteDescription {
-    height: 500px;
+    min-height: 500px;
 }
 
 #front-image {
@@ -936,6 +936,10 @@ textarea {
     background-color: #F6F5F0;
 }
 
+#film .list li {
+    min-height: 70px;
+}
+
 #film .list h1 {
     font-size: 20px;
     margin: 0;
@@ -962,10 +966,6 @@ textarea {
     padding: 10px;
 
     font-style: italic;
-}
-
-#film .list li {
-    min-height: 60px;
 }
 
 #film .list li #avatar  {
@@ -1104,6 +1104,10 @@ footer p {
     height: 100px;
     border: 1px solid gray;
     padding: 5px;
+}
+
+#accountSettings input[type="submit"] {
+    display: block;
 }
 
 #FAQ, #about {

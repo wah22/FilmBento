@@ -1,6 +1,6 @@
 <?php
 
-class HomeController extends PrivateController {
+class HomeController extends Controller {
     
     function __construct() {
         parent::__construct();
