@@ -10,6 +10,21 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="userHome">
+            <?php if (!LoginManager::getInstance()->userLoggedIn()) : ?>
+            <div id="siteDescription">
+                <div id=premise style="position: relative; top:10px;">
+                    <p>FilmBento is a simple tool that tracks the films you watch.</p>
+                    <p>Every time you see a film, you log it to your page here.</p>
+                    <p>You can give it a star rating, or add a small review.</p>
+                    <p>Then you share your page with your buddies, or whatever.</p>
+                </div>
+                <div id ="front-image">
+                    <img src ="/images/tosh.jpg" alt = "Tosh">
+                    <span style ="font-size:80px; font-weight: bold;">Seen it?</span><br>
+                    <a href ="<?php echo BASE_URL; ?>/join" id ="joinUp">join up</a>
+                </div>
+            </div>
+            <?php else : ?>
             <div id="whatSeen">
                 <h1>what have you seen?</h1>
                 <form method="POST" action="">
@@ -18,9 +33,10 @@
                     <input type="submit" id="goButton" disabled="true" value="Go">
                 </form>
                 <div id="add">
-                     Can't find? <a href="/?controller=AddFilmController">Add a film.</a>
+                     Can't find? <a href="<?php echo BASE_URL; ?>/add">Add a film.</a>
                 </div>
             </div>
+            <?php endif; ?>
             <div id="haveYouSeen">
                 <h2>Recently Added - have you seen?</h2>
                 <ul>
