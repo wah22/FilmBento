@@ -196,12 +196,9 @@
      <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
      <script type="text/javascript">
          $(function() {
-            $('#showTweeview').click(function(){
-                $('#tweeview').slideToggle(230);
-                return false;
-            });
+            $('#seenIt').live('click', function(event) {
+                event.preventDefault();
 
-            $('#seenIt').live('click', function() {
                 var filmID = $(this).parent().find('input[name=film]').val();
 
                 $.post("", { controller: "FilmController", "function": "seen", "film": filmID }, function(page) {
