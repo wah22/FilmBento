@@ -70,7 +70,7 @@ class UserController extends Controller {
                         'positivity' => $this->seenModel->getPositivity($user)
                 );
 
-        if ($user->getID() != LoginManager::getInstance()->getLoggedInUser()->getID() ) {
+        if (LoginManager::getInstance()->userLoggedIn() && $user->getID() != LoginManager::getInstance()->getLoggedInUser()->getID() ) {
             $data['compatibility'] = $this->seenModel->getCompatibility(LoginManager::getInstance()->getLoggedInUser(), $user);
         }
         
