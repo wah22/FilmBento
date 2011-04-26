@@ -35,6 +35,7 @@ class AdminController extends PrivateController {
         $this->seenModel->deleteAllUsersSeens($user);
         $this->userModel->delete($user);
 
-        header('Location: /');
+        $location = BASE_URL . "/admin/users";
+        header("Location: $location");
     }
 }
