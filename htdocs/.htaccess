@@ -4,6 +4,8 @@ RewriteRule ^lists/?$ index.php?controller=ListController [L]
 RewriteRule ^lists/add/?$ index.php?controller=ListController&function=add [L]
 RewriteRule ^lists/create/?$ index.php?controller=ListController&function=create [L]
 
+RewriteRule ^admin/?$ index.php?controller=AdminController
+RewriteRule ^admin/users?$ index.php?controller=AdminController&function=users
 RewriteRule ^add/?$ index.php?controller=AddFilmController [L]
 RewriteRule ^settings/?$ index.php?controller=AccountSettingsController [L]
 RewriteRule ^login/?$ index.php?controller=LoginController [L]

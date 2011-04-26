@@ -12,6 +12,9 @@ class User implements Linkable {
     private $location;
     private $twitter;
 
+    function __construct() {
+    }
+
     function getID() {
         return $this->id;
     }

@@ -7,7 +7,7 @@ class UserModel {
 
         if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
             // save user info
-            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00, "", 00, "" )');
+            $stmt = DB::getInstance()->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00, "", 00, "", "user")');
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':handle', $handle);
             $stmt->bindParam(':password', $password);
@@ -18,8 +18,6 @@ class UserModel {
     }
 
     function getUser($by, $value) {
-        $user = new User();
-
         if ($by == 'handle') {
             $stmt = DB::getInstance()->prepare('SELECT * FROM fr_users WHERE handle = :value');
         } else if ($by == 'id') {
@@ -39,6 +37,12 @@ class UserModel {
         
         $row = $stmt->fetch();
 
+        if ($row['rank'] == 'admin') {
+            $user = new Admin();
+        } else {
+            $user = new User();
+        }
+
         $user->setID($row['id']);
         $user->setEmail($row['email']);
         $user->setHandle($row['handle']);
@@ -49,6 +53,19 @@ class UserModel {
         $user->setTwitter($row['twitter']);
 
         return $user;
+    }
+
+    function getAllUsers() {
+        $get = DB::getInstance()->prepare('SELECT * FROM fr_users');
+        $get->execute();
+
+        $users = array();
+
+        while ($row = $get->fetch()) {
+            $users[] = $this->load($row);
+        }
+
+        return $users;
     }
 
     function save($user) {
@@ -87,5 +104,20 @@ class UserModel {
                                             WHERE id = :id');
         $stmt->bindParam(':id', $id);
         $stmt->execute();
+    }
+    
+    function load($row) {
+        $user = new User();
+
+        $user->setID($row['id']);
+        $user->setEmail($row['email']);
+        $user->setHandle($row['handle']);
+        $user->setPassword($row['password']);
+        $user->setDOB(strtotime($row['dob']));
+        $user->setSex($row['sex']);
+        $user->setLocation($row['location']);
+        $user->setTwitter($row['twitter']);
+
+        return $user;
     }
 }

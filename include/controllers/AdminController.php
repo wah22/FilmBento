@@ -1,0 +1,40 @@
+<?php 
+
+class AdminController extends PrivateController {
+
+    function __construct() {
+        parent::__construct();
+
+        if (get_class($this->user) != 'Admin') {
+            $this->redirectToLogin();
+        }
+    }
+
+    function index() {
+        $this->view->load('admin_view');
+    }
+
+    function users() {
+        $users = $this->userModel->getAllUsers();
+        $data = array(
+            'users' => $users
+            );
+
+        $this->view->load('admin_users_view', $data);
+    }
+
+    function deleteUser() {
+        if (!isset($_GET['user'])) {
+            return;
+        } else {
+            $userID = $_GET['user'];
+        }
+
+        $user = $this->userModel->getUser('id', $userID);
+
+        $this->seenModel->deleteAllUsersSeens($user);
+        $this->userModel->delete($user);
+
+        header('Location: /');
+    }
+}
