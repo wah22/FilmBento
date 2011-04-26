@@ -6,6 +6,7 @@ RewriteRule ^lists/create/?$ index.php?controller=ListController&function=create
 
 RewriteRule ^admin/?$ index.php?controller=AdminController
 RewriteRule ^admin/users?$ index.php?controller=AdminController&function=users
+RewriteRule ^admin/site_settings?$ index.php?controller=AdminController&function=site_settings
 RewriteRule ^add/?$ index.php?controller=AddFilmController [L]
 RewriteRule ^settings/?$ index.php?controller=AccountSettingsController [L]
 RewriteRule ^login/?$ index.php?controller=LoginController [L]

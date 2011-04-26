@@ -11,7 +11,8 @@
             <div id=admin>
                 <h1>Admin</h1>
 
-                <a href="<?php echo BASE_URL; ?>/admin/users">User Management</a>
+                <p><a href="<?php echo BASE_URL; ?>/admin/site_settings">Site Settings</a></p>
+                <p><a href="<?php echo BASE_URL; ?>/admin/users">User Management</a></p>
             </div>
         <?php include "footer.php"; ?>
     </div>
