@@ -106,10 +106,17 @@ class FilmModel {
         }
     }
 
+    function delete($film) {
+        $filmID = $film->getID();
+        $delete = DB::getInstance()->prepare('DELETE FROM fbo_films WHERE id = :film_id');
+        $delete->bindParam(':film_id', $filmID);
+        $delete->execute();
+    }
+
     function getAllFilms() {
         $films = array();
 
-        $stmt = DB::getInstance()->prepare('SELECT id FROM fbo_films');
+        $stmt = DB::getInstance()->prepare('SELECT id FROM fbo_films ORDER BY title');
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $films[] = $this->getFilm('id', $row['id']);

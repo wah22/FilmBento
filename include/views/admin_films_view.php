@@ -9,11 +9,14 @@
     <div id="pageWrapper">
         <?php include ("header.php"); ?> 
             <div id=admin>
-                <h1>Admin</h1>
-
-                <p><a href="<?php echo BASE_URL; ?>/admin/site_settings">Site Settings</a></p>
-                <p><a href="<?php echo BASE_URL; ?>/admin/users">User Management</a></p>
-                <p><a href="<?php echo BASE_URL; ?>/admin/films">Film Management</a></p>
+                <h1>Admin / Manage Films</h1>
+                
+                <?php foreach ($data['films'] as $film) : ?>
+                <p>
+                    <a href="<?php echo $film->getPath(); ?>"><?php echo $film->getTitle(); ?></a> | 
+                    <a href="<?php echo BASE_URL; ?>/?controller=AdminController&function=deleteFilm&film=<?php echo $film->getID(); ?>">delete</a>
+                </p>
+                <?php endforeach; ?>
             </div>
         <?php include "footer.php"; ?>
     </div>

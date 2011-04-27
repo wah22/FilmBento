@@ -193,6 +193,13 @@ class SeenModel {
         $delete->execute();
     }
 
+    function deleteAllFilmsSeens($film) {
+        $filmID = $film->getID();
+        $delete = DB::getInstance()->prepare('DELETE FROM fbo_seens WHERE film_id = :film_id');
+        $delete->bindParam(':film_id', $filmID);
+        $delete->execute();
+    }
+
     function getRecentSeens($numToGet = 10) {
         $get = DB::getInstance()->prepare('SELECT * FROM fbo_seens ORDER BY date desc LIMIT :num_to_get');
         $get->bindParam(':num_to_get', $numToGet, PDO::PARAM_INT);
