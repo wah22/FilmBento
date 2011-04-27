@@ -68,7 +68,7 @@
                 </ul>
                 <div style="clear: both;"></div>
             </div>
-            <div class="list">
+            <div class="list" id=recentlySeen>
                 <h2>Recently Seen</h2>
                 <ul>
                     <?php foreach($data['recentlySeens'] as $seen) : ?>

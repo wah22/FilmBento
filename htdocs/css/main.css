@@ -438,7 +438,11 @@ nav li a:hover {
     font-size: 20px;
 }
 
-#haveYouSeen h1, #recently
+#haveYouSeen {
+    float: left;
+    width: 45%;
+    margin: 0 0 0 5%;
+}
 
 #haveYouSeen ul {
     list-style-type: none;
@@ -447,7 +451,6 @@ nav li a:hover {
 }
 
 #haveYouSeen li {
-    width: 33%;
     height: 110px;
     margin: 0 1% 10px 1%;
     border: 1px solid black;
@@ -480,6 +483,12 @@ nav li a:hover {
 
 #haveYouSeen li .signature {
     text-align: right;
+}
+
+#userHome #recentlySeen {
+    float: right;
+    width: 40%;
+    margin: 0 5% 0 5%;
 }
 
 #userProfile .list, #userProfile .userList {
@@ -887,9 +896,10 @@ nav li a:hover {
 }
 
 textarea {
-    font-size: 15px;
-    width: 98%;
+    font-size: 13px;
+    width: 92%;
     resize: none;
+    padding:4px;
 }
 
 #film #tweeview input[type="submit"] {
