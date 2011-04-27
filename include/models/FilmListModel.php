@@ -192,4 +192,23 @@ class FilmListModel {
         $list = $this->getListByName($name);
         return $list;
     }
+
+    function deleteFilmFromLists($film) {
+        $filmID = $film->getID();
+        $getLists = DB::getInstance()->prepare('SELECT * FROM fbo_lists');
+        $getLists->execute();
+        $getUsers = DB::getInstance()->prepare('SELECT * FROM fr_users');
+
+        $userModel = new UserModel();
+
+        while ($row = $getLists->fetch()) {
+            $getUsers->execute();
+            while ($userRow = $getUsers->fetch()) {
+                $user = $userModel->getUser('id', $userRow['id']);
+                $list = $this->getList($user, $row['id']);
+                $list->remove($filmID);
+                $this->save($list);
+            }
+        }
+    }
 }

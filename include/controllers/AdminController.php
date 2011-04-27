@@ -52,7 +52,8 @@ class AdminController extends PrivateController {
         }
 
         $user = $this->userModel->getUser('id', $userID);
-
+        
+        $this->listModel->deleteFilmFromLists($film);       
         $this->seenModel->deleteAllUsersSeens($user);
         $this->userModel->delete($user);
 
@@ -69,6 +70,7 @@ class AdminController extends PrivateController {
 
         $film = $this->filmModel->getFilm('id', $filmID);
 
+        $this->listModel->deleteFilmFromLists($film);
         $this->seenModel->deleteAllFilmsSeens($film);
         $this->filmModel->delete($film);
 
