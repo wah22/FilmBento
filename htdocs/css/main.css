@@ -991,16 +991,18 @@ textarea {
 }
 
 #couldntFind img{
-    position: relative;
-    left: 140px;
+    float: left;
+    margin: 0 10px 0 80px;
 }
 
 #couldntFind #text {
     margin-top: 20px;
 
     text-align: center;
+}
 
-    border:solid 1px black;
+#couldntFind #text a {
+    font-weight: bold;
 }
 
 footer {

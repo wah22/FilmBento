@@ -7,7 +7,6 @@ define('BASE_URL', $base_url);
 
 define('DB_HOST', $db_host);
 define('DB_NAME', $db_name);
-define('DB_PORT', $db_port);
 define('DB_USERNAME', $db_username);
 define('DB_PASSWORD', $db_password);
 

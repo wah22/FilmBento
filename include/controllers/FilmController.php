@@ -14,6 +14,10 @@ class FilmController extends Controller{
         } else {
             $this->film = $filmModel->getFilm('title', $requestedFilm);
         }
+        if (!$this->film) {
+            $this->cantFind();
+            return;
+        }
         parent::__construct();
     }
 
@@ -195,5 +199,10 @@ class FilmController extends Controller{
         );
 
         $this->view->load('edit_film_view', $data);
+    }
+
+    function cantFind() {
+        $view = new View();
+        $view->load('could_not_find_film_view');
     }
 }

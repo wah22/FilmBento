@@ -14,12 +14,11 @@
 
         <p id="uh-oh">Huh?</p>
 
-        <img src="images/tosh-confused.jpg">
+        <img src="<?php echo BASE_URL; ?>/images/tosh-confused.jpg">
 
         <div id="text">
             <p>We couldn't find the film you entered on our database.</p>
-            <p>Please check that you spelled the name correctly.</p>
-            <p>You can add the film to our database <a href="/?controller=AddFilmController">here</a>.</p>
+            <p><a href="<?php echo BASE_URL; ?>/add">Add a film?</a></p>
         </div>
 
     </div>
