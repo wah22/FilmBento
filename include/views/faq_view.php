@@ -9,6 +9,7 @@
     <div id="pageWrapper">
         <?php include "header.php" ?>
         <div id="FAQ">
+            <h1>Frequently Asked Questions</h1>
             <article>
                 <h2>Why did you bother with this? Aren't there enough of these movie database sites already?</h2>
                 <p>Good point. There's more than enough info available when you Google a film, with IMDb, Rotten Tomatoes, Wikipedia etc. I don't like to think of FilmBento as a database.</p>
@@ -18,7 +19,7 @@
             </article>
 
             <article>
-                <h2>I have an idea about how to improve FilmBento. What do I do?</h2>
+                <h2>I have a feature request or an idea about how to improve FilmBento. What do I do?</h2>
                 <p>Feel free to send me an email at <a href="mailto:filmbento@gmail.com">filmbento@gmail.com</a>. I'd love to hear from you.</p>
             </article>
 
@@ -37,6 +38,11 @@
             <article>
             <h2>What is that sexy font?</h2>
                 <p>It's the <a href="http://www.ubuntu.com/">Ubuntu</a> font. You can get more info <a href="http://font.ubuntu.com/">here</a> and it's on <a href="http://www.google.com/webfonts/family?family=Ubuntu&subset=latin">Google web fonts.</a>
+            </article>
+
+            <article>
+                <h2>Are these real Frequently Asked Questions?</h2>
+                <p>No.</p>
             </article>
         </div>
         <?php include "footer.php"; ?>

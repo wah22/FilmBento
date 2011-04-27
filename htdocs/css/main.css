@@ -1132,6 +1132,10 @@ footer p {
     margin: 0 auto 0 auto;
 }
 
+#FAQ h2 {
+    margin-top: 40px;
+}
+
 #FAQ article {
     margin-bottom: 60px;
 }
