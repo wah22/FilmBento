@@ -49,6 +49,13 @@ class JoinController extends Controller {
             if (!preg_match('/^[a-zA-Z0-9]+$/',$handle)) {
                 $errors[] = "Your chosen name contains invalid characters.";
             }
+
+            $disallowedHandles = explode(';', SettingsManager::getInstance()->getSetting('disallowed_handles'));
+            foreach ($disallowedHandles as $disallowedHandle) {
+                if ($handle == $disallowedHandle) {
+                    $errors[] = 'This is an invalid handle.';
+                }
+            }
         }
 
         if (!empty($errors)) {
