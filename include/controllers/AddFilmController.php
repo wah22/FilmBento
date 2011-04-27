@@ -41,11 +41,10 @@ class AddFilmController extends PrivateController {
             $title = $_POST['title'];
             $year = $_POST['year'];
             
-            if ($film) {
-                if ($film->getYear() == $_POST['year']) {
-                    $location = $film->getPath();
-                    header("Location: $location");
-                } 
+            if ($film->getYear() == $year) {
+                $location = $film->getPath();
+                header("Location: $location");
+                return;
             }
 
             $film = new Film();
@@ -67,7 +66,6 @@ class AddFilmController extends PrivateController {
             $this->filmModel->save($film);
 
             $location = "Location: " . $film->getPath();
-
             header($location);
         } else {
             $data['errors'] = $errors;
