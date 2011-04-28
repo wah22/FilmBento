@@ -10,7 +10,7 @@
     <div id="pageWrapper">
         <?php include ROOT_PATH . '/include/views/header.php'; ?>
         <div id="goBack">
-            <a href="<?php echo $data['user']->getPath(); ?>">back to profile</a>
+            <a href="<?php echo $data['user']->getPath(); ?>">my profile</a>
         </div>
         <h1>Manage My Account</h1>
         <?php if (!empty($data['errors'])) : ?>
