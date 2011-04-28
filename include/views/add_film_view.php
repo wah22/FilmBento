@@ -13,7 +13,7 @@
         <div id="addFilm">
             <h1>Add a Film</h1>
 
-            <form method="POST" action="">
+            <form method="POST" action="" autocomplete=off>
                 <fieldset>
                     <legend>Details</legend>
                     <input type="hidden" name="function" value="addFilm">
