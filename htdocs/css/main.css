@@ -895,27 +895,24 @@ nav li a:hover {
     width: 97%;
 }
 
-textarea {
+#film textarea {
     font-size: 13px;
     width: 92%;
     resize: none;
     padding:4px;
 }
 
-#film #tweeview input[type="submit"] {
-    margin-top: 4px;
-    margin-bottom: 0;
-    display: inline;
+#film #tweeview {
+    text-align: right;
 }
 
-#film #rate #tweeviewShown {
-    margin: 20px 5px 10px 5px;
+#film #tweeview p {
+    text-align: left;
+    margin: 0;
+}
 
-    background-color: white;
-
-    padding: 5px;
-
-    display: block;
+#film #tweeview button {
+    text-align: right;
 }
 
 #film #rate img {
@@ -988,6 +985,14 @@ textarea {
 
 #film #averageRating img {
     width: 30px;
+}
+
+#film #tweetButton {
+    text-align: center;
+}
+
+#film #tweetButton img {
+    width: 50px;
 }
 
 #couldntFind #uh-oh {

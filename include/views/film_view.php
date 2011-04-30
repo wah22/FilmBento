@@ -116,7 +116,7 @@
                                 <?php endfor; ?>
                             </div>
                             <?php if (!empty($seen['tweeview'])) : ?>
-                            <p>&ldquo;<?php echo $seen['tweeview']; ?>&rdquo;</p>
+                            <p><?php echo $seen['tweeview']; ?></p>
                             <?php endif; ?>
                         </li>
                         <?php endforeach; ?>
@@ -178,12 +178,15 @@
                             <form method="post" action="">
                                 <input type="hidden" name="function" value="tweeview">
                                 <textarea name="tweeview" rows="3" maxlength="140"></textarea>
-                                <input type="submit" name="submit" value="Submit">
+                                <button class=button>Submit</button>
                             </form>
                             <?php else : ?>
-                            &ldquo;<?php echo $data['tweeview']; ?>&rdquo;
+                            <p><?php echo $data['tweeview']; ?></p>
                             <?php endif; ?>
                         </fieldset>
+                    </div>
+                    <div id=tweetButton>
+                        <a href="http://twitter.com/share?text=I saw <?php echo $data['film']->getTitle(); ?><?php if ($data['hasRated']) : ?> and rated it <?php echo $data['rating']; ?> stars<?php endif; ?> on %23Filmbento&url=<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><img src="<?php echo BASE_URL;?>/images/logos/twitter.png">Tweet</a>
                     </div>
                     <?php endif; ?>
                 <?php else : ?>
