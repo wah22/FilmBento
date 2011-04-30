@@ -211,4 +211,11 @@ class FilmListModel {
             }
         }
     }
+
+    function deleteUsersLists($user) {
+        $userID = $user->getID();
+        $delete = DB::getInstance()->prepare('DELETE FROM fbo_list_entries WHERE user_id = :user_id');
+        $delete->bindParam('user_id', $userID);
+        $delete->execute();
+    }
 }
