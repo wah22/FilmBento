@@ -73,8 +73,7 @@
                 <ul>
                     <?php foreach($data['recentlySeens'] as $seen) : ?>
                     <li>
-                        <img src="<?php echo $seen['user']->getAvatar(); ?>">
-                        <a href="<?php echo $seen['user']->getPath(); ?>"><?php echo $seen['user']->getHandle(); ?></a> saw
+                        <a href="<?php echo $seen['user']->getPath(); ?>"><img src="<?php echo $seen['user']->getAvatar(); ?>"><?php echo $seen['user']->getHandle(); ?></a> saw
                         <a href="<?php echo $seen['film']->getpath(); ?>"><?php echo $seen['film']->getTitle(); ?></a>
                         <?php if ($seen['seen']->getRating()) : ?>
                         and rated it <?php echo $seen['seen']->getRating(); ?> stars.
