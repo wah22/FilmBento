@@ -34,7 +34,7 @@
                     <input type="text" name="handle">
                     <div class="notes">
                         <p>This is the name that will appear in your URL. (http://www.filmbento.com/you)</p>
-                        <p>It can be 3-64 lowercase letters or numbers, with no punctuation or spaces.</p>
+                        <p>It can be 3-64 letters or numbers, with no punctuation or spaces.</p>
                     </div>
                 </fieldset>
                 <!--
