@@ -13,7 +13,7 @@ class HomeController extends Controller {
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
 
-        $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(3);
+        $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(20);
         $recentlyAddedFilmsOutput = array();
         foreach ($recentlyAddedFilms as $film) {
             $recentSeensOP = array();
@@ -34,7 +34,7 @@ class HomeController extends Controller {
         $data['recentlyAddedFilms'] = $recentlyAddedFilmsOutput;
 
         $recentSeensOutput = array();
-        $recentSeens = $this->seenModel->getRecentSeens(10);
+        $recentSeens = $this->seenModel->getRecentSeens(20);
         foreach ($recentSeens as $seen) {
             $recentSeensOutput[] = array(
                 'user' => $this->userModel->getUser('id', $seen->getUserID()),
