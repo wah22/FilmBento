@@ -9,16 +9,13 @@
     <div id="pageWrapper">
         <?php include("header.php"); ?>
         <div id=editFilm>
-            <form action="" method="post">
+            <form action="" method="post" autocomplete=Off>
                 <fieldset>
                     <legend>Title</legend>
                     <?php echo $data['film']->getTitle(); ?>
                 </fieldset>
                 <fieldset>
                     <legend>Details</legend>
-
-                    <!--<label for="altTitle">Non-English title</label>
-                    <input type="text" name="altTitle" value="<?php// echo $data['film']->getMeta('alt_title'); ?>">-->
 
                     <label for="year">Year</label>
                     <input type="text" name="year" value="<?php echo $data['film']->getYear(); ?>">
@@ -49,3 +46,4 @@
     </div>
 </body>
 </html>
+
