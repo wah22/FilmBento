@@ -12,3 +12,10 @@ if (isset($_REQUEST['controller'])) {
     $controller = new HomeController();
 }
 
+// if a function has been specified execute it, if not execute the default function (index())
+if (isset($_REQUEST['function'])) {
+    $function = $_REQUEST['function'];
+    $controller->$function();
+} else {
+    $controller->index();
+}
