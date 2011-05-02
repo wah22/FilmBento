@@ -2,7 +2,7 @@
 
 class UserModel extends Model {
 
-    function __construct() {
+    public function __construct() {
         parent::__construct();
     }
 
@@ -25,7 +25,7 @@ class UserModel extends Model {
 
     // Gets a user from the database and returns it.
     // The $by variable is the criteria you want to use to select the user eg, email
-    function getUser($by, $value) {
+    public function getUser($by, $value) {
         // Set the query based on the get criteria
         if ($by == 'handle') {
             $stmt = $this->pdo->prepare('SELECT * FROM fr_users WHERE handle = :value');
@@ -53,7 +53,7 @@ class UserModel extends Model {
     }
 
     // Creates user objects for all users in the database and returns them as an array.
-    function getAllUsers() {
+    public function getAllUsers() {
         $get = $this->pdo->prepare('SELECT * FROM fr_users');
         $get->execute();
         
@@ -67,7 +67,7 @@ class UserModel extends Model {
     }
 
     // Updates a user in the database.
-    function save($user) {
+    public function save($user) {
         $email = $user->getEmail();
         $handle = $user->getHandle();
         $password = $user->getPassword();
@@ -128,3 +128,4 @@ class UserModel extends Model {
         return $user;
     }
 }
+

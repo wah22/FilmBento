@@ -1,30 +1,38 @@
 <?php
 
-class FilmModel {
-    function create($film) {
-        $stmt = DB::getInstance()->prepare('INSERT INTO fbo_films VALUES (NULL, :title, :year, :added_by_user_id, NOW())');
+/**
+* FilmModel
+* This model handels creating, reading, updating and deleting films from the database.
+*/
+class FilmModel extends Model {
+
+    public function __construct() {
+        parent::__construct();
+    }
+
+    // Inserts a film into the database
+    public function create($film) {
         $title = $film->getTitle();
         $year = $film->getYear();
         $addedID = $film->getUserWhoAddedID();
+        $stmt = $this->pdo->prepare('INSERT INTO fbo_films VALUES (NULL, :title, :year, :added_by_user_id, NOW())');
         $stmt->bindParam(':title', $title);
         $stmt->bindParam(':year', $year);
         $stmt->bindParam(':added_by_user_id', $addedID);
         $stmt->execute();
     }
 
+    // Gets and returns a film by id, title and/or year
     function getFilm($by, $value, $year = 0) {
         $film = new Film();
         
         if ($by == 'id') {
-            if ($value == 0) {
-                return false;
-            }
-            $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE id = :value');
+            $stmt = $this->pdo->prepare('SELECT * FROM fbo_films WHERE id = :value');
         } else if ($by == 'title') {
             if (!$year) {
-                $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value');
+                $stmt = $this->pdo->prepare('SELECT * FROM fbo_films WHERE title = :value');
             } else {
-                $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :value && year = :year');
+                $stmt = $this->pdo->prepare('SELECT * FROM fbo_films WHERE title = :value && year = :year');
                 $stmt->bindParam(':year', $year);
             }
         } else {
@@ -33,90 +41,32 @@ class FilmModel {
 
         $stmt->bindParam(':value', $value);
         $stmt->execute();
+
+        // Return false if the film wasn't found
         if (!$stmt->rowCount()) {
             return false;
         }
-        $row = $stmt->fetch();
 
-        $film->setID($row['id']);
-        $film->setTitle($row['title']);
-        $film->setYear($row['year']);
-        $film->setUserWhoAddedID($row['added_by_user_id']);
+        $filmRow = $stmt->fetch();
 
-        // load meta
-        $stmt = DB::getInstance()->prepare('SELECT type, value FROM fbo_film_meta WHERE film_id = :film_id');
-        $stmt->bindParam(':film_id', $row['id']);
-        $stmt->execute();
+        $getMeta = $this->pdo->prepare('SELECT type, value FROM fbo_film_meta WHERE film_id = :film_id');
+        $getMeta->bindParam(':film_id', $filmRow['id']);
+        $getMeta->execute();
 
-        $meta = array();
-        while ($row = $stmt->fetch()) {
-            $film->setMeta($row['type'], $row['value']);
-        }
+        $meta = $getMeta->fetchAll();
 
-
-        $stmt = DB::getInstance()->prepare('SELECT user_id, rating, UNIX_TIMESTAMP(date) as date FROM fbo_seens WHERE film_id = :id');
-        $id = $film->getID();
-        $stmt->bindParam(':id', $id);
-        $stmt->execute();
-
-        while ($row = $stmt->fetch()) {
-            $userID = $row['user_id'];
-            $rating = $row['rating'];
-            $date = $row['date'];
-            $seen = new Seen($userID, $id, $rating, $date);
-            $film->addToSeens($seen);
-        }
+        $film = $this->load($filmRow, $meta);
 
         return $film;
     }
 
-    function save($film) {
-        $filmID = $film->getID();
-        $year = $film->getYear();
-        $stmt = DB::getInstance()->prepare('UPDATE fbo_films SET year = :year
-                                            WHERE id = :film_id');
-        $stmt->bindParam(':film_id', $filmID);
-        $stmt->bindParam(':year', $year);
-        $stmt->execute();
-
-        // save meta
-        $stmt = DB::getInstance()->prepare('UPDATE fbo_film_meta SET value = :value
-                                            WHERE film_id = :film_id && type = :type');
-        $stmt->bindParam(':film_id', $filmID);
-
-        $check = DB::getInstance()->prepare('SELECT * FROM fbo_film_meta WHERE film_id = :film_id && type = :type');
-        $check->bindParam(':film_id', $filmID);
-
-        foreach ($film->getAllMeta() as $type=>$value) {
-            $check->bindParam(':type', $type);
-            $check->execute();
-            if ($check->rowCount()) {
-                $stmt->bindParam(':type', $type);
-                $cleanValue = htmlentities($value, ENT_QUOTES, 'UTF-8');
-                $stmt->bindParam(':value', $cleanValue);
-                $stmt->execute();
-            } else {
-                $insert = DB::getInstance()->prepare('INSERT INTO fbo_film_meta VALUES (NULL, :film_id, :type, :value)');
-                $insert->bindParam(':film_id', $filmID);
-                $insert->bindParam(':type', $type);
-                $cleanValue = htmlentities($value, ENT_QUOTES, 'UTF-8');
-                $insert->bindParam(':value', $value);
-                $insert->execute();
-            }
-        }
-    }
-
-    function delete($film) {
-        $filmID = $film->getID();
-        $delete = DB::getInstance()->prepare('DELETE FROM fbo_films WHERE id = :film_id');
-        $delete->bindParam(':film_id', $filmID);
-        $delete->execute();
-    }
-
-    function getAllFilms() {
+    // Returns all films in the database.
+    // NB:: This is probably quite slow as it calls getFilm() for each one,
+    // repeating the database query
+    public function getAllFilms() {
         $films = array();
 
-        $stmt = DB::getInstance()->prepare('SELECT id FROM fbo_films ORDER BY title');
+        $stmt = $this->pdo->prepare('SELECT id FROM fbo_films ORDER BY title');
         $stmt->execute();
         while ($row = $stmt->fetch()) {
             $films[] = $this->getFilm('id', $row['id']);
@@ -125,10 +75,22 @@ class FilmModel {
         return $films;
     }
 
-    function filmExists($film) {
-        $title = $film->getTitle();
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_films WHERE title = :title ');
-        $stmt->bindParam(':title', $title);
+    // Get an array of the films that have been recently added to the database
+    function getRecentlyAdded($numToGet = 10) {
+        $stmt = $this->pdo->prepare("SELECT * FROM fbo_films ORDER BY when_added DESC LIMIT $numToGet");
+        $stmt->execute();
+        $films = array();
+        while ($row = $stmt->fetch()) {
+            $films[] = $this->getFilm('id', $row['id']);
+        }
+        return $films;
+    }
+
+    // Checks if a film exists on the database
+    public function filmExists($film) {
+        $id = $film->getID();
+        $stmt = $this->pdo->prepare('SELECT * FROM fbo_films WHERE id = :id');
+        $stmt->bindParam(':id', $id);
         $stmt->execute();
         if ($stmt->rowCount()) {
             return true;
@@ -137,11 +99,9 @@ class FilmModel {
         }
     }
 
-    /*
-     * returns an array of $films matching a query
-     */
+    // Returns on array of films that match the search query
     function search($query) {
-        $search = DB::getInstance()->prepare('SELECT id FROM fbo_films WHERE title LIKE :query ORDER BY title');
+        $search = $this->pdo->prepare('SELECT id FROM fbo_films WHERE title LIKE :query ORDER BY title');
         $q = "%$query%";
         $search->bindParam(':query', $q);
         $search->execute();
@@ -153,29 +113,71 @@ class FilmModel {
         return $results;
     }
 
-    function searchSeens($userID, $query) {
-        $search = DB::getInstance()->prepare('SELECT film_id FROM fbo_seens, fbo_films
-                                            WHERE fbo_seens.film_id = fbo_films.id && fbo_films.title LIKE :query && user_id = :user_id
-                                            ORDER BY title');
-        $q = "%$query%";
-        $search->bindParam(':query', $q);
-        $search->bindParam(':user_id', $userID);
-        $search->execute();
+    // Updates a films record on the database
+    public function save($film) {
+        $filmID = $film->getID();
+        $year = $film->getYear();
+        $stmt = $this->pdo->prepare('UPDATE fbo_films
+                                     SET year = :year
+                                     WHERE id = :film_id');
+        $stmt->bindParam(':film_id', $filmID);
+        $stmt->bindParam(':year', $year);
+        $stmt->execute();
 
-        $results = array();
-        while ($row = $search->fetch()) {
-            $results[] = $this->getFilm('id', $row['film_id']);
+        // save meta
+        $stmt = $this->pdo->prepare('UPDATE fbo_film_meta
+                                            SET value = :value
+                                            WHERE film_id = :film_id && type = :type');
+        $stmt->bindParam(':film_id', $filmID);
+
+        $check = $this->pdo->prepare('SELECT * FROM fbo_film_meta
+                                             WHERE film_id = :film_id && type = :type');
+        $check->bindParam(':film_id', $filmID);
+
+        foreach ($film->getAllMeta() as $type=>$value) {
+            $check->bindParam(':type', $type);
+            $check->execute();
+            if ($check->rowCount()) {
+                $stmt->bindParam(':type', $type);
+                $stmt->bindParam(':value', $value);
+                $stmt->execute();
+            } else {
+                $insert = $this->pdo->prepare('INSERT INTO fbo_film_meta
+                                               VALUES (NULL, :film_id, :type, :value)');
+                $insert->bindParam(':film_id', $filmID);
+                $insert->bindParam(':type', $type);
+                $insert->bindParam(':value', $value);
+                $insert->execute();
+            }
         }
-        return $results;
     }
 
-    function getRecentlyAdded($numToGet = 10) {
-        $stmt = DB::getInstance()->prepare("SELECT * FROM fbo_films ORDER BY when_added DESC LIMIT $numToGet");
-        $stmt->execute();
-        $films = array();
-        while ($row = $stmt->fetch()) {
-            $films[] = $this->getFilm('id', $row['id']);
+    // Deletes a film record and its meta records from the database
+    public function delete($film) {
+        $filmID = $film->getID();
+        $delete = $this->pdo->prepare('DELETE FROM fbo_films WHERE id = :film_id');
+        $delete->bindParam(':film_id', $filmID);
+        $delete->execute();
+
+        $deleteMeta = $this->pdo->prepare('DELETE FROM fbo_film_meta WHERE film_id = :film_id');
+        $deleteMeta->bindParam(':film_id', $filmID);
+        $deleteMeta->execute();
+    }
+
+    // Initiates a film object from the data passed to it
+    private function load($filmRow, $meta = array()) {
+        $film = new Film();
+
+        $film->setID($filmRow['id']);
+        $film->setTitle($filmRow['title']);
+        $film->setYear($filmRow['year']);
+        $film->setUserWhoAddedID($filmRow['added_by_user_id']);
+
+        foreach ($meta as $entry) {
+            $film->setMeta($entry['type'], $entry['value']);
         }
-        return $films;
+
+        return $film;
     }
 }
+

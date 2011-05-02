@@ -1,9 +1,15 @@
 <?php
 
-class Model {
+/**
+* Model
+* The base Model class
+*/
+abstract class Model {
+
+    // Each model has a reference to a PDO object
     protected $pdo;
 
-    function __construct() {
+    public function __construct() {
         $this->pdo = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME,
                                   DB_USERNAME,
                                   DB_PASSWORD);

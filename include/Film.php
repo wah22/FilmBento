@@ -5,7 +5,6 @@ class Film implements Linkable {
     private $id;
     private $title;
     private $year;
-    private $seens = array();
     private $userWhoAddedId;
     private $meta = array();
 
@@ -35,14 +34,6 @@ class Film implements Linkable {
 
     function setyear($year) {
         $this->year = $year;
-    }
-
-    function getSeens() {
-        return $this->seens;
-    }
-
-    function addToSeens($seen) {
-        $this->seens[] = $seen;
     }
 
     function setUserWhoAddedID($id) {
