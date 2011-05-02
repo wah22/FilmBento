@@ -21,4 +21,5 @@ RewriteRule ^([^/\.]+)/films/?$ index.php?controller=UserController&user=$1&func
 RewriteRule ^([^/\.]+)/films/([^/\.]+)?$ index.php?controller=UserController&user=$1&function=films&page=$2
 
 RewriteRule ^([^/\.]+)/?$ index.php?controller=UserController&user=$1 
+RewriteRule ^films/([^/]+)/edit?$ index.php?controller=FilmController&film=$1&function=edit [L]
 RewriteRule ^films/([^/]+)/?$ index.php?controller=FilmController&film=$1 [L]

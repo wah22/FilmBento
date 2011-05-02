@@ -5,7 +5,6 @@
     <title>FilmBento / <?php echo $data['film']->getTitle(); ?></title>
     <link href='http://fonts.googleapis.com/css?family=Ubuntu:light,lightitalic,regular,italic,500,500italic,bold,bolditalic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/css/main.css">
-    <link rel="stylesheet" type="text/css" href="/css/film.css">
  </head>
  <body>
      <div id="pageWrapper">
@@ -130,7 +129,7 @@
                     <p>Added by <a href="<?php echo $data['addedBy']->getPath(); ?>"><?php echo $data['addedBy']->getHandle(); ?></a></p>
                     <?php endif; ?>
                     <?php if($data['user']) : ?> 
-                    <a href="/?controller=FilmController&film=<?php echo $data['film']->getTitle(), "_" , $data['film']->getYear(); ?>&function=edit">edit/add details</a>
+                    <a href="<?php echo $data['film']->getPath(); ?>/edit">edit/add details</a>
                     <?php endif; ?>
                 </div>
                 <?php if($data['user']) : ?>
