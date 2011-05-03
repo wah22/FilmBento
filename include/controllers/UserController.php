@@ -127,3 +127,4 @@ class UserController extends Controller {
         $this->view->load('user_all_films_view', $data);
     }
 }
+
