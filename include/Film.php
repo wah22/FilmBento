@@ -1,12 +1,18 @@
 <?php
 
+/** Film
+* Holds a film's data
+* Used by views and controllers.
+* Setting up Film objects is done by the FilmModel
+*/
+
 class Film implements Linkable {
 
-    private $id;
-    private $title;
-    private $year;
-    private $userWhoAddedId;
-    private $meta = array();
+    protected $id;
+    protected $title;
+    protected $year;
+    protected $userWhoAddedId;
+    protected $meta = array();
 
     function getID() {
         return $this->id;
@@ -17,9 +23,6 @@ class Film implements Linkable {
     }
     
     function getTitle() {
-        if (preg_match('(\d{4}$)', $this->title)) {
-            return '';
-        }
         return $this->title;
     }
 
@@ -32,25 +35,21 @@ class Film implements Linkable {
         return $this->year;
     }
 
-    function setyear($year) {
+    function setYear($year) {
         $this->year = $year;
-    }
-
-    function setUserWhoAddedID($id) {
-        $this->userWhoAddedID = $id;
     }
 
     function getUserWhoAddedID() {
         return $this->userWhoAddedID;
     }
 
+    function setUserWhoAddedID($id) {
+        $this->userWhoAddedID = $id;
+    }
+
     function getPath () {
         $path = BASE_URL . '/films/' . urlencode($this->getTitle()) . "_" . $this->getYear();
         return $path;
-    }
-
-    function setMeta($type, $value) {
-        $this->meta[$type] = $value;
     }
 
     function getMeta($metaToGet) {
@@ -64,4 +63,9 @@ class Film implements Linkable {
     function getAllMeta() {
         return $this->meta;
     }
+
+    function setMeta($type, $value) {
+        $this->meta[$type] = $value;
+    }
 }
+
