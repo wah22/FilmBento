@@ -1,11 +1,15 @@
 <?php
 
+/**
+* User
+* Essentially all this class does is stores and provides user data to views and controllers.
+* Construction of User objects from the database is handled by the UserModel.
+*/
 class User implements Linkable {
 
     private $id;
     private $email;
     private $handle;
-    private $lists = array();
     private $password; //md5
     private $sex;
     private $dob;
@@ -31,28 +35,24 @@ class User implements Linkable {
         $this->email = $email;
     }
 
-    function setHandle($handle) {
-        $this->handle = $handle;
-    }
-
     function getHandle() {
         return $this->handle;
+    }
+
+    function setHandle($handle) {
+        $this->handle = $handle;
     }
 
     function getPath() {
         return BASE_URL . '/' . $this->gethandle();
     }
 
-    function setSex($sex) {
-        $this->sex = $sex;
-    }
-
     function getSex() {
         return $this->sex;
     }
 
-    function setLocation($location) {
-        $this->location = $location;
+    function setSex($sex) {
+        $this->sex = $sex;
     }
 
     function getLocation() {
@@ -61,29 +61,16 @@ class User implements Linkable {
         return $cleanLocation;
     }
 
-    function setTwitter($twitter) {
-        $this->twitter = $twitter;
+    function setLocation($location) {
+        $this->location = $location;
     }
 
     function getTwitter() {
         return $this->twitter;
     }
 
-    function getList($listID) {
-        foreach ($this->lists as $list) {
-            if ($list->getID() == $listID) {
-                return $list;
-            }
-        }
-        throw new Exception('That list could not be found');
-    }
-
-    function getLists() {
-        return $this->lists;
-    }
-    
-    function addList($list) {
-        $this->lists[] = $list;
+    function setTwitter($twitter) {
+        $this->twitter = $twitter;
     }
 
     function getPassword() {
