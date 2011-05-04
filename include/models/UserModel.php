@@ -80,6 +80,7 @@ class UserModel extends Model {
         $sex = $user->getSex();
         $twitter = $user->getTwitter();
         $dob = date('Y-m-d', $user->getDOB());
+        $timezone = $user->getTimezone();
 
         $stmt = $this->pdo->prepare('UPDATE fr_users
                                      SET email = :email,
@@ -88,7 +89,8 @@ class UserModel extends Model {
                                         dob = :dob,
                                         sex = :sex,
                                         location = :location,
-                                        twitter = :twitter
+                                        twitter = :twitter,
+                                        timezone = :timezone
                                      WHERE id = :user_id');
         
         $stmt->bindParam(':email', $email);
@@ -99,6 +101,7 @@ class UserModel extends Model {
         $stmt->bindParam(':location', $location);
         $stmt->bindParam(':sex', $sex);
         $stmt->bindParam(':twitter', $twitter);
+        $stmt->bindParam(':timezone', $timezone);
 
         $stmt->execute();
     }
@@ -128,6 +131,7 @@ class UserModel extends Model {
         $user->setSex($row['sex']);
         $user->setLocation($row['location']);
         $user->setTwitter($row['twitter']);
+        $user->setTimezone($row['timezone']);
 
         return $user;
     }

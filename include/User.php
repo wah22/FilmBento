@@ -7,14 +7,15 @@
 */
 class User implements Linkable {
 
-    private $id;
-    private $email;
-    private $handle;
-    private $password; //md5
-    private $sex;
-    private $dob;
-    private $location;
-    private $twitter;
+    protected $id;
+    protected $email;
+    protected $handle;
+    protected $password; //md5
+    protected $sex;
+    protected $dob;
+    protected $location;
+    protected $twitter;
+    protected $timezone;
 
     function __construct() {
     }
@@ -101,6 +102,14 @@ class User implements Linkable {
         $age = date('Y', time()) - date('Y', $this->getDOB());
         if(date("z",time()) < date("z",$this->getDOB())) $age--;
         return $age;
+    }
+
+    function getTimezone() {
+        return $this->timezone;
+    }
+
+    function setTimezone($timezone) {
+        $this->timezone = $timezone;
     }
 
     function getAvatar() {

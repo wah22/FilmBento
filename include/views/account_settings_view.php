@@ -36,14 +36,20 @@
                     <legend>My Details</legend>
                     <label for=sex>Sex</label>
                     <select name=sex>
-                    <option value=0>Not defined</option>
-                    <option value=2 <?php if ($data['user']->getSex() == 2) echo "selected"; ?>>Male</option> 
-                    <option value=1 <?php if ($data['user']->getSex() == 1) echo "selected"; ?>>Female</option>
+                        <option value=0>Not defined</option>
+                        <option value=2 <?php if ($data['user']->getSex() == 2) echo "selected"; ?>>Male</option> 
+                        <option value=1 <?php if ($data['user']->getSex() == 1) echo "selected"; ?>>Female</option>
                     </select>
                     <label for="dob">Date of Birth</label>
                     <input type="text" name="dob" id="dob" value="<?php if ($data['user']->getDOB()) { echo date('m/d/Y', $data['user']->getDOB());} ?>">
                     <label for="location">Location</label>
                     <input type="text" name="location" id="location" value="<?php if ($data['user']->getLocation()) { echo $data['user']->getLocation();} ?>">
+                    <label for=timezone>Timezone</label>
+                    <select name=timezone>
+                    <?php foreach ($data['timezones'] as $timezone) : ?>
+                        <option value=<?php echo $timezone; ?> <?php if ($data['user']->getTimezone() == $timezone) echo "selected=true"; ?>><?php echo $timezone; ?></option>
+                    <?php endforeach; ?>
+                    </select>
                     <input type="submit" value="Save">
                 </fieldset>
                 <fieldset>

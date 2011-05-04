@@ -8,7 +8,8 @@ class AccountSettingsController extends PrivateController {
 
     function index() {
         $data = array(
-            'user' => $this->user
+            'user' => $this->user,
+            'timezones' => $this->getTimezones()
         );
 
         $this->view->load('account_settings_view', $data);
@@ -69,8 +70,15 @@ class AccountSettingsController extends PrivateController {
             $this->userModel->save($this->user);
         }
 
+        if (!empty($_POST['timezone']) && $_POST['timezone'] != $this->user->getTimezone()) {
+            $timezone = $_POST['timezone'];
+            $this->user->setTimezone($timezone);
+            $this->userModel->save($this->user);
+        }
+
         $data['user'] = $this->user;
         $data['errors'] = $errors;
+        $data['timezones'] = $this->getTimezones();
         $this->view->load('account_settings_view', $data);
     }
 
@@ -78,5 +86,22 @@ class AccountSettingsController extends PrivateController {
         $this->seenModel->deleteAllUsersSeens($this->user);
         $this->userModel->delete($this->user);
         $this->view->load('bai_view');
+    }
+
+    // Returns all timezones in an array
+    private function getTimezones() {
+        $timezones = DateTimeZone::listAbbreviations();
+        $timezoneIDs = array();
+        foreach ($timezones as $timezone) {
+            foreach ($timezone as $zone) {
+                if ( preg_match( '/^(America|Antartica|Arctic|Asia|Atlantic|Europe|Indian|Pacific)\//', $zone['timezone_id'] ) ) {
+                    $timezoneIDs[] = $zone['timezone_id'];
+                }
+            }
+        }
+        sort($timezoneIDs);
+        $timezoneIDs = array_unique($timezoneIDs);
+        
+        return $timezoneIDs;
     }
 }
