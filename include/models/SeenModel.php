@@ -6,6 +6,10 @@
 */
 class SeenModel extends Model {
 
+    public function  __construct() {
+        parent::__construct();
+    }
+
     // Inserts a Seen object into the database
     public function create($seen) {
         $userID   =   $seen->getUserID();

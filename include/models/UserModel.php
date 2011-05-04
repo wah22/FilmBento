@@ -1,5 +1,9 @@
 <?php
 
+/** UserModel
+* The UserModel handles creating User objects from user database records
+* and the upadting and deletion of user records
+*/
 class UserModel extends Model {
 
     public function __construct() {
