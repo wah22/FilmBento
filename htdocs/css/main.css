@@ -638,7 +638,7 @@ nav li a:hover {
 
 #userProfile .list li, #userProfile .userList li, #film .list li {
     list-style-type: none;
-    border: 1px solid black;
+    border: 1px dashed black;
     border-bottom: 0;
     border-left: 0;
     border-right: 0;

@@ -24,9 +24,13 @@ class FilmList {
     function getID() {
         return $this->id;
     }
+    
+    function setUserID($id) {
+        $this->id = $id;
+    }
 
     function getUserID() {
-        return $this->userID;
+        return $this->id;
     }
 
     function setName($name) {
