@@ -50,14 +50,20 @@ class Seen {
     // Gets a string that says when the seen occurred
     function whenSeen () {
         $date = new DateTime(date("Y-m-d H:i:s", $this->date));
+        $now = new DateTime(date("Y-m-d H:i:s", time()));
 
         // If a user is logged in format the date to their timezone
         if (LoginManager::getInstance()->UserLoggedIn()) {
             $loggedInUser = LoginManager::getInstance()->getLoggedInUser();
             $date->setTimezone(new DateTimeZone($loggedInUser->getTimezone()));
+            $now->setTimezone(new DateTimeZone($loggedInUser->getTimezone()));
         }
 
         $formattedDate = $date->format('l, j M');
+
+        if ($formattedDate == $now->format('l, j M')) {
+            return 'Today';
+        }
 
         return $formattedDate;
     }
