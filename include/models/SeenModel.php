@@ -29,7 +29,7 @@ class SeenModel extends Model {
         }
 
         $stmt = $this->pdo->prepare('INSERT INTO fbo_seens
-                                     VALUES (NULL, :user_id, :film_id, :rating, :tweeview, FROM_UNIXTIME(:date))');
+                                     VALUES (NULL, :user_id, :film_id, :rating, :tweeview, :date)');
         $stmt->bindParam(':user_id', $userID);
         $stmt->bindParam(':film_id', $filmID);
         $stmt->bindParam(':rating', $rating);
@@ -42,7 +42,7 @@ class SeenModel extends Model {
     public function getSeen($user, $film) {
         $userID = $user->getID();
         $filmID = $film->getID();
-        $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
+        $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, date as date
                                      FROM fbo_seens
                                      WHERE user_id = :user_id && film_id = :film_id');
         $stmt->bindParam(':user_id', $userID);
@@ -65,7 +65,7 @@ class SeenModel extends Model {
     // $offset tells the query how many entries to skip (for listing multiple pages of films etc.)
     public function getLastSeens ($numToGet, $user, $offset = 0) {
         $id = $user->getID();
-        $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, UNIX_TIMESTAMP(date) as date, tweeview
+        $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, date as date, tweeview
                                      FROM fbo_seens
                                      WHERE user_id = :user_id
                                      ORDER BY date DESC
@@ -142,13 +142,13 @@ class SeenModel extends Model {
     // If mustHaveTweeview is set it only returns seens that have a tweeview
     public function getFilmsLastSeens ($numToGet, $film, $mustHaveTweeview = false) {
         if (!$mustHaveTweeview) {
-            $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
+            $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, date as date
                                          FROM fbo_seens
                                          WHERE film_id = :film_id
                                          ORDER BY date DESC
                                          LIMIT :num_to_get');
         } else {
-            $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, UNIX_TIMESTAMP(date) as date
+            $stmt = $this->pdo->prepare('SELECT user_id, film_id, rating, tweeview, date as date
                                          FROM fbo_seens
                                          WHERE film_id = :film_id && tweeview != ""
                                          ORDER BY date DESC
