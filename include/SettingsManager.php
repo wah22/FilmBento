@@ -1,10 +1,11 @@
 <?php
 
-class SettingsManager {
+class SettingsManager extends Model {
 
     private static $instance;
     
     private function __contruct() {
+        parent::__construct();
     }
 
     static function getInstance() {
@@ -15,7 +16,7 @@ class SettingsManager {
     }
 
     function getSetting($setting) {
-        $stmt = DB::getInstance()->prepare('SELECT * FROM fbo_settings WHERE name = :name');
+        $stmt = $this->pdo->prepare('SELECT * FROM fbo_settings WHERE name = :name');
         $stmt->bindParam(':name', $setting);
         $stmt->execute();
         $row = $stmt->fetch();
@@ -25,7 +26,7 @@ class SettingsManager {
     }
 
     function setSetting($setting, $value) {
-        $update = DB::getInstance()->prepare('UPDATE fbo_settings SET value = :value WHERE name = :setting');
+        $update = $this->pdo->prepare('UPDATE fbo_settings SET value = :value WHERE name = :setting');
         $update->bindValue(':setting', $setting);
         $update->bindValue(':value', $value);
         $update->execute();

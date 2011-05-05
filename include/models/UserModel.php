@@ -17,7 +17,7 @@ class UserModel extends Model {
 
         // If the user doesn't already exist in the database insert it.
         if (! $this->getUser('handle', $handle) && !$this->getUser('email', $email)) {
-            $stmt = $this->pdo->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00, "", 00, "", "user")');
+            $stmt = $this->pdo->prepare('INSERT INTO fr_users VALUES ( NULL, :email, :handle, :password, 0000-00-00, "", 00, "", "user", "Europe/Dublin")');
             $stmt->bindParam(':email', $email);
             $stmt->bindParam(':handle', $handle);
             $stmt->bindParam(':password', $password);
