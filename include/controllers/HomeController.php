@@ -13,7 +13,7 @@ class HomeController extends Controller {
         $data = array();
         $data['user'] = LoginManager::getInstance()->getLoggedInUser();
 
-        $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(10);
+        $recentlyAddedFilms = $this->filmModel->getRecentlyAdded(10, "with_poster");
         $recentlyAddedFilmsOutput = array();
         foreach ($recentlyAddedFilms as $film) {
             $recentSeensOP = array();

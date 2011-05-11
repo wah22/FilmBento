@@ -448,17 +448,23 @@ nav li a:hover {
     list-style-type: none;
     position: relative;
     margin: 0 auto 0 auto;
+    border: 1px solid gray;
+    border-bottom: 0;
 }
 
 #haveYouSeen li {
     height: 110px;
-    margin: 0 1% 10px 1%;
-    padding: 20px;
+    margin: 0;
+    padding: 10px;
+    border-bottom: 1px solid gray;
 }
 
 #haveYouSeen .title {
     color: black;
     font-weight: bold;
+}
+
+#haveYouSeen li {
 }
 
 #haveYouSeen li .star {

@@ -76,12 +76,19 @@ class FilmModel extends Model {
     }
 
     // Get an array of the films that have been recently added to the database
-    function getRecentlyAdded($numToGet = 10) {
+    function getRecentlyAdded($numToGet = 10, $withPoster = false) {
         $stmt = $this->pdo->prepare("SELECT * FROM fbo_films ORDER BY when_added DESC LIMIT $numToGet");
         $stmt->execute();
         $films = array();
         while ($row = $stmt->fetch()) {
-            $films[] = $this->getFilm('id', $row['id']);
+            $film = $this->getFilm('id', $row['id']);
+            if (!$withPoster) {
+                $films[] = $film;
+            } else {
+                if ($film->getMeta('poster_link')) {
+                    $films[] = $film;
+                }
+            }
         }
         return $films;
     }
