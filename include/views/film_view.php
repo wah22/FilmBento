@@ -185,7 +185,7 @@
                         </fieldset>
                     </div>
                     <div id=tweetButton>
-                        <a href="http://twitter.com/share?text=I saw <?php echo $data['film']->getTitle(); ?><?php if ($data['hasRated']) : ?> and rated it <?php echo $data['rating']; ?> stars<?php endif; ?> on %23Filmbento&url=<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><img src="<?php echo BASE_URL;?>/images/logos/twitter.png">Tweet</a>
+                        <a href="http://twitter.com/share?text=I saw <?php echo $data['film']->getTitle(); ?><?php if ($data['hasRated']) : ?> and rated it <?php echo $data['rating']; ?> stars<?php endif; ?> on %23FilmBento&url=<?php echo LoginManager::getInstance()->getLoggedInUser()->getPath(); ?>"><img src="<?php echo BASE_URL;?>/images/logos/twitter.png">Tweet</a>
                     </div>
                     <?php endif; ?>
                 <?php else : ?>
